@@ -10,31 +10,28 @@
 
 <section layout:fragment="content">
 
-<form th:action="@{/login}" method="post" >
+    <form th:action="@{/connexion}" method="post">
 
-<h1>Connexion</h1>
+        <h1>Connexion</h1>
+        <!----mettre un msg erreur si erreur, qd je vais sur une autre page je suis deco-->
+        <label for="pseudo"> Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" value=""
+               pattern="^(.+)$"
+               size="30" required>
+        <br>
 
-<label for="pseudo" > Pseudo</label>
-<input type="text" id="pseudo" name="pseudo" value=""
-       pattern="^(.+)$"
-       size="30" required>
-<br>
-
-<label for="mdp" > Mot De Passe</label>
-<input type="password" id="mdp" name="mdp" value=""
-       pattern="^(.+)$"
-       size="30" required>
-<br>
-
-
-<button type="submit" value="Se connecter">Se connecter</button>
-
-<a href="">Mot de passe oublié</a>
-
-<button type="submit" value="Inscription" <a href="subscribe.html"></a>Créer un compte</button>
+        <label for="mdp"> Mot De Passe</label>
+        <input type="password" id="mdp" name="mdp" value=""
+               pattern="^(.+)$"
+               size="30" required>
+        <br>
 
 
-</form>
+        <button type="submit" value="Se connecter">Se connecter</button>
+
+        <a href="">Mot de passe oublié</a>
+
+    </form>
 </section>
 </body>
 </html>

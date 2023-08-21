@@ -9,26 +9,24 @@
     <section layout:fragment="content">
         <h1>Inscription</h1>
 
-        <form id="subForm">
+        <form id="subForm" action="/subscribe" method="post">
             <br>
             <legend>Formulaire d'adhésion </legend><br>
             <!-- La balise Table pour formater l'affichage du formulaire -->
 
             <div>
                 <label for="name" class="form__label">Pseudo : </label><br>
-                <input id="user" type="text" class="form__field" required />
-                <p id="userInfo">Doit faire au moins 3 caractères</p>
+                <input name="pseudo" id="user" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères" required />
             </div>
 
             <div>
                 <label for="mail" class="form__label"> Mail : </label><br>
-                <input id="mail" type="email" class="form__field" required />
-                <p id="mailU"> Il doit être valide ! </p>
+                <input name="email" id="mail" type="email" class="form__field" placeholder="abc@gmail.com" required />
             </div>
 
             <div>
                 <label for="pw" class="form__label">Mot de passe : </label><br>
-                <input id="mdpInfo" type="password" class="form__field">
+                <input name="mdp" id="mdpInfo" type="password" class="form__field" required/>
                 <p id=mdpI> Doit contenir au moins : <br>
                     - 6 caractères <br>
                     - 1 Majuscule <br>

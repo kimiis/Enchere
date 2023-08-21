@@ -36,7 +36,7 @@ function init() {
 
         if (localStorage.getItem("mail") === mail.value) {
             window.alert("t'es déjà une licorne")
-            document.location.href = "./login.html";
+            document.location.href = "../templates/login.html";
             return
         }
         if (localStorage.getItem("username") === username.value){
@@ -49,7 +49,7 @@ function init() {
             alert("Champs manquant");
         } else {
             // perform operation with form input
-            alert("~C'est bon t'es une licone maintenant~!");
+            alert("~C'est bon t'es inscrit maintenant~!");
             console.log(
                 `This form has a username of ${username.value} and password of ${password.value}`
             );
@@ -60,7 +60,7 @@ function init() {
             username.value = "";
             password.value = "";
             mail.value = "";
-            document.location.href = "./login.html"
+            document.location.href = "../templates/login.html"
         }
 
     });
@@ -77,7 +77,7 @@ function verifierUtlisateur() {
 }
 function verifierMail() {
 
-    if (/^[\w-\.]+([\w-]+\.)+[\w-]{2,}$/.test(inputs.mail.value)) {
+    if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(inputs.mail.value)) {
         infos.mailU.style.color = "black";
     } else {
         infos.mailU.style.color = "red";

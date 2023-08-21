@@ -9,15 +9,22 @@
     <section class=menuP>
         <nav>
             <ul class="menu">
-                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="accueil">Accueil</a></li>
 
-                <li><a href="subscribe.html">S'inscrire</a></li>
+                <li><a href="subscribe">S'inscrire</a></li>
 
-                <li><a href="login.html">Se connecter
-                </a></li>
-                <li><a href="profil.html">Profil</a></li>
+                <th:block th:if="${!connecte}">
+                    <li><a href="login">Se connecter</a></li>
+                </th:block>
 
-                <li><a href="vendre_article.html">Vendre</a></li>
+                <th:block th:if="${connecte}">
+                    <li><a href="deconnexion">Deconnexion</a></li>
+                </th:block>
+
+                <li><a href="profil">Profil</a></li>
+
+                <li><a href="vendre_article">Vendre</a></li>
+
             </ul>
         </nav>
     </section>
