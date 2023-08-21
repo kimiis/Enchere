@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendre</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <form>
+        <legend>Formulaire de vente</legend>
+        <br>
+
+        <div>
+            <label for="name" class="form__label">Nom de l'article : </label><br>
+            <input id="user" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères" required/>
+        </div>
+        <div>
+            <label for="description" class="form__label">Description de l'article : </label><br>
+            <input id="description" type="textarea" class="form__field" placeholder="Doit faire au moins 100 caractères"
+                   required/>
+        </div>
+
+
+        <label for="categorie">Catégorie l'article : </label><br>
+        <select name="categorie">
+            <option value="none">-- Choisir la catégorie --</option>
+            <option value="voiture">Voiture</option>
+            <option value="vetement">Vêtement</option>
+
+        </select>
+        <div>
+            <label for="prix" class="form__label">Prix de départ : </label><br>
+            <input id="prix" type="number" class="form__field" placeholder="min 1 points"
+                   required/>
+        </div>
+        <div>
+            <label for="heureD" class="form__label">Début de l'enchère : </label><br>
+            <input type="datetime-local" id="heureD" class="form__field" required/>
+        </div>
+        <div>
+            <label for="heureF" class="form__label">Fin de l'enchère : </label><br>
+            <input type="datetime-local" id="heureF" class="form__field" required/>
+        </div>
+        <div>
+            <label for="retrait" class="form__label">Modalité de retrait : </label><br>
+            <select name="retrait">
+                <option value="none">-- Choisir le moyen de retrait --</option>
+                <option value="none">-- Main propre --</option>
+                <option value="none">-- Point relais--</option>
+                <option value="none">-- Mondial relay --</option>
+                <option value="none">-- Livraison à domicile --</option>
+            </select>
+        </div>
+
+        <input id= "sub" class="form-submit-button" type="submit" value="Valider">
+    </form>
+</section>
+
+</body>
+</html>

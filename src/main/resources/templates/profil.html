@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section layout:fragment="content">
+
+    <form th:action="@{/profil}" method="post" >
+
+    <h1> Profil </h1>
+
+<ul>
+    <label for="pseudo" > Pseudo : </label>
+    <label for="pseudo" > Nom : </label>
+    <label for="pseudo" > Prénom : </label>
+    <label for="pseudo" > Email : </label>
+    <label for="pseudo" > Téléphone : </label>
+    <label for="pseudo" > Adresse : </label>
+    <label for="pseudo" > CPO : </label>
+
+</ul>
+    <button type="submit" value="Modifier"> Modifier</button>
+        <button type="submit" value="Annuler"> Annuler</button>
+
+
+
+</form>
+
+
+
+</section>
+
+
+
+</body>
+</html>
