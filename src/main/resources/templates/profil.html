@@ -8,31 +8,66 @@
 
 <section layout:fragment="content">
 
-    <form th:action="@{/profil}" method="post" >
+    <form th:action="@{/profil}" method="post">
 
-    <h1> Profil </h1>
-
-<ul>
-    <label for="pseudo" > Pseudo : </label>
-    <label for="pseudo" > Nom : </label>
-    <label for="pseudo" > Prénom : </label>
-    <label for="pseudo" > Email : </label>
-    <label for="pseudo" > Téléphone : </label>
-    <label for="pseudo" > Adresse : </label>
-    <label for="pseudo" > CPO : </label>
-
-</ul>
-    <button type="submit" value="Modifier"> Modifier</button>
-        <button type="submit" value="Annuler"> Annuler</button>
+        <h1> Profil </h1>
 
 
+        <div>
+            <label for="pseudo">Pseudo : </label><br>
+            <input id="pseudo" type="text" placeholder="Modifier mon pseudo" pattern="^(.+)$"
+                   size="30" required/>
+        </div>
 
-</form>
+        <div>
+            <label for="nom">Nom : </label><br>
+            <input id="nom" type="text" placeholder="Modifier mon nom"
+                   pattern="^(.+)$"
+                   size="30" required/>
+        </div>
+        <div>
+            <label for="prenom">Prénom : </label><br>
+            <input id="prenom" type="text" placeholder="Modifier mon prenom"
+                   pattern="^(.+)$"
+                   size="30" required/>
+        </div>
 
+        <div>
+            <label for="email">Email : </label><br>
+            <input id="email" type="email" placeholder="Modifier mon email"
+                   pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                   size="30" required/>
+        </div>
+
+        <div>
+            <label for="tel">Téléphone : </label><br>
+            <input id="tel" type="text" placeholder="Modifier mon téléphone"
+                   pattern="^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$"
+                   size="30" required/>
+        </div>
+
+        <div>
+            <label for="adresse">Adresse : </label><br>
+            <input id="adresse" type="text" placeholder="Modifier mon adresse"
+                   pattern="^(.+)$"
+                   size="30" required/>
+        </div>
+<!--        <div>-->
+<!--            <label for="cpo">Code Postal : </label><br>-->
+<!--            <input id="cpo" type="text" placeholder="Modifier mon code postal"-->
+<!--                   pattern="^(?!00)\\d{5}"-->
+<!--                   size="30" required/>-->
+<!--        </div>-->
+
+        <br>
+        <button type="submit" value="Modifier"> Modifier</button>
+        <button type="reset" value="Annuler"> Annuler</button>
+
+
+    </form>
 
 
 </section>
-
 
 
 </body>
