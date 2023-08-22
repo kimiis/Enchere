@@ -75,7 +75,6 @@ public class AffichageController {
         return "accueil";
     }
 
-
     @ModelAttribute("connecte")//au moment où j'arrive sur la page je suis déco
     public boolean initConnecte() {
         return false;
