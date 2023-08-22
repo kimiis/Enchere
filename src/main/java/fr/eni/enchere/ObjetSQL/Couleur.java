@@ -1,15 +1,9 @@
-package fr.eni.enchere.Enum.Auto;
+package fr.eni.enchere.ObjetSQL;
 
-public class TypeAuto {
+public class Couleur {
     private String nom;
     private int id;
     private String texte;
-
-    public TypeAuto(String nom, int id, String texte) {
-        this.nom = nom;
-        this.id = id;
-        this.texte = texte;
-    }
 
     public String getNom() {
         return nom;
@@ -34,4 +28,11 @@ public class TypeAuto {
     public void setTexte(String texte) {
         this.texte = texte;
     }
+
+    public Couleur(String nom, int id, String texte) {
+        this.nom = nom;
+        this.id = id;
+        this.texte = texte;
+    }
 }
+

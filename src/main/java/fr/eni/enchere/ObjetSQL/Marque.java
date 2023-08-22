@@ -1,15 +1,9 @@
-package fr.eni.enchere.Enum.ElectroM;
+package fr.eni.enchere.ObjetSQL;
 
-public class TypeElectro {
+public class Marque {
     private String nom;
     private int id;
     private String texte;
-
-    public TypeElectro(String nom, int id, String texte) {
-        this.nom = nom;
-        this.id = id;
-        this.texte = texte;
-    }
 
     public String getNom() {
         return nom;
@@ -34,6 +28,11 @@ public class TypeElectro {
     public void setTexte(String texte) {
         this.texte = texte;
     }
-}
 
+    public Marque(String nom, int id, String texte) {
+        this.nom = nom;
+        this.id = id;
+        this.texte = texte;
+    }
+}
 

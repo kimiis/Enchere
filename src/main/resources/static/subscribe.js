@@ -66,7 +66,6 @@ function init() {
     });
 
 }
-
 function verifierUtlisateur() {
     //dans l'input "user", j'accede a ce qui a été tapé dedans
     if (inputs.user.value.length < 3) {

@@ -1,15 +1,9 @@
-package fr.eni.enchere.Enum.Vetements;
+package fr.eni.enchere.ObjetSQL;
 
-public class Taille {
+public class Type {
     private String nom;
     private int id;
     private String texte;
-
-    public Taille(String nom, int id, String texte) {
-        this.nom = nom;
-        this.id = id;
-        this.texte = texte;
-    }
 
     public String getNom() {
         return nom;
@@ -32,6 +26,12 @@ public class Taille {
     }
 
     public void setTexte(String texte) {
+        this.texte = texte;
+    }
+
+    public Type (String nom, int id, String texte) {
+        this.nom = nom;
+        this.id = id;
         this.texte = texte;
     }
 }

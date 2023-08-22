@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+    <script src="/logout.js" sec:authorize="isAuthenticated()"></script>
     <meta charset="UTF-8">
     <title>layoute</title>
 </head>
 <body>
 <header>
     <section class=menuP>
+
+        <a href="accueil"> <img src="images/EnchereLogo.jpg" alt="logo"width="50rem"></a>
         <nav>
             <ul class="menu">
                 <li><a href="accueil">Accueil</a></li>

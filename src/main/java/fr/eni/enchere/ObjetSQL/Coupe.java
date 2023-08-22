@@ -1,15 +1,9 @@
-package fr.eni.enchere.Enum.ProduitBeaute;
+package fr.eni.enchere.ObjetSQL;
 
-public class TypeProdB {
+public class Coupe {
     private String nom;
     private int id;
     private String texte;
-
-    public TypeProdB(String nom, int id, String texte) {
-        this.nom = nom;
-        this.id = id;
-        this.texte = texte;
-    }
 
     public String getNom() {
         return nom;
@@ -35,4 +29,10 @@ public class TypeProdB {
         this.texte = texte;
     }
 
+    public Coupe (String nom, int id, String texte) {
+        this.nom = nom;
+        this.id = id;
+        this.texte = texte;
+    }
 }
+

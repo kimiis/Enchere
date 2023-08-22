@@ -1,16 +1,9 @@
-package fr.eni.enchere.Enum.Consoles;
+package fr.eni.enchere.ObjetSQL;
 
-public class TypeConsole {
+public class Taille {
     private String nom;
     private int id;
     private String texte;
-
-
-    public TypeConsole(String nom, int id, String texte) {
-        this.nom = nom;
-        this.id = id;
-        this.texte = texte;
-    }
 
     public String getNom() {
         return nom;
@@ -35,6 +28,10 @@ public class TypeConsole {
     public void setTexte(String texte) {
         this.texte = texte;
     }
+
+    public Taille(String nom, int id, String texte) {
+        this.nom = nom;
+        this.id = id;
+        this.texte = texte;
+    }
 }
-
-

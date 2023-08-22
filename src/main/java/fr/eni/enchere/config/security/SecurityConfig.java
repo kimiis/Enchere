@@ -4,6 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -13,19 +18,19 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 @EnableWebSecurity
 public class SecurityConfig {
 
-//    @Bean
-//    InMemoryUserDetailsManager userDetailsManager(){
-//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//        String moiChiffre = encoder.encode("moi");
-//        System.out.println("moi : " + moiChiffre);
-//        UserDetails a = User.builder().username("admin").password(moiChiffre).roles("ADMIN").build();
-//        UserDetails b = User.builder().username("client").password(moiChiffre).roles("CLIENT").build();
-//        UserDetails c = User.builder().username("autre").password(moiChiffre).roles("AUTRE").build();
-//        UserDetails d = User.builder().username("chef").password(moiChiffre).roles("AUTRE","ADMIN","CLIENT").build();
-//        UserDetails e = User.builder().username("user").password(moiChiffre).roles("USER").build();
-//
-//        return new InMemoryUserDetailsManager(a, b, c, d,e);
-//    }
+    @Bean
+    InMemoryUserDetailsManager userDetailsManager(){
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        String moiChiffre = encoder.encode("moi");
+        System.out.println("moi : " + moiChiffre);
+        UserDetails a = User.builder().username("admin").password(moiChiffre).roles("ADMIN").build();
+        UserDetails b = User.builder().username("client").password(moiChiffre).roles("CLIENT").build();
+        UserDetails c = User.builder().username("autre").password(moiChiffre).roles("AUTRE").build();
+        UserDetails d = User.builder().username("chef").password(moiChiffre).roles("AUTRE","ADMIN","CLIENT").build();
+        UserDetails e = User.builder().username("user").password(moiChiffre).roles("USER").build();
+
+        return new InMemoryUserDetailsManager(a, b, c, d,e);
+    }
 
 //    @Bean
 //    UserDetailsManager userDetailsManager(DataSource datasource){

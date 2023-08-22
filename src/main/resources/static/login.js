@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 function verifierUtlisateur() {
     //dans l'input "user", j'accede a ce qui a été tapé dedans
     if (inputs.user.value.length < 3) {
@@ -15,8 +7,6 @@ function verifierUtlisateur() {
     }
 }
 
-
-
 function verifierMdp() {
 
     if (/^((?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*[#?!@$%^&*-])).{6,}$/.test(inputs.mdpInfo.value)) {
@@ -24,7 +14,5 @@ function verifierMdp() {
     } else {
         infos.mdpI.style.color = "red";
     }
-
-
 
 }
