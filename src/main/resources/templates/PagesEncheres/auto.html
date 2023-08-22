@@ -5,6 +5,45 @@
     <title>Automobile</title>
 </head>
 <body>
+<div>
+<!--    <label for="marques">Marques</label>-->
+<!--    <select name="marques" id="marques">-->
+<!--        <option value=""disabled selected>Choisissez la marque</option>-->
+<!--        <option th:each="marqueElem : ${T(fr.eni.enchere.enums.Marques).values()}" th:value="${marquesElem.value}"-->
+<!--                th:text="${marquesElem.displayValue}"></option>-->
 
+<!--        <option value="alfa">Alfa Romeo</option>-->
+<!--        <option value="audi">Audi</option>-->
+<!--        <option value="peugeot">Peugeot</option>-->
+<!--        <option value="renault">Renault</option>-->
+<!--        <option value="bmw">BMW</option>-->
+<!--        <option value="mercedes">Mercedes</option>-->
+<!--        <option value="volkswagen">Volkswagen</option>-->
+<!--        <option value="citroen">Citroën</option>-->
+<!--    </select>-->
+
+    <label for="energie">Energies</label>
+    <select name="energie" id="energie">
+        <!--${T(fr.eni.enchere.enums.Energie).values()} on peut décomposer :
+
+        T(fr.eni.enchere.enums.Energie) Va me chercher le type Energie dans fr.eni.enchere.enums.values() =>
+         Récupere moi toutes les values qui sont dedans (Donc les 5 type : DIESEL, ESSENCE, HYBRIDE, ETHANOL, AUTRE)
+        et on fait un foreach dessus pour generer automatiquement la liste -->
+
+        <option value="" disabled selected>Selectionnez une énergie</option>
+        <option th:each="energieElem : ${T(fr.eni.enchere.enums.Energie).values()}" th:value="${energieElem.value}"
+                th:text="${energieElem.displayValue}"></option>
+
+        <option value="diesel">Diesel</option>
+        <option value="essence">Essence</option>
+        <option value="hybride">Hybride</option>
+        <option value="ethanol">Ethanol</option>
+        <option value="autre">Autre</option>
+    </select>
+
+    <label for="prix">Prix</label>
+
+    <label for="localisation">Localisation</label>
+</div>
 </body>
 </html>
