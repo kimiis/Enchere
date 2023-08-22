@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.security.Principal;
+
 @Controller
 @SessionAttributes({"connecte"})
 
@@ -65,9 +67,23 @@ public class AffichageController {
 
     //----------------------------------Profil--------------------------------------
     @GetMapping("/profil")
-    String afficherProfil() {
+    String afficherProfil(Principal principal) {
+        System.out.println(principal.getName());
+
         return "profil";
     }
+//
+//    @PostMapping("/profil")
+//    public afficherInfos<user.getPseudo()> create(@RequestBody user newUser) {
+//
+//        User user = userService.save(newUser);
+//        if (user == null) {
+//            throw new ServerException();
+//        } else {
+//            return new ResponseEntity<>(user, HttpStatus.CREATED);
+//        }
+//    }
+
 
     //----------------------------------Deconnexion--------------------------------------
     @GetMapping("/deconnexion")
