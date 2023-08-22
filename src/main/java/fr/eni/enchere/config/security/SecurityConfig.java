@@ -56,6 +56,8 @@ public class SecurityConfig {
                             .requestMatchers(mvcBuilder.pattern("/enchere")).hasRole("USER")
                             .requestMatchers(mvcBuilder.pattern("/private")).hasRole("ADMIN")
                             .requestMatchers(mvcBuilder.pattern("/login")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/auto")).permitAll()
+
                             .requestMatchers(mvcBuilder.pattern("/")).permitAll()
 //                            /* = /index,/accueil,/toto,etc
                             .requestMatchers(mvcBuilder.pattern("/*")).permitAll()
