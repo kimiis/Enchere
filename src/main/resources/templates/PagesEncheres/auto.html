@@ -6,21 +6,21 @@
 </head>
 <body>
 <div>
-<!--    <label for="marques">Marques</label>-->
-<!--    <select name="marques" id="marques">-->
-<!--        <option value=""disabled selected>Choisissez la marque</option>-->
-<!--        <option th:each="marqueElem : ${T(fr.eni.enchere.enums.Marques).values()}" th:value="${marquesElem.value}"-->
-<!--                th:text="${marquesElem.displayValue}"></option>-->
+    <label for="marques">Marques</label>
+    <select name="marques" id="marques">
+        <option value=""disabled selected>Choisissez la marque</option>
+        <option th:each="marqueElem : ${T(fr.eni.enchere.enums.Marques).values()}" th:value="${marquesElem.value}"
+                th:text="${marquesElem.displayValue}"></option>
 
-<!--        <option value="alfa">Alfa Romeo</option>-->
-<!--        <option value="audi">Audi</option>-->
-<!--        <option value="peugeot">Peugeot</option>-->
-<!--        <option value="renault">Renault</option>-->
-<!--        <option value="bmw">BMW</option>-->
-<!--        <option value="mercedes">Mercedes</option>-->
-<!--        <option value="volkswagen">Volkswagen</option>-->
-<!--        <option value="citroen">Citroën</option>-->
-<!--    </select>-->
+        <option value="alfa">Alfa Romeo</option>
+        <option value="audi">Audi</option>
+        <option value="peugeot">Peugeot</option>
+        <option value="renault">Renault</option>
+        <option value="bmw">BMW</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="volkswagen">Volkswagen</option>
+        <option value="citroen">Citroën</option>
+    </select>
 
     <label for="energie">Energies</label>
     <select name="energie" id="energie">

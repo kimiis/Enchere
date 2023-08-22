@@ -30,7 +30,7 @@ public class EnchereController {
     //----------------------------------JeuxSociete--------------------------------------
     @GetMapping("/jeuxSociete")
     String afficherJeuxS(){
-        return "PagesEncheres/jeuxSociete";
+        return "HightTech";
     }
     //----------------------------------ProduitBeaute--------------------------------------
 
