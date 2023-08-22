@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -10,18 +12,19 @@
 
 <section layout:fragment="content">
 
-    <form th:action="@{/connexion}" method="post">
+    <form th:action="@{/login}" method="post">
+<!--        il faut obligatoirement que ce soit login car c'est spring qui s'en occupe, spring contient un traitement -->
 
         <h1>Connexion</h1>
         <!----mettre un msg erreur si erreur, qd je vais sur une autre page je suis deco-->
-        <label for="pseudo"> Pseudo</label>
-        <input type="text" id="pseudo" name="pseudo" value=""
+        <label for="inputUsername"> Username</label>
+        <input type="text" id="pseudo" name="username" value=""
                pattern="^(.+)$"
                size="30" required>
         <br>
 
-        <label for="mdp"> Mot De Passe</label>
-        <input type="password" id="mdp" name="mdp" value=""
+        <label for="password"> Mot De Passe</label>
+        <input type="password" id="mdp" name="password" value=""
                pattern="^(.+)$"
                size="30" required>
         <br>

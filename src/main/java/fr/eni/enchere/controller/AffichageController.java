@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 public class AffichageController {
     //----------------------------------Accueil--------------------------------------
-    @GetMapping("/accueil")
-    public String afficherPageAcc(@ModelAttribute("connecte")boolean connect) {
+    @GetMapping({"/accueil", "/"})
+    public String afficherPageAcc(@ModelAttribute("connecte") boolean connect) {
         System.out.println(connect);
         return "accueil";
     }
@@ -26,37 +26,37 @@ public class AffichageController {
     }
 
     @PostMapping("/subscribe")
-    public String verifInscription(UtilisateurInscription user){
+    public String verifInscription(UtilisateurInscription user) {
 //        boolean est ce que pseudo > 3
         System.out.println("hola");
-       if(user.getPseudo().length()<3) {
-           return "ErreurInscription";
-       }
-       if(!user.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")){
-           return "ErreurInscription";
-       }
-       if(!user.getMdp().matches("^((?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*[#?!@$%^&*-])).{6,}$")){
-           return "ErreurInscription";
-       }
+        if (user.getPseudo().length() < 3) {
+            return "ErreurInscription";
+        }
+        if (!user.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            return "ErreurInscription";
+        }
+        if (!user.getMdp().matches("^((?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*[#?!@$%^&*-])).{6,}$")) {
+            return "ErreurInscription";
+        }
         return "succes";
 
 
     }
+
     //----------------------------------Connexion--------------------------------------
-    @GetMapping("/connexion")
+    @GetMapping("/login")
+//    lorque que j'arrive sur la page je suis en true
     String afficherConnexion(@ModelAttribute("connecte") boolean connect) {
-        System.out.println("co");
         connect = true;
-        System.out.println(connect);
         return "login";
     }
 
-    @PostMapping("/connexion")//au mmt je clique sur login connect passe a true donc je suis co
-    String connexion(@ModelAttribute("connecte") boolean connect ){
-        System.out.println("co");
-        connect=true;
-        return "accueil";
+    //----------------------------------Succes--------------------------------------
+    @GetMapping("/succes")
+    String redirectionSucces() {
+        return "succes";
     }
+
     //----------------------------------Vendre--------------------------------------
     @GetMapping("/vendre_article")
     String afficherVendre() {
@@ -69,9 +69,17 @@ public class AffichageController {
         return "profil";
     }
 
+    //----------------------------------Deconnexion--------------------------------------
+    @GetMapping("/deconnexion")
+    String redirectAccueil(){
+        return "accueil";
+    }
+
+
     @ModelAttribute("connecte")//au moment où j'arrive sur la page je suis déco
     public boolean initConnecte() {
         return false;
     }
+
 
 }

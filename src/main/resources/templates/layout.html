@@ -11,20 +11,25 @@
             <ul class="menu">
                 <li><a href="accueil">Accueil</a></li>
 
-                <li><a href="subscribe">S'inscrire</a></li>
+                <div sec:authorize="!isAuthenticated()">
+                    <li><a href="subscribe">S'inscrire</a></li>
+                </div>
 
-                <th:block th:if="${!connecte}">
+                <div sec:authorize="!isAuthenticated()">
                     <li><a href="login">Se connecter</a></li>
-                </th:block>
+                </div>
 
-                <th:block th:if="${connecte}">
+                <div sec:authorize="isAuthenticated()">
                     <li><a href="deconnexion">Deconnexion</a></li>
-                </th:block>
+                </div>
 
-                <li><a href="profil">Profil</a></li>
+                <div sec:authorize="isAuthenticated()">
+                    <li><a href="profil">Profil</a></li>
+                </div>
 
-                <li><a href="vendre_article">Vendre</a></li>
-
+                <div sec:authorize="isAuthenticated()">
+                    <li><a href="vendre_article">Vendre</a></li>
+                </div>
             </ul>
         </nav>
     </section>

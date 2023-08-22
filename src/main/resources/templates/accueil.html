@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}" th:with="connecte=${connecte}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      th:with="connecte=${connecte}">
 <!--on appel le layout en lui passant en param connecte qui aura comme nom connecte-->
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,18 @@
 
 </header>
 <section layout:fragment="content">
-<h3> Vous avez une idée? Nous avons le produit!</h3>
+    <h3> Vous avez une idée? Nous avons le produit!</h3>
+    <div class="card">
+        <img src="images/voiture.jpg" width="150rem">
+        <img src="images/vetements.jpg" width="150rem">
+        <img src="images/electromenage.jpg" width="150rem">
+        <img src="images/console.jpeg"width="150rem">
+        <img src="images/jeuxSociete.webp"width="150rem">
+        <img src="images/produitBeaute.jpeg"width="150rem">
+
+
+
+    </div>
 </section>
 </body>
 </html>

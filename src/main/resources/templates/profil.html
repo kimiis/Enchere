@@ -8,32 +8,26 @@
 
 <section layout:fragment="content">
 
-    <form th:action="@{/profil}" method="post" >
+    <form th:action="@{/profil}" method="post">
 
-    <h1> Profil </h1>
+        <h1> Profil </h1>
 
-<ul>
-    <label for="pseudo" > Pseudo : </label>
-    <label for="pseudo" > Nom : </label>
-    <label for="pseudo" > Prénom : </label>
-    <label for="pseudo" > Email : </label>
-    <label for="pseudo" > Téléphone : </label>
-    <label for="pseudo" > Adresse : </label>
-    <label for="pseudo" > CPO : </label>
+        <ul>
+            <label for="pseudo" > Pseudo : </label> <br>
+            <label for="nom" > Nom : </label><br>
+            <label for="prenom" > Prénom : </label><br>
+            <label for="email" > Email : </label><br>
+            <label for="tel" > Téléphone : </label><br>
+            <label for="adresse" > Adresse : </label><br>
+            <label for="cpo" > CPO : </label><br>
 
-</ul>
-    <button type="submit" value="Modifier"> Modifier</button>
-        <button type="submit" value="Annuler"> Annuler</button>
+        </ul>
+        <button type="submit" value="Modifier"> Modifier</button>
+        <button type="reset" value="Annuler"> Annuler</button>
 
-
-
-</form>
-
-
+    </form>
 
 </section>
-
-
 
 </body>
 </html>
