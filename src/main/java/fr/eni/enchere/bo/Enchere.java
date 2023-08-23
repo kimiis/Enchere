@@ -1,5 +1,7 @@
 package fr.eni.enchere.bo;
 
+import fr.eni.enchere.ObjetSQL.Utilisateur;
+
 import java.time.LocalDate;
 
 public class Enchere {

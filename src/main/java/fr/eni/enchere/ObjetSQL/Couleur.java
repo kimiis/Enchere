@@ -34,5 +34,8 @@ public class Couleur {
         this.id = id;
         this.texte = texte;
     }
+
+    public Couleur() {
+    }
 }
 

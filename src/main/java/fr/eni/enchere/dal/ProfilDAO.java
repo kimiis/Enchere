@@ -1,6 +1,6 @@
 package fr.eni.enchere.dal;
 
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.ObjetSQL.Utilisateur;
 
 public interface ProfilDAO {
 
@@ -16,6 +16,5 @@ public interface ProfilDAO {
     // Supprimer les infos de l'utilisateur
 
     void supprimerProfil(int noUtilisateur);
-
 
 }

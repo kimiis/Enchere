@@ -1,9 +1,14 @@
 package fr.eni.enchere.controller;
 
+import fr.eni.enchere.ObjetSQL.Couleur;
 import fr.eni.enchere.bll.EnchereService;
 import fr.eni.enchere.bll.ProfilService;
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.ObjetSQL.Utilisateur;
 import fr.eni.enchere.bo.UtilisateurInscription;
+
+import fr.eni.enchere.dal.CouleurDAO;
+import fr.eni.enchere.dal.CouleurDAOJdbc;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +19,7 @@ import java.security.Principal;
 @Controller
 @SessionAttributes({"connecte"})
 
+
 public class AffichageController {
 
     @Autowired
@@ -21,8 +27,13 @@ public class AffichageController {
 
 
     //----------------------------------Accueil--------------------------------------
+    @Autowired
+    CouleurDAOJdbc couleurDAOJdbc;
     @GetMapping({"/accueil", "/"})
     public String afficherPageAcc(@ModelAttribute("connecte") boolean connect) {
+        for (Couleur couleur : couleurDAOJdbc.findAll()) {
+            System.out.println(couleur.getTexte());
+        }
         System.out.println(connect);
         return "accueil";
     }
@@ -105,6 +116,8 @@ public class AffichageController {
     public boolean initConnecte() {
         return false;
     }
+
+
 
 
 }

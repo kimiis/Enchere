@@ -1,6 +1,6 @@
 package fr.eni.enchere.dal;
 
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.ObjetSQL.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
@@ -32,7 +32,7 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
     @Override
     public Utilisateur modifierInfos(Utilisateur utilisateur) {
-        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getCpo(), utilisateur.getMdp(), utilisateur.getCredit(), utilisateur.isAdmin(), utilisateur.getNoUtilisateur());
+        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getMdp(), utilisateur.getCredit(), utilisateur.isAdmin(), utilisateur.getNoUtilisateur());
         return utilisateur;
     }
 

@@ -1,4 +1,6 @@
-package fr.eni.enchere.bo;
+package fr.eni.enchere.ObjetSQL;
+
+import fr.eni.enchere.bo.ArticleVendu;
 
 public class Utilisateur {
 
@@ -19,11 +21,9 @@ public class Utilisateur {
     }
 
     public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom,
-<<<<<<< HEAD
+
                        String email, String tel, String adresse, String cpo, String mdp,
-=======
-                       String email, int tel, String adresse, String mdp,
->>>>>>> 8bff1df6fde535244d3ff3a52eb82f0a2a80b912
+
                        int credit, boolean admin) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
@@ -47,7 +47,6 @@ public class Utilisateur {
                 ", email='" + email + '\'' +
                 ", tel='" + tel + '\'' +
                 ", adresse='" + adresse + '\'' +
-                ", cpo='" + cpo + '\'' +
                 ", mdp='" + mdp + '\'' +
                 ", credit=" + credit +
                 ", admin=" + admin +

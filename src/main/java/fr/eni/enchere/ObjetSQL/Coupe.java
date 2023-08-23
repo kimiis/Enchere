@@ -34,5 +34,7 @@ public class Coupe {
         this.id = id;
         this.texte = texte;
     }
+    public Coupe() {
+    }
 }
 
