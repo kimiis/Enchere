@@ -11,6 +11,7 @@
         <h1>Inscription</h1>
 
         <form id="subForm" action="/subscribe" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <br>
             <legend>Formulaire d'adhésion </legend><br>
             <!-- La balise Table pour formater l'affichage du formulaire -->
@@ -29,13 +30,13 @@
 
             <div>
                 <label for="pw" class="form__label">Mot de passe : </label><br>
-                <input name="mdp" id="mdpInfo" type="password" class="form__field"
-                       onchange="verifierMdp()" required/>
+                <input name="mdp" id="mdpInfo" type="password" class="form__field" required/>
 
                 <p id=mdpI> Doit contenir au moins : <br>
                     - 6 caractères <br>
                     - 1 Majuscule <br>
                     - 1 Minuscule <br>
+                    - 1 chiffre <br>
                     - 1 caractère spécial </p>
 
             </div>

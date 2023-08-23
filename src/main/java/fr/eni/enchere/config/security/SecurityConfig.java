@@ -53,6 +53,10 @@ public class SecurityConfig {
                             .requestMatchers(mvcBuilder.pattern("/private")).hasRole("ADMIN")
                             .requestMatchers(mvcBuilder.pattern("/login")).permitAll()
                             .requestMatchers(mvcBuilder.pattern("/auto")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/succes")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/subscribe")).permitAll()
+
+
 
                             .requestMatchers(mvcBuilder.pattern("/")).permitAll()
 //                            /* = /index,/accueil,/toto,etc
