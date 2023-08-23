@@ -47,8 +47,6 @@ public class AffichageController {
             return "ErreurInscription";
         }
         return "succes";
-
-
     }
 
     //----------------------------------Connexion--------------------------------------

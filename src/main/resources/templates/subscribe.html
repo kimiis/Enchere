@@ -11,34 +11,34 @@
         <h1>Inscription</h1>
 
         <form id="subForm" action="/subscribe" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <br>
             <legend>Formulaire d'adhésion </legend><br>
             <!-- La balise Table pour formater l'affichage du formulaire -->
 
             <div>
                 <label for="name" class="form__label">Pseudo : </label><br>
-                <input name="pseudo" id="user" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères" required />
+                <input name="pseudo" id="user" type="text" class="form__field"
+                       placeholder="Doit faire au moins 3 caractères" onchange="verifierUtlisateur()" required />
             </div>
 
             <div>
                 <label for="mail" class="form__label"> Mail : </label><br>
-                <input name="email" id="mail" type="email" class="form__field" placeholder="abc@gmail.com" required />
+                <input name="email" id="mail" type="email" class="form__field" placeholder="abc@gmail.com"
+                       onchange="verifierMail()" required />
             </div>
 
             <div>
                 <label for="pw" class="form__label">Mot de passe : </label><br>
                 <input name="mdp" id="mdpInfo" type="password" class="form__field" required/>
+
                 <p id=mdpI> Doit contenir au moins : <br>
                     - 6 caractères <br>
                     - 1 Majuscule <br>
                     - 1 Minuscule <br>
+                    - 1 chiffre <br>
                     - 1 caractère spécial </p>
 
-                <div class="indicateur">
-                    <div class="faible" id="faible">Faible</div>
-                    <div class="moyen" id="moyen">Moyen</div>
-                    <div class="fort" id="fort">Fort</div>
-                </div>
             </div>
 
             <input id= "sub" class="form-submit-button" type="submit" value="Envoyer le formulaire">

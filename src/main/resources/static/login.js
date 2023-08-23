@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // function verifierUtlisateur() {
 //     //dans l'input "user", j'accede a ce qui a été tapé dedans
 //     if (inputs.user.value.length < 3) {
@@ -16,3 +17,5 @@
 //     }
 //
 // }
+=======
+>>>>>>> 8bff1df6fde535244d3ff3a52eb82f0a2a80b912

@@ -9,7 +9,6 @@ public class Utilisateur {
     private String email;
     private String tel;
     private String adresse;
-    private String cpo;
     private String mdp;
     private int credit;
     private boolean admin;
@@ -20,7 +19,11 @@ public class Utilisateur {
     }
 
     public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom,
+<<<<<<< HEAD
                        String email, String tel, String adresse, String cpo, String mdp,
+=======
+                       String email, int tel, String adresse, String mdp,
+>>>>>>> 8bff1df6fde535244d3ff3a52eb82f0a2a80b912
                        int credit, boolean admin) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
@@ -29,7 +32,6 @@ public class Utilisateur {
         this.email = email;
         this.tel = tel;
         this.adresse = adresse;
-        this.cpo = cpo;
         this.mdp = mdp;
         this.credit = credit;
         this.admin = admin;
@@ -107,14 +109,6 @@ public class Utilisateur {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
-    }
-
-    public String getCpo() {
-        return cpo;
-    }
-
-    public void setCpo(String cpo) {
-        this.cpo = cpo;
     }
 
     public String getMdp() {
