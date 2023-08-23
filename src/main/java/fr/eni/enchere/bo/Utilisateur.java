@@ -7,7 +7,7 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String email;
-    private int tel;
+    private String tel;
     private String adresse;
     private String cpo;
     private String mdp;
@@ -20,7 +20,7 @@ public class Utilisateur {
     }
 
     public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom,
-                       String email, int tel, String adresse, String cpo, String mdp,
+                       String email, String tel, String adresse, String cpo, String mdp,
                        int credit, boolean admin) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
@@ -33,6 +33,24 @@ public class Utilisateur {
         this.mdp = mdp;
         this.credit = credit;
         this.admin = admin;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "noUtilisateur=" + noUtilisateur +
+                ", pseudo='" + pseudo + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", cpo='" + cpo + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ", credit=" + credit +
+                ", admin=" + admin +
+                ", articleVendu=" + articleVendu +
+                '}';
     }
 
     public int getNoUtilisateur() {
@@ -75,11 +93,11 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

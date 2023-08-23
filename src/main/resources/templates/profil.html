@@ -8,55 +8,72 @@
 
 <section layout:fragment="content">
 
+
     <form th:action="@{/profil}" method="post">
+        <input type="hidden" th:value="${profUti.noUtilisateur}" name="noUtilisateur"/>
+
 
         <h1> Profil </h1>
 
         <div>
             <label for="pseudo">Pseudo : </label><br>
-            <input id="pseudo" type="text" placeholder="Modifier mon pseudo" pattern="^(.+)$"
-                   size="30" required/>
+            <input id="pseudo" name="pseudo" type="text" placeholder="Modifier mon pseudo" pattern="^(.+)$"
+                   size="30"
+                   th:value="${profUti.pseudo}"
+                   required/>
         </div>
 
         <div>
             <label for="nom">Nom : </label><br>
-            <input id="nom" type="text" placeholder="Modifier mon nom"
+            <input id="nom" name="nom" type="text" placeholder="Modifier mon nom"
                    pattern="^(.+)$"
-                   size="30" required/>
+                   size="30"
+                   th:value="${profUti.nom}"
+                   required/>
         </div>
         <div>
             <label for="prenom">Prénom : </label><br>
-            <input id="prenom" type="text" placeholder="Modifier mon prenom"
+            <input id="prenom" name="prenom" type="text" placeholder="Modifier mon prenom"
                    pattern="^(.+)$"
-                   size="30" required/>
+                   size="30"
+                   th:value="${profUti.prenom}"
+                   required/>
         </div>
 
         <div>
             <label for="email">Email : </label><br>
-            <input id="email" type="email" placeholder="Modifier mon email"
+            <input id="email" name="email" type="email" placeholder="Modifier mon email"
                    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-                   size="30" required/>
+                   size="30"
+                   th:value="${profUti.email}"
+                   required/>
         </div>
 
         <div>
             <label for="tel">Téléphone : </label><br>
-            <input id="tel" type="text" placeholder="Modifier mon téléphone"
+            <input id="tel" name="tel" type="text" placeholder="Modifier mon téléphone"
                    pattern="^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$"
-                   size="30" required/>
+                   size="30"
+                   th:value="${profUti.tel}"
+                   required/>
         </div>
 
         <div>
             <label for="adresse">Adresse : </label><br>
-            <input id="adresse" type="text" placeholder="Modifier mon adresse"
+            <input id="adresse" name="adresse" type="text" placeholder="Modifier mon adresse"
                    pattern="^(.+)$"
-                   size="30" required/>
+                   size="30"
+                   th:value="${profUti.adresse}"
+                   required/>
         </div>
-        <!--        <div>-->
-        <!--            <label for="cpo">Code Postal : </label><br>-->
-        <!--            <input id="cpo" type="text" placeholder="Modifier mon code postal"-->
-        <!--                   pattern="^(?!00)\\d{5}"-->
-        <!--                   size="30" required/>-->
-        <!--        </div>-->
+        <div>
+            <label for="cpo">Code Postal : </label><br>
+            <input id="cpo" name="cpo" type="text" placeholder="Modifier mon code postal"
+                   pattern="^\d{5}"
+                   size="30"
+                   th:value="${profUti.cpo}"
+                   required/>
+        </div>
 
         <br>
         <button type="submit" id="modif" value="Modifier"> Modifier</button>
@@ -65,11 +82,15 @@
 
     </form>
 
+    <form th:action="@{/delete}" method="post">
+        <input type="hidden" th:value="${profUti.noUtilisateur}" name="noUtilisateur"/>
+
+        <button type="submit" id="supprimer" value="Supprimer"> Supprimer mon compte</button>
+
+
+    </form>
+
 </section>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 1e766b01e9a887d460ba3ee55898658829e57e96
 </body>
 </html>

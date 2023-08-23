@@ -1,12 +1,13 @@
 package fr.eni.enchere.controller;
 
 import fr.eni.enchere.bll.EnchereService;
+import fr.eni.enchere.bll.ProfilService;
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.bo.UtilisateurInscription;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -14,6 +15,11 @@ import java.security.Principal;
 @SessionAttributes({"connecte"})
 
 public class AffichageController {
+
+    @Autowired
+    ProfilService profilService;
+
+
     //----------------------------------Accueil--------------------------------------
     @GetMapping({"/accueil", "/"})
     public String afficherPageAcc(@ModelAttribute("connecte") boolean connect) {
@@ -67,22 +73,28 @@ public class AffichageController {
 
     //----------------------------------Profil--------------------------------------
     @GetMapping("/profil")
-    String afficherProfil(Principal principal) {
+    String afficherProfil(Principal principal, Model model) {
         System.out.println(principal.getName());
-
+        Utilisateur u = profilService.recupererInfos(principal.getName());
+        model.addAttribute("profUti",u);
         return "profil";
+
     }
-//
-//    @PostMapping("/profil")
-//    public afficherInfos<user.getPseudo()> create(@RequestBody user newUser) {
-//
-//        User user = userService.save(newUser);
-//        if (user == null) {
-//            throw new ServerException();
-//        } else {
-//            return new ResponseEntity<>(user, HttpStatus.CREATED);
-//        }
-//    }
+
+    @PostMapping("/profil")
+    String modifierProfil(Utilisateur utilisateur){
+        System.out.println(utilisateur);
+        Utilisateur um = profilService.modifierInfos(utilisateur);
+       return "redirect:/profil";
+
+    }
+
+    @PostMapping("/delete")
+    String supprimerProfil(int noUtilisateur ) {
+        //System.out.println(noUtilisateur);
+        profilService.supprimerProfil(noUtilisateur);
+        return "redirect:/";
+    }
 
 
     //----------------------------------Deconnexion--------------------------------------

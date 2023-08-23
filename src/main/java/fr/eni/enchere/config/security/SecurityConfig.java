@@ -9,37 +9,41 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    InMemoryUserDetailsManager userDetailsManager(){
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        String moiChiffre = encoder.encode("moi");
-        System.out.println("moi : " + moiChiffre);
-        UserDetails a = User.builder().username("admin").password(moiChiffre).roles("ADMIN").build();
-        UserDetails b = User.builder().username("client").password(moiChiffre).roles("CLIENT").build();
-        UserDetails c = User.builder().username("autre").password(moiChiffre).roles("AUTRE").build();
-        UserDetails d = User.builder().username("chef").password(moiChiffre).roles("AUTRE","ADMIN","CLIENT").build();
-        UserDetails e = User.builder().username("user").password(moiChiffre).roles("USER").build();
-
-        return new InMemoryUserDetailsManager(a, b, c, d,e);
-    }
-
 //    @Bean
-//    UserDetailsManager userDetailsManager(DataSource datasource){
-//        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(datasource);
-//        manager.setUsersByUsernameQuery("select pseudo, mot_de_passe, 1 from UTILISATEURS where pseudo = ?");
-//        manager.setAuthoritiesByUsernameQuery("select pseudo, role from ROLES where pseudo = ?");
+//    InMemoryUserDetailsManager userDetailsManager(){
+//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        String moiChiffre = encoder.encode("moi");
+//        System.out.println("moi : " + moiChiffre);
+//        UserDetails a = User.builder().username("admin").password(moiChiffre).roles("ADMIN").build();
+//        UserDetails b = User.builder().username("client").password(moiChiffre).roles("CLIENT").build();
+//        UserDetails c = User.builder().username("autre").password(moiChiffre).roles("AUTRE").build();
+//        UserDetails d = User.builder().username("chef").password(moiChiffre).roles("AUTRE","ADMIN","CLIENT").build();
+//        UserDetails e = User.builder().username("user").password(moiChiffre).roles("USER").build();
 //
-//        return manager;
+//        return new InMemoryUserDetailsManager(a, b, c, d,e);
 //    }
+
+    @Bean
+    UserDetailsManager userDetailsManager(DataSource datasource){
+        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(datasource);
+        manager.setUsersByUsernameQuery("select pseudo, mdp, 1 from UTILISATEURS where pseudo = ?");
+        manager.setAuthoritiesByUsernameQuery("select pseudo, role from ROLES where pseudo = ?");
+
+        return manager;
+    }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception{
