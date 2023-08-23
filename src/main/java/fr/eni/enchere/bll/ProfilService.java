@@ -4,6 +4,8 @@ package fr.eni.enchere.bll;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.ProfilDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,10 +36,13 @@ public class ProfilService {
 
 
 
-//    @Transactional
-//    public void ajouter(Utilisateur u) {
-//        profilDao.add(u);
-//
-//    }
+    @Transactional
+    public void ajouter(Utilisateur u) {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        u.setMdp(encoder.encode(u.getMdp()));
+        profilDao.add(u);
+        profilDao.addRole(u);
+
+    }
 
 }

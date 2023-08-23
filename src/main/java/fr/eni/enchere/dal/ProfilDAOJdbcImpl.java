@@ -17,7 +17,7 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
 
     // Récupérer les infos de l'utilisateur et les afficher dans son profil
-    private final static String RECUPERER_INFOS = "SELECT noUtilisateur, pseudo, nom, prenom, email, tel, adresse, cpo, mdp, credit, admin From UTILISATEURS WHERE pseudo= ?";
+    private final static String RECUPERER_INFOS = "SELECT noUtilisateur, pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin From UTILISATEURS WHERE pseudo= ?";
 
     @Override
     public Utilisateur recupererInfos(String pseudo) {
@@ -28,11 +28,11 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
     // Modifier les infos de l'utilisateur et les afficher dans son profil
 
-    private final static String MODIFIER_INFOS = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, tel = ?, adresse = ?, cpo = ?, mdp = ?, credit = ?, admin = ?  WHERE noUtilisateur= ?";
+    private final static String MODIFIER_INFOS = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, tel = ?, adresse = ?, mdp = ?, credit = ?, admin = ?  WHERE noUtilisateur= ?";
 
     @Override
     public Utilisateur modifierInfos(Utilisateur utilisateur) {
-        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getCpo(), utilisateur.getMdp(), utilisateur.getCredit(), utilisateur.isAdmin(), utilisateur.getNoUtilisateur());
+        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getMdp(), utilisateur.getCredit(), utilisateur.isAdmin(), utilisateur.getNoUtilisateur());
         return utilisateur;
     }
 
@@ -44,6 +44,28 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
     @Override
     public void supprimerProfil(int noUtilisateur) {
         jdbcTemplate.update(SUPPRIMER_PROFIL, noUtilisateur);
+    }
+
+
+    private final static String INSERT_UTILISATEUR = "" +
+            " INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin) " +
+            " VALUES (?,?,?,?,?,?,?,?,?)";
+
+    @Override
+    public void add(Utilisateur u) {
+
+        jdbcTemplate.update(INSERT_UTILISATEUR, u.getPseudo(), u.getNom(), u.getPrenom(), u.getEmail(), u.getTel(), u.getAdresse(), u.getMdp(), u.getCredit(), u.isAdmin());
+    }
+
+    private final static String INSERT_ROLE = "" +
+            " INSERT INTO ROLES (pseudo, role) " +
+            " VALUES (?,?)";
+
+
+    @Override
+    public void addRole(Utilisateur ur){
+       jdbcTemplate.update(INSERT_ROLE, ur.getPseudo(), "client");
+
     }
 
 }

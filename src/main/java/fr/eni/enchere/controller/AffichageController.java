@@ -33,19 +33,31 @@ public class AffichageController {
         return "subscribe";
     }
 
+//    @PostMapping("/subscribe")
+//    public String verifInscription(UtilisateurInscription user) {
+////        boolean est ce que pseudo > 3
+//        System.out.println("hola");
+//        if (user.getPseudo().length() < 3) {
+//            return "ErreurInscription";
+//        }
+//        if (!user.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+//            return "ErreurInscription";
+//        }
+//        if (!user.getMdp().matches("^((?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*[#?!@$%^&*-])).{6,}$")) {
+//            return "ErreurInscription";
+//        }
+//
+//
+//        return "succes";
+//    }
+
     @PostMapping("/subscribe")
-    public String verifInscription(UtilisateurInscription user) {
+    public String verifInscription(Utilisateur u) {
 //        boolean est ce que pseudo > 3
         System.out.println("hola");
-        if (user.getPseudo().length() < 3) {
-            return "ErreurInscription";
-        }
-        if (!user.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            return "ErreurInscription";
-        }
-        if (!user.getMdp().matches("^((?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*[#?!@$%^&*-])).{6,}$")) {
-            return "ErreurInscription";
-        }
+        profilService.ajouter(u);
+
+
         return "succes";
     }
 
