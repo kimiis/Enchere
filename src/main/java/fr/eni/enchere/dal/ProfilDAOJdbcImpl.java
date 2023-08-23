@@ -1,6 +1,6 @@
 package fr.eni.enchere.dal;
 
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.ObjetSQL.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
@@ -46,6 +46,7 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
         jdbcTemplate.update(SUPPRIMER_PROFIL, noUtilisateur);
     }
 
+<<<<<<< HEAD
 
     private final static String INSERT_UTILISATEUR = "" +
             " INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin) " +
@@ -69,3 +70,6 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
     }
 
 }
+=======
+}
+>>>>>>> 596e611ea851c5464d0e0b3a8e02a2bf77a7b369

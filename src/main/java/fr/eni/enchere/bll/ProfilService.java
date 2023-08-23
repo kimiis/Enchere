@@ -1,7 +1,7 @@
 package fr.eni.enchere.bll;
 
 
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.ObjetSQL.Utilisateur;
 import fr.eni.enchere.dal.ProfilDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
