@@ -17,7 +17,7 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
 
     // Récupérer les infos de l'utilisateur et les afficher dans son profil
-    private final static String RECUPERER_INFOS = "SELECT noUtilisateur, pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin From UTILISATEURS WHERE pseudo= ?";
+    private final static String RECUPERER_INFOS = "SELECT Id, pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin From UTILISATEURS WHERE pseudo= ?";
 
     @Override
     public Utilisateur recupererInfos(String pseudo) {
@@ -28,25 +28,24 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
     // Modifier les infos de l'utilisateur et les afficher dans son profil
 
-    private final static String MODIFIER_INFOS = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, tel = ?, adresse = ?, mdp = ?, credit = ?, admin = ?  WHERE noUtilisateur= ?";
+    private final static String MODIFIER_INFOS = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, tel = ?, adresse = ?, mdp = ?, credit = ?, admin = ?  WHERE Id= ?";
 
     @Override
     public Utilisateur modifierInfos(Utilisateur utilisateur) {
-        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getMdp(), utilisateur.getCredit(), utilisateur.isAdmin(), utilisateur.getNoUtilisateur());
+        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getMdp(), utilisateur.getCredit(), utilisateur.isAdmin(), utilisateur.getId());
         return utilisateur;
     }
 
 
     // Supprimer les infos de l'utilisateur
 
-    private final static String SUPPRIMER_PROFIL = "DELETE FROM UTILISATEURS WHERE noUtilisateur= ?";
+    private final static String SUPPRIMER_PROFIL = "DELETE FROM UTILISATEURS WHERE Id= ?";
 
     @Override
-    public void supprimerProfil(int noUtilisateur) {
-        jdbcTemplate.update(SUPPRIMER_PROFIL, noUtilisateur);
+    public void supprimerProfil(int Id) {
+        jdbcTemplate.update(SUPPRIMER_PROFIL, Id);
     }
 
-<<<<<<< HEAD
 
     private final static String INSERT_UTILISATEUR = "" +
             " INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin) " +
@@ -70,6 +69,5 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
     }
 
 }
-=======
-}
->>>>>>> 596e611ea851c5464d0e0b3a8e02a2bf77a7b369
+
+

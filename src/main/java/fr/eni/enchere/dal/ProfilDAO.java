@@ -17,12 +17,9 @@ public interface ProfilDAO {
 
     void supprimerProfil(int noUtilisateur);
 
-<<<<<<< HEAD
-    void add (Utilisateur u);
 
-    void addRole (Utilisateur ur);
+    void add(Utilisateur u);
 
+    void addRole(Utilisateur ur);
 
-=======
->>>>>>> 596e611ea851c5464d0e0b3a8e02a2bf77a7b369
 }

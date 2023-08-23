@@ -15,6 +15,9 @@ public class Objet {
     private Taille taille;
     private Couleur couleur;
 
+    public Objet() {
+    }
+
     public Objet(String energies, int id, int nbRoue, int annee, boolean portbale, boolean encastrable, Coupe coupe, Marque marque,
                  Type type, Localisation localisation, Energie energie, Taille taille) {
         this.energies = energies;

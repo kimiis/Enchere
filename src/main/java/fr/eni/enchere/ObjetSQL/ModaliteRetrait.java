@@ -1,6 +1,6 @@
 package fr.eni.enchere.ObjetSQL;
 
-public class Marque {
+public class ModaliteRetrait {
     private String nom;
     private int id;
     private String texte;
@@ -29,13 +29,12 @@ public class Marque {
         this.texte = texte;
     }
 
-    public Marque(String nom, int id, String texte) {
+    public ModaliteRetrait() {
+    }
+
+    public ModaliteRetrait(String nom, int id, String texte) {
         this.nom = nom;
         this.id = id;
         this.texte = texte;
     }
-
-    public Marque() {
-    }
 }
-

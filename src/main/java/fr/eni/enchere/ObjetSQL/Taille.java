@@ -34,4 +34,7 @@ public class Taille {
         this.id = id;
         this.texte = texte;
     }
+
+    public Taille() {
+    }
 }

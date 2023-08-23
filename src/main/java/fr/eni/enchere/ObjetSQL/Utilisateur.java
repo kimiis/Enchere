@@ -4,7 +4,7 @@ import fr.eni.enchere.bo.ArticleVendu;
 
 public class Utilisateur {
 
-    private int noUtilisateur;
+    private int Id;
     private String pseudo;
     private String nom;
     private String prenom;
@@ -25,16 +25,10 @@ public class Utilisateur {
 
     }
 
-    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom,
-<<<<<<< HEAD:src/main/java/fr/eni/enchere/bo/Utilisateur.java
+    public Utilisateur(int Id, String pseudo, String nom, String prenom,
                        String email, String tel, String adresse, String mdp,
-=======
-
-                       String email, String tel, String adresse, String cpo, String mdp,
-
->>>>>>> 596e611ea851c5464d0e0b3a8e02a2bf77a7b369:src/main/java/fr/eni/enchere/ObjetSQL/Utilisateur.java
                        int credit, boolean admin) {
-        this.noUtilisateur = noUtilisateur;
+        this.Id = Id;
         this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
@@ -47,10 +41,18 @@ public class Utilisateur {
         this.admin = admin;
     }
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
     @Override
     public String toString() {
         return "Utilisateur{" +
-                "noUtilisateur=" + noUtilisateur +
+                "Id=" + Id +
                 ", pseudo='" + pseudo + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
@@ -64,13 +66,7 @@ public class Utilisateur {
                 '}';
     }
 
-    public int getNoUtilisateur() {
-        return noUtilisateur;
-    }
 
-    public void setNoUtilisateur(int noUtilisateur) {
-        this.noUtilisateur = noUtilisateur;
-    }
 
     public String getPseudo() {
         return pseudo;
