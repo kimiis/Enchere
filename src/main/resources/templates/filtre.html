@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div th:fragment="fragModifFiltre (marques,couleurs,localisations,retraits)">
+<div th:fragment="fragModifFiltre (marques,couleurs,localisations)">
 
     <label for="marques">Marques</label>
     <select name="marques" id="marques">
@@ -32,13 +32,6 @@
                 th:text="${couleur.getTexte()}"></option>
     </select>
 
-
-    <label for="retrait">Modalité de retrait</label>
-    <select name="retrait" id="retrait">
-        <option value="" disabled selected>Choisissez la méthode de retrait</option>
-        <option th:each="retrait : ${retraits}" th:value="${retrait.getNom()}"
-                th:text="${retrait.getTexte()}"></option>
-    </select>
 </div>
 
 </body>

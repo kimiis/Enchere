@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      th:with="connecte=${connecte}">
 
 <head>
     <script src="vendre_article.js"></script>
@@ -48,10 +49,8 @@
             <label for="retrait" class="form__label">Modalité de retrait : </label><br>
             <select name="retrait" required>
                 <option value="" selected disabled hidden>-- Choisir le moyen de retrait --</option>
-                <option value="main">-- Main propre --</option>
-                <option value="relais">-- Point relais--</option>
-                <option value="mondial">-- Mondial relay --</option>
-                <option value="livraison">-- Livraison à domicile --</option>
+                <option th:each="retrait : ${retraits}" th:value="${retrait.getNom()}"
+                        th:text="${retrait.getTexte()}"></option>
 
             </select>
         </div>

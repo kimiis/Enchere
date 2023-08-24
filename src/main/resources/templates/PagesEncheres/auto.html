@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      th:with="connecte=${connecte}">
 <head>
     <meta charset="UTF-8">
     <title>Automobile</title>
 </head>
 <body>
 <main>
+    <section layout:fragment="content">
     <div>
         <div
-                th:replace="filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations},
-        retraits=${retraits})">
+                th:replace="filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations}
+      )">
         </div>
 
         <label for="energie">Energies</label>
@@ -18,7 +20,9 @@
             <option th:each="energie : ${energies}" th:value="${energie.getNom()}"
                     th:text="${energie.getTexte()}"></option>
         </select>
+
     </div>
+    </section>
 </main>
 </body>
 </html>
