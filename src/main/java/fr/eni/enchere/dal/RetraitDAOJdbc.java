@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ModaliteRetraitDAOJdbc implements ModaliteDAO {
+public class RetraitDAOJdbc implements RetraitDAO {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String FIND_ALL = "SELECT * FROM MODALITERETRAIT";

@@ -4,6 +4,6 @@ import fr.eni.enchere.ObjetSQL.ModaliteRetrait;
 
 import java.util.List;
 
-public interface ModaliteDAO {
+public interface RetraitDAO {
     List<ModaliteRetrait> findAll();
 }

@@ -1,5 +1,6 @@
 package fr.eni.enchere.controller;
 
+import fr.eni.enchere.bll.*;
 import fr.eni.enchere.dal.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,39 +12,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EnchereController {
 
     @Autowired
-    CouleurDAOJdbc couleurDAOJdbc;
+    CouleurService couleurService;
     @Autowired
-    EnergieDAOJdbc energieDAOJdbc;
+    EnergieService energieService;
     @Autowired
-    LocalisationDAOJdbc localisationDAOJdbc;
+    LocalisationService localisationService;
     @Autowired
-    MarqueDAOJdbc marqueDAOJdbc;
+    MarqueService marqueService;
     @Autowired
-    ModaliteRetraitDAOJdbc modaliteRetraitDAOJdbc;
+    RetraitService retraitService;
     @Autowired
-    TailleDAOJdbc tailleDAOJdbc;
+    TailleService tailleService;
     @Autowired
-    TypeDAOJdbc typeDAOJdbc;
+    TypeService typeService;
 
     public void afficherFiltre(Model model){
-        model.addAttribute("marques", marqueDAOJdbc.findAll());
-        model.addAttribute("couleurs", couleurDAOJdbc.findAll());
-        model.addAttribute("retraits", modaliteRetraitDAOJdbc.findAll());
-        model.addAttribute("localisations", localisationDAOJdbc.findAll());
+        model.addAttribute("marques", marqueService.recupererInfos());
+        model.addAttribute("couleurs", couleurService.recupererInfos());
+        model.addAttribute("retraits", retraitService.recupererInfos());
+        model.addAttribute("localisations", localisationService.recupererInfos());
     }
     //----------------------------------Auto--------------------------------------
     @GetMapping("/auto")
     String afficherFiltreAuto(Model model){
         afficherFiltre(model);
-        System.out.println(marqueDAOJdbc.findAll());
-        model.addAttribute("energies", energieDAOJdbc.findAll());
+        model.addAttribute("energies", energieService.recupererInfos());
         return "PagesEncheres/auto";
     }
     //----------------------------------Vetements--------------------------------------
     @GetMapping("/vetements")
     String afficherFiltreVet(Model model){
         afficherFiltre(model);
-        model.addAttribute("tailles", tailleDAOJdbc.findAll());
+        model.addAttribute("tailles", tailleService.recupererInfos());
         return "PagesEncheres/vetements";
     }
     //----------------------------------Console--------------------------------------
