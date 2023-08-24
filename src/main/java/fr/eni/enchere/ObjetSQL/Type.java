@@ -34,5 +34,8 @@ public class Type {
         this.id = id;
         this.texte = texte;
     }
+
+    public Type() {
+    }
 }
 

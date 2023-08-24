@@ -35,5 +35,8 @@ public class Localisation {
             this.id = id;
             this.texte = texte;
         }
+
+    public Localisation() {
     }
+}
 

@@ -35,5 +35,8 @@ public class Energie {
             this.id = id;
             this.texte = texte;
         }
+
+    public Energie() {
     }
+}
 

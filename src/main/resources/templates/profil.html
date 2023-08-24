@@ -10,7 +10,7 @@
 
 
     <form th:action="@{/profil}" method="post">
-        <input type="hidden" th:value="${profUti.noUtilisateur}" name="noUtilisateur"/>
+        <input type="hidden" th:value="${profUti.id}" name="noUtilisateur"/>
 
 
         <h1> Profil </h1>
@@ -66,14 +66,6 @@
                    th:value="${profUti.adresse}"
                    required/>
         </div>
-<!--        <div>-->
-<!--            <label for="cpo">Code Postal : </label><br>-->
-<!--            <input id="cpo" name="cpo" type="text" placeholder="Modifier mon code postal"-->
-<!--                   pattern="^\d{5}"-->
-<!--                   size="30"-->
-<!--                   th:value="${profUti.cpo}"-->
-<!--                   required/>-->
-<!--        </div>-->
 
         <br>
         <button type="submit" id="modif" value="Modifier"> Modifier</button>
@@ -83,7 +75,11 @@
     </form>
 
     <form th:action="@{/delete}" method="post">
+<<<<<<< HEAD
         <input type="hidden" th:value="${profUti.pseudo}" name="pseudo"/>
+=======
+        <input type="hidden" th:value="${profUti.id}" name="noUtilisateur"/>
+>>>>>>> 7b93f433126770f8b9358664a08b4a2634905d8f
 
         <button type="submit" id="supprimer" value="Supprimer"> Supprimer mon compte</button>
 

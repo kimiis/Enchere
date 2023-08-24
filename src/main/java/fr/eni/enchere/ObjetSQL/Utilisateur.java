@@ -4,7 +4,7 @@ import fr.eni.enchere.bo.ArticleVendu;
 
 public class Utilisateur {
 
-    private int noUtilisateur;
+    private int id;
     private String pseudo;
     private String nom;
     private String prenom;
@@ -25,24 +25,25 @@ public class Utilisateur {
 
     }
 
-    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String tel, String adresse, String mdp, int credit, boolean admin) {
-        this.noUtilisateur = noUtilisateur;
+
+    public Utilisateur(int id, String pseudo, String nom, String prenom, String email, String tel, String adresse, String mdp, int credit, boolean admin, ArticleVendu articleVendu) {
+        this.id = id;
         this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.tel = tel;
         this.adresse = adresse;
-
         this.mdp = mdp;
         this.credit = credit;
         this.admin = admin;
+        this.articleVendu = articleVendu;
     }
 
     @Override
     public String toString() {
         return "Utilisateur{" +
-                "noUtilisateur=" + noUtilisateur +
+                "id=" + id +
                 ", pseudo='" + pseudo + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
@@ -56,12 +57,13 @@ public class Utilisateur {
                 '}';
     }
 
-    public int getNoUtilisateur() {
-        return noUtilisateur;
+
+    public int getId() {
+        return id;
     }
 
-    public void setNoUtilisateur(int noUtilisateur) {
-        this.noUtilisateur = noUtilisateur;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPseudo() {
@@ -134,5 +136,13 @@ public class Utilisateur {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public ArticleVendu getArticleVendu() {
+        return articleVendu;
+    }
+
+    public void setArticleVendu(ArticleVendu articleVendu) {
+        this.articleVendu = articleVendu;
     }
 }

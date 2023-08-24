@@ -18,12 +18,11 @@ public interface ProfilDAO {
     void supprimerLigneUtilisateur(String pseudo);
     void supprimerLigneRole(String pseudo);
 
+    // ajouter utilisateur et role
 
+    void add(Utilisateur u);
 
-    void add (Utilisateur u);
-
-    void addRole (Utilisateur ur);
-
+    void addRole(Utilisateur ur);
 
 
 }

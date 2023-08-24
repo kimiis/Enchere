@@ -5,6 +5,36 @@
     <title>Vêtements</title>
 </head>
 <body>
+<main>
+    <label for="marques">Marques</label>
+    <select name="marques" id="marques">
+        <option value="" disabled selected>Choisissez la marque</option>
+        <option th:each="marqueElem : ${T(fr.eni.enchere.enums.Marques).values()}" th:value="${marquesElem.value}"
+                th:text="${marquesElem.displayValue}"></option>
+    </select>
+    <label for="prix">Prix</label>
 
+    <label for="localisation">Localisation</label>
+    <select name="localisation" id="localisation">
+        <option value="" disabled selected>Choisissez la localisation</option>
+    </select>
+
+    <label for="couleur">Couleur</label>
+    <select name="couleur" id="couleur">
+        <option value="" disabled selected>Choisissez la couleur</option>
+    </select>
+
+
+    <label for="retrait">Modalité de retrait</label>
+    <select name="retrait" id="retrait">
+        <option value="" disabled selected>Choisissez la méthode de retrait</option>
+    </select>
+
+    <label for="taille">Taille</label>
+    <select name="taille" id="taille">
+        <option value="" disabled selected>Choisissez la taille</option>
+    </select>
+
+</main>
 </body>
 </html>

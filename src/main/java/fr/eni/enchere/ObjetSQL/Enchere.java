@@ -21,6 +21,9 @@ public class Enchere {
         this.idObjet = idObjet;
     }
 
+    public Enchere() {
+    }
+
     public Date getDateD() {
         return dateD;
     }
