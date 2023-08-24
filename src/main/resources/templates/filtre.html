@@ -14,6 +14,7 @@
         <option value="" disabled selected>Choisissez la marque</option>
         <option th:each="marque : ${marques}" th:value="${marque.getNom()}"
                 th:text="${marque.getTexte()}"></option>
+
     </select>
 
     <label for="prix">Prix</label>
