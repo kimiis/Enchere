@@ -1,304 +1,638 @@
 USE ENCHERES
+
 GO
 
-CREATE TABLE Taille
+CREATE TABLE Roles
+
 (
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
+
+    Pseudo VARCHAR(255) NOT NULL,
+
+    Role VARCHAR(50) NOT NULL,
+
+
+
+)
+
+
+ALTER TABLE Roles
+
+    ADD constraint PK_ROLE PRIMARY KEY (Pseudo, Role)
+
+
+CREATE TABLE Taille
+
+(
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
         CONSTRAINT PK_Taille PRIMARY KEY,
-    Texte VARCHAR(255)
+
+    texte VARCHAR(255)
+
 );
+
 
 CREATE TABLE Energie
+
 (
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
         CONSTRAINT PK_Energie PRIMARY KEY,
-    Texte VARCHAR(255)
+
+    texte VARCHAR(255)
+
 );
+
 
 CREATE TABLE Localisation
+
 (
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
         CONSTRAINT PK_Localisation PRIMARY KEY,
-    Texte VARCHAR(255)
+
+    texte VARCHAR(255)
+
 );
+
 
 CREATE TABLE Type
+
 (
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
         CONSTRAINT PK_Type PRIMARY KEY,
-    Texte VARCHAR(255)
+
+    texte VARCHAR(255)
+
 );
+
 
 CREATE TABLE Marque
+
 (
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
         CONSTRAINT PK_Marque PRIMARY KEY,
-    Texte VARCHAR(255)
+
+    texte VARCHAR(255),
+
+    idType INT
+
+        CONSTRAINT FK_idTypeMarque FOREIGN KEY
+
+        REFERENCES Type (id) ON DELETE CASCADE,
+
 );
+
 
 CREATE TABLE Couleur
+
 (
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
         CONSTRAINT PK_Couleur PRIMARY KEY,
-    Texte VARCHAR(255)
+
+    texte VARCHAR(255)
+
 );
+
 
 CREATE TABLE Coupe
+
 (
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
         CONSTRAINT PK_Coupe PRIMARY KEY,
-    Texte VARCHAR(255)
+
+    texte VARCHAR(255)
+
 );
+
 
 CREATE TABLE ModaliteRetrait
-(
-    Nom   VARCHAR(20) not null,
-    Id    INT         not null
-        CONSTRAINT PK_Coupe PRIMARY KEY,
-    Texte VARCHAR(255)
-);
 
-CREATE TABLE Enchere
 (
-    Nom     VARCHAR(20) not null,
-    Id      INT         not null
-        CONSTRAINT PK_Enchere PRIMARY KEY,
-    Texte   VARCHAR(255),
-    DateD   DATE,
-    DateF   DATE,
-    Prix    INT,
-    IdObjet INT
-        CONSTRAINT FK_IdObjet FOREIGN KEY
-            REFERENCES Objet (Id) ON DELETE CASCADE,
-    IdModa  INT
-        CONSTRAINT FK_IdObjet FOREIGN KEY
-            REFERENCES ModaliteRetrait (Id) ON DELETE CASCADE
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
+        CONSTRAINT PK_Moda PRIMARY KEY,
+
+    texte VARCHAR(255)
 
 );
+
+
+CREATE TABLE UTILISATEURS
+
+(
+
+
+    id INTEGER idENTITY (1,1) NOT NULL,
+
+    pseudo VARCHAR(30) NOT NULL,
+
+    nom VARCHAR(30) NOT NULL,
+
+    prenom VARCHAR(30) NOT NULL,
+
+    email VARCHAR(20) NOT NULL,
+
+    tel VARCHAR(15),
+
+    adresse VARCHAR(50) NOT NULL,
+
+    mdp VARCHAR(255) NOT NULL,
+
+    credit INTEGER NOT NULL,
+
+    admin bit NOT NULL
+
+)
+
+ALTER TABLE UTILISATEURS
+
+    ADD constraint utilisateur_pk PRIMARY KEY (id)
+
+
 
 CREATE TABLE Objet
+
 (
-    Energie        CHAR(1),
-    Id             INT
-        CONSTRAINT PK_Coupe PRIMARY KEY,
-    NbRoue         INT,
-    Annee          SMALLINT,
-    Portable       bit,
-    Encastarble    bit,
-    IdCoupe        INT
-        CONSTRAINT FK_IdCoupe FOREIGN KEY
-            REFERENCES Coupe (Id) ON DELETE CASCADE,
-    IdCouleur      INT
-        CONSTRAINT FK_IdCouleur FOREIGN KEY
-            REFERENCES Couleur (Id) ON DELETE CASCADE,
-    IdMarque       INT
-        CONSTRAINT FK_IdMarque FOREIGN KEY
-            REFERENCES Marque (Id) ON DELETE CASCADE,
-    IdType         INT
-        CONSTRAINT FK_IdType FOREIGN KEY
-            REFERENCES Type (Id) ON DELETE CASCADE,
-    IdLocalisation INT
-        CONSTRAINT FK_IdLocalisation FOREIGN KEY
-            REFERENCES Localisation (Id) ON DELETE CASCADE,
-    IdEnergie      INT
-        CONSTRAINT FK_IdEnergie FOREIGN KEY
-            REFERENCES Energie (Id) ON DELETE CASCADE,
-    IdTaille       INT
-        CONSTRAINT FK_IdTaille FOREIGN KEY
-            REFERENCES Taille (Id) ON DELETE CASCADE,
+
+    energie CHAR(1),
+
+    id INTEGER idENTITY (1,1)
+
+        CONSTRAINT PK_Objet PRIMARY KEY ,
+
+    nbRoue INT,
+
+    annee SMALLINT,
+
+    portable bit,
+
+    encastarble bit,
+
+    dateD DATE,
+
+    dateF DATE,
+
+    prixD int,
+
+    adresse VARCHAR(255) not null,
+
+    idUtilisateur int
+
+        CONSTRAINT FK_idUtilisateur FOREIGN KEY
+
+        REFERENCES UTILISATEURS (id) ON DELETE CASCADE,
+
+    idCoupe INT
+
+        CONSTRAINT FK_idCoupe FOREIGN KEY
+
+        REFERENCES Coupe (id) ON DELETE CASCADE,
+
+    idCouleur INT
+
+        CONSTRAINT FK_idCouleur FOREIGN KEY
+
+        REFERENCES Couleur (id) ON DELETE CASCADE,
+
+    idMarque INT
+
+        CONSTRAINT FK_idMarque FOREIGN KEY
+
+        REFERENCES Marque (id) ON DELETE CASCADE,
+
+    idType INT
+
+        CONSTRAINT FK_idType FOREIGN KEY
+
+        REFERENCES Type (id) ON DELETE NO ACTION,
+
+    idLocalisation INT
+
+        CONSTRAINT FK_idLocalisation FOREIGN KEY
+
+        REFERENCES Localisation (id) ON DELETE CASCADE,
+
+    idEnergie INT
+
+        CONSTRAINT FK_idEnergie FOREIGN KEY
+
+        REFERENCES Energie (id) ON DELETE CASCADE,
+
+    idTaille INT
+
+        CONSTRAINT FK_idTaille FOREIGN KEY
+
+        REFERENCES Taille (id) ON DELETE CASCADE,
+
 
 );
 
-INSERT INTO Coupe
-VALUES ('slim', 1, 'Slim');
-INSERT INTO Coupe
-VALUES ('straight', 2, 'Straight');
-INSERT INTO Coupe
-VALUES ('mom', 3, 'Mom');
-INSERT INTO Coupe
-VALUES ('skinny', 4, 'Skinny');
+
+CREATE TABLE Enchere
+
+(
+
+    nom VARCHAR(20) not null,
+
+    id INTEGER idENTITY (1,1) not null
+
+        CONSTRAINT PK_Enchere PRIMARY KEY,
+
+    texte VARCHAR(255),
+
+    prix INT,
+
+    idObjet INT
+
+        CONSTRAINT FK_idObjet FOREIGN KEY
+
+        REFERENCES Objet (id) ON DELETE CASCADE,
+
+    idModa INT
+
+        CONSTRAINT FK_idModa FOREIGN KEY
+
+        REFERENCES ModaliteRetrait (id) ON DELETE CASCADE
+
+
+);
+
 
 INSERT INTO Coupe
-VALUES ('long', 5, 'Long');
-INSERT INTO Coupe
-VALUES ('midi', 6, 'Midi');
-INSERT INTO Coupe
-VALUES ('court', 7, 'Court');
+
+VALUES ('slim', 'Slim');
 
 INSERT INTO Coupe
-VALUES ('oversize', 8, 'Oversize');
+
+VALUES ('straight', 'Straight');
+
 INSERT INTO Coupe
-VALUES ('court', 9, 'Court');
+
+VALUES ('mom', 'Mom');
+
 INSERT INTO Coupe
-VALUES ('long', 10, 'Long');
+
+VALUES ('skinny', 'Skinny');
+
+
 INSERT INTO Coupe
-VALUES ('wf', 11, 'Wide-fit');
+
+VALUES ('long', 'Long');
+
+INSERT INTO Coupe
+
+VALUES ('midi', 'Midi');
+
+INSERT INTO Coupe
+
+VALUES ('court', 'Court');
+
+
+INSERT INTO Coupe
+
+VALUES ('oversize', 'Oversize');
+
+INSERT INTO Coupe
+
+VALUES ('court', 'Court');
+
+INSERT INTO Coupe
+
+VALUES ('long', 'Long');
+
+INSERT INTO Coupe
+
+VALUES ('wf', 'Wide-fit');
+
 
 INSERT INTO Couleur
-VALUES ('rose', 1, 'Rose');
+
+VALUES ('rose', 'Rose');
+
 INSERT INTO Couleur
-VALUES ('jaune', 2, 'Jaune');
+
+VALUES ('jaune', 'Jaune');
+
 INSERT INTO Couleur
-VALUES ('blanc', 3, 'Blanc');
+
+VALUES ('blanc', 'Blanc');
+
 INSERT INTO Couleur
-VALUES ('noir', 4, 'Noir');
+
+VALUES ('noir', 'Noir');
+
 INSERT INTO Couleur
-VALUES ('rouge', 5, 'Rouge');
+
+VALUES ('rouge', 'Rouge');
+
 INSERT INTO Couleur
-VALUES ('bleu', 6, 'Bleu');
 
-INSERT INTO Marque
-VALUES ('lv', 1, 'Louis Vuitton');
-INSERT INTO Marque
-VALUES ('armani', 2, 'Armani');
-INSERT INTO Marque
-VALUES ('th', 3, 'Tommy Hilfiger');
-INSERT INTO Marque
-VALUES ('dior', 4, 'Dior');
-INSERT INTO Marque
-VALUES ('channel', 5, 'Channel');
+VALUES ('bleu', 'Bleu');
 
-INSERT INTO Marque
-VALUES ('ct', 6, 'Charlotte Tilbury');
-INSERT INTO Marque
-VALUES ('ysl', 7, 'Yves Saint Laurent');
-INSERT INTO Marque
-VALUES ('or', 8, 'Or Rejuvenic');
-INSERT INTO Marque
-VALUES ('lm', 9, 'La Mer');
-
-INSERT INTO Marque
-VALUES ('lambo', 10, 'Lamborghini');
-INSERT INTO Marque
-VALUES ('bentley', 11, 'Bentley');
-INSERT INTO Marque
-VALUES ('rolls', 12, 'Rolls-Royce');
-INSERT INTO Marque
-VALUES ('aston', 13, 'Aston Martin');
-INSERT INTO Marque
-VALUES ('ferrari', 14, 'Ferrari');
-
-INSERT INTO Marque
-VALUES ('apple', 15, 'Apple');
-INSERT INTO Marque
-VALUES ('samsung', 16, 'Samsung');
-INSERT INTO Marque
-VALUES ('leica', 17, 'Leica');
-INSERT INTO Marque
-VALUES ('luva', 18, 'Luvaglio');
-INSERT INTO Marque
-VALUES ('alien', 19, 'Alienware');
-
-INSERT INTO Marque
-VALUES ('nintendo', 20, 'Nintendo');
-INSERT INTO Marque
-VALUES ('sony', 21, 'Sony');
-INSERT INTO Marque
-VALUES ('microsoft', 22, 'Microsoft');
-INSERT INTO Marque
-VALUES ('sega', 23, 'Sega');
-
-INSERT INTO Marque
-VALUES ('whirlpool', 24, 'Whirlpool');
-INSERT INTO Marque
-VALUES ('smeg', 25, 'SMEG');
-INSERT INTO Marque
-VALUES ('electro', 26, 'Electrolux');
 
 INSERT INTO Type
-VALUES ('vehicule', 1, 'Vehicule');
+
+VALUES ('vehicule', 'Vehicule');
+
 INSERT INTO Type
-VALUES ('console', 2, 'Console');
+
+VALUES ('console', 'Console');
+
 INSERT INTO Type
-VALUES ('vet', 3, 'Vetement');
+
+VALUES ('vet', 'Vetement');
+
 INSERT INTO Type
-VALUES ('pb', 4, 'Produit de beaute');
+
+VALUES ('pb', 'Produit de beaute');
+
 INSERT INTO Type
-VALUES ('elec', 5, 'Electromenager');
+
+VALUES ('elec', 'Electromenager');
+
 INSERT INTO Type
-VALUES ('ht', 6, 'High-Tech');
+
+VALUES ('ht', 'High-Tech');
+
+
+INSERT INTO Marque
+
+VALUES ('lv', 'Louis Vuitton', 3);
+
+INSERT INTO Marque
+
+VALUES ('armani', 'Armani', 3);
+
+INSERT INTO Marque
+
+VALUES ('th', 'Tommy Hilfiger', 3);
+
+INSERT INTO Marque
+
+VALUES ('dior', 'Dior', 3);
+
+INSERT INTO Marque
+
+VALUES ('channel', 'Channel', 3);
+
+
+INSERT INTO Marque
+
+VALUES ('ct', 'Charlotte Tilbury',4);
+
+INSERT INTO Marque
+
+VALUES ('ysl', 'Yves Saint Laurent',4);
+
+INSERT INTO Marque
+
+VALUES ('or', 'Or Rejuvenic',4);
+
+INSERT INTO Marque
+
+VALUES ('lm', 'La Mer',4);
+
+
+INSERT INTO Marque
+
+VALUES ('lambo', 'Lamborghini',1);
+
+INSERT INTO Marque
+
+VALUES ('bentley', 'Bentley',1);
+
+INSERT INTO Marque
+
+VALUES ('rolls', 'Rolls-Royce',1);
+
+INSERT INTO Marque
+
+VALUES ('aston', 'Aston Martin',1);
+
+INSERT INTO Marque
+
+VALUES ('ferrari', 'Ferrari',1);
+
+
+INSERT INTO Marque
+
+VALUES ('apple', 'Apple',6);
+
+INSERT INTO Marque
+
+VALUES ('samsung', 'Samsung',6);
+
+INSERT INTO Marque
+
+VALUES ('leica', 'Leica',6);
+
+INSERT INTO Marque
+
+VALUES ('luva', 'Luvaglio',6);
+
+INSERT INTO Marque
+
+VALUES ('alien', 'Alienware',6);
+
+
+INSERT INTO Marque
+
+VALUES ('nintendo', 'Nintendo',2);
+
+INSERT INTO Marque
+
+VALUES ('sony', 'Sony',2);
+
+INSERT INTO Marque
+
+VALUES ('microsoft', 'Microsoft',2);
+
+INSERT INTO Marque
+
+VALUES ('sega', 'Sega',2);
+
+
+INSERT INTO Marque
+
+VALUES ('whirlpool', 'Whirlpool',5);
+
+INSERT INTO Marque
+
+VALUES ('smeg', 'SMEG',5);
+
+INSERT INTO Marque
+
+VALUES ('electro', 'Electrolux',5);
+
 
 INSERT INTO Localisation
-VALUES ('bret', 1, 'Bretagne');
+
+VALUES ('bret', 'Bretagne');
+
 INSERT INTO Localisation
-VALUES ('pl', 2, 'Pays de la Loire');
+
+VALUES ('pl', 'Pays de la Loire');
+
 INSERT INTO Localisation
-VALUES ('na', 3, 'Nouvelle Aquitaine');
+
+VALUES ('na', 'Nouvelle Aquitaine');
+
 INSERT INTO Localisation
-VALUES ('occi', 4, 'Occitanie');
+
+VALUES ('occi', 'Occitanie');
+
 INSERT INTO Localisation
-VALUES ('prov', 5, 'Provence-Alpes-Cotes-Azur');
+
+VALUES ('prov', 'Provence-Alpes-Cotes-Azur');
+
 INSERT INTO Localisation
-VALUES ('corse', 6, 'Corse');
+
+VALUES ('corse', 'Corse');
+
 INSERT INTO Localisation
-VALUES ('auv', 7, 'Auvergne-Rhone-Alpes');
+
+VALUES ('auv', 'Auvergne-Rhone-Alpes');
+
 INSERT INTO Localisation
-VALUES ('bourg', 8, 'Bourgogne-Franche-Comte');
+
+VALUES ('bourg', 'Bourgogne-Franche-Comte');
+
 INSERT INTO Localisation
-VALUES ('centre', 9, 'Centre-Val de Loire');
+
+VALUES ('centre', 'Centre-Val de Loire');
+
 INSERT INTO Localisation
-VALUES ('ile', 10, 'Ile de France');
+
+VALUES ('ile', 'Ile de France');
+
 INSERT INTO Localisation
-VALUES ('ge', 11, 'Grand Est');
+
+VALUES ('ge', 'Grand Est');
+
 INSERT INTO Localisation
-VALUES ('hf', 12, 'Hauts de France');
+
+VALUES ('hf', 'Hauts de France');
+
 INSERT INTO Localisation
-VALUES ('norm', 13, 'Normandie');
+
+VALUES ('norm', 'Normandie');
+
 INSERT INTO Localisation
-VALUES ('guad', 14, 'Guadeloupe');
+
+VALUES ('guad', 'Guadeloupe');
+
 INSERT INTO Localisation
-VALUES ('may', 15, 'Mayotte');
+
+VALUES ('may', 'Mayotte');
+
 INSERT INTO Localisation
-VALUES ('mart', 16, 'Martinique');
+
+VALUES ('mart', 'Martinique');
+
 INSERT INTO Localisation
-VALUES ('guy', 17, 'Guyane');
+
+VALUES ('guy', 'Guyane');
+
 INSERT INTO Localisation
-VALUES ('reu', 18, 'La Reunion');
+
+VALUES ('reu', 'La Reunion');
+
 
 INSERT INTO Energie
-VALUES ('diesel', 1, 'Diesel');
+
+VALUES ('diesel', 'Diesel');
+
 INSERT INTO Energie
-VALUES ('sp95', 2, 'SP-95');
+
+VALUES ('sp95', 'SP-95');
+
 INSERT INTO Energie
-VALUES ('sp98', 3, 'SP-98');
+
+VALUES ('sp98', 'SP-98');
+
 INSERT INTO Energie
-VALUES ('hybride', 4, 'Hybride');
+
+VALUES ('hybride', 'Hybride');
+
 
 INSERT INTO Taille
-VALUES ('xs', 1, 'Xs');
+
+VALUES ('xs', 'Xs');
+
 INSERT INTO Taille
-VALUES ('s', 2, 'S');
+
+VALUES ('s', 'S');
+
 INSERT INTO Taille
-VALUES ('m', 3, 'M');
+
+VALUES ('m', 'M');
+
 INSERT INTO Taille
-VALUES ('l', 4, 'L');
+
+VALUES ('l', 'L');
+
 INSERT INTO Taille
-VALUES ('xl', 5, 'XL');
+
+VALUES ('xl', 'XL');
+
 INSERT INTO Taille
-VALUES ('xxl', 6, 'XXL');
+
+VALUES ('xxl', 'XXL');
+
 
 INSERT INTO ModaliteRetrait
-VALUES ('mp', 1, 'Main propre');
-INSERT INTO ModaliteRetrait
-VALUES ('rel', 2, 'Point Relais');
-INSERT INTO ModaliteRetrait
-VALUES ('relay',3 , 'Mondial relay');
-INSERT INTO ModaliteRetrait
-VALUES ('livre', 4, 'Livraison');
 
-INSERT INTO Enchere
-VALUES ('lambo', 1, 'rose', 25 / 08 / 2023, 25 / 08 / 2024, 1, 1, 1);
+VALUES ('mp', 'Main propre');
+
+INSERT INTO ModaliteRetrait
+
+VALUES ('rel', 'Point Relais');
+
+INSERT INTO ModaliteRetrait
+
+VALUES ('relay', 'Mondial relay');
+
+INSERT INTO ModaliteRetrait
+
+VALUES ('livre', 'Livraison');
+
 
 INSERT INTO Objet
-VALUES (null, 1, '4', 2010, null, null, null, 1, 10, 1, 4, 3, null);
+
+VALUES (null, '4', 2010, null, null, '18-02-2022', '18-02-2025', 10, '5 Rue du chateau deau', null, 1, 1, 10, 1, 4, 3,
+
+        null);
 
 
+INSERT INTO Enchere
 
-
+VALUES ('lambo', 'rose', 1, 1, 1);
