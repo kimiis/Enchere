@@ -30,9 +30,14 @@ public class ProfilService {
 
     // Supprimer les infos de l'utilisateur
 
-    public void supprimerProfil(int noUtilisateur) {
-        profilDao.supprimerProfil(noUtilisateur);
+    @Transactional
+    public void supprimerProfil(String pseudo) {
+        profilDao.supprimerLigneUtilisateur(pseudo);
+        profilDao.supprimerLigneRole(pseudo);
     }
+
+    // Supprimer le role de l'utilisateur
+
 
 
 

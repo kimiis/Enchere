@@ -39,24 +39,39 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
     // Supprimer les infos de l'utilisateur
 
-    private final static String SUPPRIMER_PROFIL = "DELETE FROM UTILISATEURS WHERE noUtilisateur= ?";
+    private final static String SUPPRIMER_PROFIL = "DELETE FROM UTILISATEURS WHERE pseudo= ?";
 
     @Override
-    public void supprimerProfil(int noUtilisateur) {
-        jdbcTemplate.update(SUPPRIMER_PROFIL, noUtilisateur);
+    public void supprimerLigneUtilisateur(String pseudo) {
+        jdbcTemplate.update(SUPPRIMER_PROFIL, pseudo);
     }
 
-<<<<<<< HEAD
+
+    // Supprimer le role de l'utilisateur
+
+    private final static String SUPPRIMER_PROFIL_ROLE = "DELETE FROM ROLES WHERE pseudo= ?";
+
+    @Override
+    public void supprimerLigneRole(String pseudo) {
+        jdbcTemplate.update(SUPPRIMER_PROFIL_ROLE, pseudo);
+    }
+
+    // INSERER UTILISATEUR DANS LA BASE
 
     private final static String INSERT_UTILISATEUR = "" +
             " INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin) " +
             " VALUES (?,?,?,?,?,?,?,?,?)";
+
+
 
     @Override
     public void add(Utilisateur u) {
 
         jdbcTemplate.update(INSERT_UTILISATEUR, u.getPseudo(), u.getNom(), u.getPrenom(), u.getEmail(), u.getTel(), u.getAdresse(), u.getMdp(), u.getCredit(), u.isAdmin());
     }
+
+
+    // INSERER ROLE UTILISATEUR DANS LA BASE
 
     private final static String INSERT_ROLE = "" +
             " INSERT INTO ROLES (pseudo, role) " +
@@ -70,6 +85,5 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
     }
 
 }
-=======
-}
->>>>>>> 596e611ea851c5464d0e0b3a8e02a2bf77a7b369
+
+

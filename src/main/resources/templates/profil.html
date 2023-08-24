@@ -83,7 +83,7 @@
     </form>
 
     <form th:action="@{/delete}" method="post">
-        <input type="hidden" th:value="${profUti.noUtilisateur}" name="noUtilisateur"/>
+        <input type="hidden" th:value="${profUti.pseudo}" name="pseudo"/>
 
         <button type="submit" id="supprimer" value="Supprimer"> Supprimer mon compte</button>
 

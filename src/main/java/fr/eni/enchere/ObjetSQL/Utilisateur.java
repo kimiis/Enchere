@@ -11,7 +11,7 @@ public class Utilisateur {
     private String email;
     private String tel;
     private String adresse;
-     private String mdp;
+    private String mdp;
     private int credit;
     private boolean admin;
 
@@ -19,21 +19,13 @@ public class Utilisateur {
 
     public Utilisateur() {
         this.nom = "";
-        this.prenom="";
-        this.tel= "";
-        this.adresse= "";
+        this.prenom = "";
+        this.tel = "";
+        this.adresse = "";
 
     }
 
-    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom,
-<<<<<<< HEAD:src/main/java/fr/eni/enchere/bo/Utilisateur.java
-                       String email, String tel, String adresse, String mdp,
-=======
-
-                       String email, String tel, String adresse, String cpo, String mdp,
-
->>>>>>> 596e611ea851c5464d0e0b3a8e02a2bf77a7b369:src/main/java/fr/eni/enchere/ObjetSQL/Utilisateur.java
-                       int credit, boolean admin) {
+    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String tel, String adresse, String mdp, int credit, boolean admin) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -120,7 +112,7 @@ public class Utilisateur {
         this.adresse = adresse;
     }
 
-     public String getMdp() {
+    public String getMdp() {
         return mdp;
     }
 
