@@ -10,8 +10,8 @@
     <section layout:fragment="content">
     <div>
         <div
-                th:replace="filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations}
-      )">
+                th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations}
+      )}">
         </div>
 
         <label for="energie">Energies</label>
@@ -22,6 +22,7 @@
         </select>
 
     </div>
+        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getDescription()}"></div>
     </section>
 </main>
 </body>

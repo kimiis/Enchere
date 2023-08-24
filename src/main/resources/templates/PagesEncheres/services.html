@@ -3,15 +3,14 @@
       th:with="connecte=${connecte}">
 <head>
     <meta charset="UTF-8">
-    <title>High-Tech</title>
+    <title>Services</title>
 </head>
 <body>
 <main>
     <section layout:fragment="content">
-    <div
-            th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations}
-        )}">
-    </div>
+        <div
+                th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations})}">
+        </div>
     </section>
 </main>
 </body>

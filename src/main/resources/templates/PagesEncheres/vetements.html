@@ -9,7 +9,7 @@
 <main>
     <section layout:fragment="content">
     <div
-            th:replace="filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations})">
+            th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations})}">
     </div>
     <label for="taille">Taille</label>
     <select name="taille" id="taille">

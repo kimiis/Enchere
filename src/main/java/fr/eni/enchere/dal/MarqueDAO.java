@@ -7,8 +7,5 @@ import java.util.List;
 public interface MarqueDAO {
     List<Marque> findAll();
 
-    public String trieMarque(String nomType) {
-
-        return List < Marque >;
-    }
+    List<Marque> getMarquesByTypeName(String nomType);
 }

@@ -16,5 +16,8 @@ public class MarqueService {
     public List<Marque> recupererInfos(){
         return marqueDAO.findAll();
     }
+    public List<Marque> getMarquesByTypeName(String typeName){
+        return marqueDAO.getMarquesByTypeName(typeName);
+    }
 }
 

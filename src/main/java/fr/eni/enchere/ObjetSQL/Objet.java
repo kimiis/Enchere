@@ -1,5 +1,9 @@
 package fr.eni.enchere.ObjetSQL;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Objet {
     private String energies;
     private int id;
@@ -7,51 +11,51 @@ public class Objet {
     private int annee;
     private boolean portbale;
     private boolean encastrable;
-    private Coupe coupe;
-    private Marque marque;
-    private Type type;
-    private Localisation localisation;
-    private Energie energie;
-    private Taille taille;
-    private Couleur couleur;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    private Date dateD;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    private Date dateF;
+    private String nom;
+    private String description;
+    private int idUser;
+    private int idRetrait;
+    private int prix;
+    private int idType;
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
+    }
+
+
 
     public Objet() {
     }
 
-    public Objet(String energies, int id, int nbRoue, int annee, boolean portbale, boolean encastrable, Coupe coupe, Marque marque,
-                 Type type, Localisation localisation, Energie energie, Taille taille) {
+    public Objet(String energies, int id, int nbRoue, int annee, boolean portbale, boolean encastrable, Date dateD, Date dateF, String nom, String description, int idUser, int idRetrait, int prix) {
         this.energies = energies;
         this.id = id;
         this.nbRoue = nbRoue;
         this.annee = annee;
         this.portbale = portbale;
         this.encastrable = encastrable;
-        this.coupe = coupe;
-        this.marque = marque;
-        this.type = type;
-        this.localisation = localisation;
-        this.energie = energie;
-        this.taille = taille;
+        this.dateD = dateD;
+        this.dateF = dateF;
+        this.nom = nom;
+        this.description = description;
+        this.idUser = idUser;
+        this.idRetrait = idRetrait;
+        this.prix = prix;
     }
 
-    public String getenergies() {
+    public String getEnergies() {
         return energies;
     }
 
-    public void setenergies(String energies) {
+    public void setEnergies(String energies) {
         this.energies = energies;
-    }
-
-    public Taille getTaille() {
-        return taille;
-    }
-
-    public void setTaille(Taille taille) {
-        this.taille = taille;
-    }
-
-    public void setEnergie(Energie energie) {
-        this.energie = energie;
     }
 
     public int getId() {
@@ -94,37 +98,59 @@ public class Objet {
         this.encastrable = encastrable;
     }
 
-    public Coupe getCoupe() {
-        return coupe;
+    public Date getDateD() {
+        return dateD;
     }
 
-    public void setCoupe(Coupe coupe) {
-        this.coupe = coupe;
+    public void setDateD(Date dateD) {
+        this.dateD = dateD;
     }
 
-    public Marque getMarque() {
-        return marque;
+    public Date getDateF() {
+        return dateF;
     }
 
-    public void setMarque(Marque marque) {
-        this.marque = marque;
+    public void setDateF(Date dateF) {
+        this.dateF = dateF;
     }
 
-    public Type getType() {
-        return type;
+    public String getNom() {
+        return nom;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public Localisation getLocalisation() {
-        return localisation;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLocalisation(Localisation localisation) {
-        this.localisation = localisation;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public int getIdRetrait() {
+        return idRetrait;
+    }
+
+    public void setIdRetrait(int idRetrait) {
+        this.idRetrait = idRetrait;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
     }
 }
-
-

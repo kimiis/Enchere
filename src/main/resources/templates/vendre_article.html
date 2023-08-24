@@ -9,45 +9,47 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <form>
+    <form th:name="${_csrf.parameterName}" th:value="${_csrf.token}" method="post" action="/createObjet">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <legend>Formulaire de vente</legend>
         <br>
 
         <div>
             <label for="name" class="form__label">Nom de l'article : </label><br>
-            <input id="nameArticle" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères" onchange="verifierNom()" required/>
+            <input name="nom" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères" onchange="verifierNom()" required/>
         </div>
         <div>
             <label for="description" class="form__label">Description de l'article : </label><br>
-            <input id="description" type="textarea" class="form__field" placeholder="Doit faire au moins 100 caractères"
+            <input name="description" type="textarea" class="form__field" placeholder="Doit faire au moins 100 caractères"
                   onchange="verifierDescription()" required/>
         </div>
 
 
-        <label for="categorie">Catégorie l'article : </label><br>
-        <select name="categorie" required>
+        <label for="idType">Catégorie l'article : </label><br>
+        <select name="idType" required>
             <option value="" selected disabled hidden>-- Choisir la catégorie --</option>
+            <option th:each="type : ${types}" th:value="${type.getId()}"
+                    th:text="${type.getTexte()}"></option>
 
         </select>
         <div>
             <label for="prix" class="form__label">Prix de départ : </label><br>
-            <input id="prix" type="number" class="form__field" placeholder="min 1 points" onchange="verifierPrix()"
+            <input id="prix" type="number" name="prix" class="form__field" placeholder="min 1 points" onchange="verifierPrix()"
                    required/>
         </div>
         <div>
-            <label for="heureD" class="form__label" >Début de l'enchère : </label><br>
-            <input type="datetime-local" id="heureD" class="form__field" onchange="verifierDate()" required/>
+            <label for="dateD" class="form__label" >Début de l'enchère : </label><br>
+            <input type="datetime-local" name="dateD" class="form__field" onchange="verifierDate()" required/>
         </div>
         <div>
-            <label for="heureF" class="form__label">Fin de l'enchère : </label><br>
-            <input type="datetime-local" id="heureF" class="form__field" onchange="verifierDate()" required/>
+            <label for="dateF" class="form__label">Fin de l'enchère : </label><br>
+            <input type="datetime-local" name="dateF" class="form__field" onchange="verifierDate()" required/>
         </div>
         <div>
-            <label for="retrait" class="form__label">Modalité de retrait : </label><br>
-            <select name="retrait" required>
+            <label for="idRetrait" class="form__label">Modalité de retrait : </label><br>
+            <select name="idRetrait" required>
                 <option value="" selected disabled hidden>-- Choisir le moyen de retrait --</option>
-                <option th:each="retrait : ${retraits}" th:value="${retrait.getNom()}"
+                <option th:each="retrait : ${retraits}" th:value="${retrait.getId()}"
                         th:text="${retrait.getTexte()}"></option>
 
             </select>

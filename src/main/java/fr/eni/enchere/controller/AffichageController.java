@@ -1,16 +1,16 @@
 package fr.eni.enchere.controller;
 
-import fr.eni.enchere.bll.ProfilService;
 import fr.eni.enchere.ObjetSQL.Utilisateur;
-
-//import fr.eni.enchere.dal.CouleurDAO;
-//import fr.eni.enchere.dal.CouleurDAOJdbc;
-
+import fr.eni.enchere.bll.ObjetService;
+import fr.eni.enchere.bll.ProfilService;
 import fr.eni.enchere.dal.RetraitDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.security.Principal;
 
@@ -25,6 +25,8 @@ public class AffichageController {
 
     @Autowired
     private RetraitDAO modaliteRetraitDAO;
+    @Autowired
+    private ObjetService objetService;
 
 
     //----------------------------------Accueil--------------------------------------
@@ -87,12 +89,6 @@ public class AffichageController {
         return "succes";
     }
 
-    //----------------------------------Vendre--------------------------------------
-    @GetMapping("/vendre_article")
-    String afficherVendre(Model model) {
-        model.addAttribute("retraits", modaliteRetraitDAO.findAll());
-        return "vendre_article";
-    }
 
     //----------------------------------Profil--------------------------------------
     @GetMapping("/profil")

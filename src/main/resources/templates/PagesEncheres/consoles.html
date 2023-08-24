@@ -3,14 +3,16 @@
       th:with="connecte=${connecte}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Console</title>
 </head>
 <body>
 <main>
     <section layout:fragment="content">
     <div
-            th:replace="filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations})">
+            th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations})}">
     </div>
+        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getDescription()}"></div>
+
     </section>
 </main>
 </body>
