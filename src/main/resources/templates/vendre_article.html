@@ -54,7 +54,84 @@
 
             </select>
         </div>
+        <div>
+            <label for="couleurs" class="form__label">Couleurs </label><br>
+            <select name="couleurs" required>
+                <option value="" selected disabled hidden>-- Choisir la couleur --</option>
+                <option th:each="couleur : ${couleurs}" th:value="${couleur.getId()}"
+                        th:text="${couleur.getTexte()}"></option>
 
+            </select>
+        </div>
+        <div>
+            <label for="energies" class="form__label">Energies </label><br>
+            <select name="energies" required>
+                <option value="" selected disabled hidden>-- Choisir l'énergie --</option>
+                <option th:each="energie : ${energies}" th:value="${energie.getId()}"
+                        th:text="${energie.getTexte()}"></option>
+
+            </select>
+        </div>
+        <div>
+            <label for="nbRoues" class="form__label">Nombre de roue </label><br>
+            <select name="nbRoues" required>
+                <option value="" selected disabled hidden>-- Choisir le nb de roue --</option>
+                <option value="0"></option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div>
+            <label for="tailles" class="form__label">Tailles</label><br>
+            <select name="tailles" required>
+                <option value="" selected disabled hidden>-- Choisir la taille --</option>
+                <option th:each="taille : ${tailles}" th:value="${taille.getId()}"
+                        th:text="${taille.getTexte()}"></option>
+
+            </select>
+        </div>
+        <div>
+            <label for="localisations" class="form__label">Localisation</label><br>
+            <select name="localisations" required>
+                <option value="" selected disabled hidden>-- Choisir la localisation --</option>
+                <option th:each="localisation : ${localisations}" th:value="${localisation.getId()}"
+                        th:text="${localisation.getTexte()}"></option>
+
+            </select>
+        </div>
+
+        <div>
+            <label for="coupes" class="form__label">Coupes</label><br>
+            <select name="coupes" required>
+                <option value="" selected disabled hidden>-- Choisir la coupe --</option>
+                <option th:each="coupe : ${coupes}" th:value="${coupe.getId()}"
+                        th:text="${coupe.getTexte()}"></option>
+
+            </select>
+        </div>
+        <div>
+            <label for="marques" class="form__label">Marque</label><br>
+            <select name="marques" required>
+                <option value="" selected disabled hidden>-- Choisir la marque --</option>
+                <option th:each="marque : ${marques}" th:value="${marque.getId()}"
+                        th:text="${marque.getTexte()}"></option>
+            </select>
+        </div>
+
+        <div>
+            <input type="checkbox" id="scales" name="encastrables" checked />
+            <label for="encastrables">Encastrable </label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="horns" name="nonEncastrables" />
+            <label for="nonEncastrables">Non Encastrables</label>
+        </div>
+
+        </label>
         <input id= "sub" class="form-submit-button" type="submit" value="Valider">
     </form>
 </section>

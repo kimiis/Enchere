@@ -15,11 +15,13 @@ public class ObjetService {
 
     // Récupérer les infos
 
-    public void insertObjet(Date dateD, Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait, int idType){
+    public void insertObjet(Date dateD,Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait, int idType, int nbRoue, boolean encastrable, boolean portable, int idCoupe, int idCouleur, int idMarque, String localisation, String energie){
 
-        objetDAO.insertObjet(dateD, dateF,  prix, nom, descrip, idUser, idRetrait, idType);
 
-    }
+        objetDAO.insertObjet (dateD, dateF,prix,nom, descrip,idUser,idRetrait, idType,nbRoue,encastrable, portable,  idCoupe, idCouleur,idMarque, localisation, energie);
+
+
+        }
     public List<Objet> findByType(String typeName){
         return objetDAO.findByType(typeName);
     }

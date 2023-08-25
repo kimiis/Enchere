@@ -21,46 +21,52 @@ public class ObjetMapper implements RowMapper<Objet> {
         Energie energie = new Energie();
         Localisation localisation = new Localisation();
         Marque marque = new Marque();
+        Taille taille = new Taille();
+        Type type = new Type();
 
-
-        objet.setId(rs.getInt("o.Id"));
+        objet.setId(rs.getInt("IdObjet"));
         objet.setEnergies(rs.getString("Energie"));
-        objet.setEncastrable(rs.getBoolean("Encastrable"));
+        objet.setEncastrable(rs.getBoolean("Encastarble"));
         objet.setNbRoue(rs.getInt("NbRoue"));
         objet.setAnnee(rs.getInt("Annee"));
         objet.setPortbale(rs.getBoolean("Portable"));
         objet.setDateD(rs.getDate("DateD"));
         objet.setDateF(rs.getDate("DateF"));
         objet.setPrix(rs.getInt("prixD"));
-        objet.setNom(rs.getString("o.Nom"));
         objet.setDescription(rs.getString("description"));
         objet.setIdUser(rs.getInt("iDUtilisateur"));
         objet.setIdRetrait(rs.getInt("idRetrait"));
-
-
-        couleur.setId(rs.getInt("C.Id"));
-        couleur.setNom(rs.getString("C.Nom"));
-        couleur.setTexte(rs.getString("C.Texte"));
-        coupe.setId(rs.getInt("C2.Id"));
-        coupe.setNom(rs.getString("C2.Nom"));
-        coupe.setTexte(rs.getString("C2.Texte"));
-        energie.setNom(rs.getString("E.Nom"));
-        energie.setTexte(rs.getString("E.Texte"));
-        energie.setId(rs.getInt("E.id"));
-        localisation.setId(rs.getInt("L.id"));
-        localisation.setNom(rs.getString("L.Nom"));
-        localisation.setTexte(rs.getString("L.Texte"));
-        marque.setId(rs.getInt("M.Id"));
-        marque.setNom(rs.getString("M.Nom"));
-        marque.setTexte(rs.getString("M.Texte"));
-
+        couleur.setId(rs.getInt("IdCouleur"));
+        coupe.setId(rs.getInt("idCoupe"));
+        energie.setId(rs.getInt("IdEnergie"));
+        marque.setId(rs.getInt("IdMarque"));
+        localisation.setId(rs.getInt("IdLocalisation"));
+        type.setId(rs.getInt("IdType"));
+        taille.setId(rs.getInt("IdTaille"));
+        couleur.setNom(rs.getString("nomCouleur"));
+        couleur.setTexte(rs.getString("texteCouleur"));
+        coupe.setNom(rs.getString("nomCoupe"));
+        coupe.setTexte(rs.getString("texteCoupe"));
+        energie.setNom(rs.getString("nomEnergie"));
+        energie.setTexte(rs.getString("texteEnergie"));
+        localisation.setNom(rs.getString("nomLoca"));
+        localisation.setTexte(rs.getString("texteLoca"));
+        marque.setNom(rs.getString("nomMarque"));
+        marque.setTexte(rs.getString("texteMarque"));
+        taille.setTexte(rs.getString("texteTaille"));
+        taille.setNom(rs.getString("nomTaille"));
+        type.setNom(rs.getString("nomType"));
+        type.setTexte(rs.getString("texteType"));
 
         objet.setCouleur(couleur);
         objet.setCoupe(coupe);
         objet.setEnergie(energie);
         objet.setLocalisation(localisation);
         objet.setMarque(marque);
+        objet.setType(type);
+        objet.setTaille(taille);
         return objet;
     }
 
 }
+ 

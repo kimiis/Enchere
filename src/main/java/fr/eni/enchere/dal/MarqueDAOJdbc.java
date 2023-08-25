@@ -13,9 +13,9 @@ public class MarqueDAOJdbc implements MarqueDAO {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final String FIND_ALL = "SELECT M.nom, M.Id, M.Texte, M.IdType FROM Marque AS M INNER JOIN Type T on M.IdType = T.Id WHERE T.Nom = :nomType";
+    private final String FIND_ALL = "SELECT * FROM Marque";
 
-    private final String FIND_MARQUES_BY_TYPE_NAME = "SELECT * FROM Marque";
+    private final String FIND_MARQUES_BY_TYPE_NAME = "SELECT M.nom, M.Id, M.Texte, M.IdType FROM Marque AS M INNER JOIN Type T on M.IdType = T.Id WHERE T.Nom = :nomType";
 
     public List<Marque> findAll(){
         return namedParameterJdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Marque.class));
@@ -23,7 +23,7 @@ public class MarqueDAOJdbc implements MarqueDAO {
     public List<Marque> getMarquesByTypeName(String typeName){
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("nomType", typeName);
-        return namedParameterJdbcTemplate.query(FIND_ALL, parametreSource, new BeanPropertyRowMapper<>(Marque.class));
+        return namedParameterJdbcTemplate.query(FIND_MARQUES_BY_TYPE_NAME, parametreSource, new BeanPropertyRowMapper<>(Marque.class));
 
     }
 }
