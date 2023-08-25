@@ -22,7 +22,7 @@
         </select>
 
     </div>
-        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getDescription()}"></div>
+        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getPrix()}"></div>
     </section>
 </main>
 </body>

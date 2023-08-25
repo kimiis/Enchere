@@ -54,6 +54,8 @@ public class SecurityConfig {
                             .requestMatchers(mvcBuilder.pattern("/auto")).permitAll()
                             .requestMatchers(mvcBuilder.pattern("/succes")).permitAll()
                             .requestMatchers(mvcBuilder.pattern("/subscribe")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/createObjet")).permitAll()
+
 
 
 

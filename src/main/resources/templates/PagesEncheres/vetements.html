@@ -17,6 +17,8 @@
         <option th:each="taille : ${tailles}" th:value="${taille.getNom()}"
                 th:text="${taille.getTexte()}"></option>
     </select>
+        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getPrix()}"></div>
+
     </section>
 </main>
 </body>

@@ -95,18 +95,25 @@ public class EnchereController {
         model.addAttribute("types", typeService.recupererInfos());
         return "vendre_article";
     }
+
     //----------------------------------Creation objet--------------------------------------
+    @GetMapping("/createObjet")
+    String afficherPage() {
+        return "createObjet";
+    }
+
 
     @PostMapping("/createObjet")
-    String boutonValider(Principal principal,Objet objet){
+    String boutonValider(Principal principal, Objet objet) {
         Utilisateur u = profilService.recupererInfos(principal.getName());
 
-        objetService.insertObjet(objet.getDateD(), objet.getDateF(), objet.getPrix(), objet.getNom(),objet.getDescription(), u.getId(), objet.getIdRetrait(), objet.getIdType());
-        return "encheres";
+        objetService.insertObjet(objet.getDateD(), objet.getDateF(), objet.getPrix(), objet.getNom(), objet.getDescription(), u.getId(), objet.getIdRetrait(), objet.getIdType());
+        return "createObjet";
     }
+
     //----------------------------------Detail objet--------------------------------------
     @GetMapping("/detailObjet")
-    public String detailObjet(@RequestParam(name="idObjet", required=true) int idObjet, Model model){
+    public String detailObjet(@RequestParam(name = "idObjet", required = true) int idObjet, Model model) {
 
         model.addAttribute("detailObjet", objetService.consulterObjetParId(idObjet));
 
