@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: P@ssw0rd
+    ports:
+      - 1433:1433
+    volumes:
+      - sql_server_data:/var/opt/mssql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DATABASE_HOST=db
+      - DATABASE_USER=sa
+      - DATABASE_PASSWORD=P@ssw0rd
+
+volumes:
+  sql_server_data:
