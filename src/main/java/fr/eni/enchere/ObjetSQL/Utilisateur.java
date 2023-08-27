@@ -1,6 +1,6 @@
 package fr.eni.enchere.ObjetSQL;
 
-import fr.eni.enchere.bo.ArticleVendu;
+import java.util.List;
 
 public class Utilisateur {
 
@@ -15,7 +15,7 @@ public class Utilisateur {
     private int credit;
     private boolean admin;
 
-    private ArticleVendu articleVendu;
+    private List<Objet> objetList;
 
     public Utilisateur() {
         this.nom = "";
@@ -26,7 +26,7 @@ public class Utilisateur {
     }
 
 
-    public Utilisateur(int id, String pseudo, String nom, String prenom, String email, String tel, String adresse, String mdp, int credit, boolean admin, ArticleVendu articleVendu) {
+    public Utilisateur(int id, String pseudo, String nom, String prenom, String email, String tel, String adresse, String mdp, int credit, boolean admin, List<Objet> objetList) {
         this.id = id;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -37,7 +37,7 @@ public class Utilisateur {
         this.mdp = mdp;
         this.credit = credit;
         this.admin = admin;
-        this.articleVendu = articleVendu;
+        this.objetList = objetList;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Utilisateur {
                 ", mdp='" + mdp + '\'' +
                 ", credit=" + credit +
                 ", admin=" + admin +
-                ", articleVendu=" + articleVendu +
+                ", objet=" + objetList +
                 '}';
     }
 
@@ -138,11 +138,11 @@ public class Utilisateur {
         this.admin = admin;
     }
 
-    public ArticleVendu getArticleVendu() {
-        return articleVendu;
+    public List<Objet> getObjetList() {
+        return objetList;
     }
 
-    public void setArticleVendu(ArticleVendu articleVendu) {
-        this.articleVendu = articleVendu;
+    public void setObjetList(List<Objet> objetList) {
+        this.objetList = objetList;
     }
 }

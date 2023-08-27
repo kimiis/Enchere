@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface TypeDAO {
     List<Type> findAll();
+    public Type getTypeById(int id);
 }

@@ -11,9 +11,9 @@ public class Objet {
     private int annee;
     private boolean portbale;
     private boolean encastrable;
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date dateD;
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date dateF;
     private String nom;
     private String description;
@@ -21,13 +21,6 @@ public class Objet {
     private int idRetrait;
     private int prix;
     private int idType;
-    public int getIdType() {
-        return idType;
-    }
-
-    public void setIdType(int idType) {
-        this.idType = idType;
-    }
 
     private Coupe coupe;
     private Marque marque;
@@ -36,7 +29,23 @@ public class Objet {
     private Energie energie;
     private Taille taille;
     private Couleur couleur;
+    private Retrait retrait;
 
+    public Retrait getRetrait() {
+        return retrait;
+    }
+
+    public void setRetrait(Retrait retrait) {
+        this.retrait = retrait;
+    }
+
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
+    }
 
     public Coupe getCoupe() {
         return coupe;

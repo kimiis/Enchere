@@ -48,14 +48,14 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 auth -> {
                     auth
-                            .requestMatchers(mvcBuilder.pattern("/enchere")).hasRole("CLIENT")
+                            .requestMatchers(mvcBuilder.pattern("/enchere")).hasRole("USER")
                             .requestMatchers(mvcBuilder.pattern("/private")).hasRole("ADMIN")
                             .requestMatchers(mvcBuilder.pattern("/login")).permitAll()
                             .requestMatchers(mvcBuilder.pattern("/auto")).permitAll()
                             .requestMatchers(mvcBuilder.pattern("/succes")).permitAll()
                             .requestMatchers(mvcBuilder.pattern("/subscribe")).permitAll()
-                            .requestMatchers(mvcBuilder.pattern("/createObjet")).hasRole("CLIENT")
-                            .requestMatchers(mvcBuilder.pattern("/detailObjet")).hasRole("CLIENT")
+                            .requestMatchers(mvcBuilder.pattern("/createObjet")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/detailObjet")).permitAll()
 
 
 

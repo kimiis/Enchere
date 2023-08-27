@@ -2,7 +2,7 @@ package fr.eni.enchere.dal;
 
 import fr.eni.enchere.ObjetSQL.*;
 import org.springframework.jdbc.core.RowMapper;
-import javax.swing.tree.TreePath;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -23,8 +23,10 @@ public class ObjetMapper implements RowMapper<Objet> {
         Marque marque = new Marque();
         Taille taille = new Taille();
         Type type = new Type();
+        Retrait retrait = new Retrait();
 
         objet.setId(rs.getInt("IdObjet"));
+        objet.setNom(rs.getString("nomObjet"));
         objet.setEnergies(rs.getString("Energie"));
         objet.setEncastrable(rs.getBoolean("Encastarble"));
         objet.setNbRoue(rs.getInt("NbRoue"));
@@ -57,6 +59,9 @@ public class ObjetMapper implements RowMapper<Objet> {
         taille.setNom(rs.getString("nomTaille"));
         type.setNom(rs.getString("nomType"));
         type.setTexte(rs.getString("texteType"));
+        retrait.setNom(rs.getString("nomRetrait"));
+        retrait.setId(rs.getInt("idRetrait"));
+        retrait.setTexte(rs.getString("texteRetrait"));
 
         objet.setCouleur(couleur);
         objet.setCoupe(coupe);
@@ -65,6 +70,8 @@ public class ObjetMapper implements RowMapper<Objet> {
         objet.setMarque(marque);
         objet.setType(type);
         objet.setTaille(taille);
+        objet.setRetrait(retrait);
+
         return objet;
     }
 

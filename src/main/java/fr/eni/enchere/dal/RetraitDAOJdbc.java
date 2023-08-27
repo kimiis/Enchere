@@ -1,6 +1,6 @@
 package fr.eni.enchere.dal;
 
-import fr.eni.enchere.ObjetSQL.ModaliteRetrait;
+import fr.eni.enchere.ObjetSQL.Retrait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,7 +14,7 @@ public class RetraitDAOJdbc implements RetraitDAO {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String FIND_ALL = "SELECT * FROM MODALITERETRAIT";
 
-    public List<ModaliteRetrait> findAll(){
-        return namedParameterJdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(ModaliteRetrait.class));
+    public List<Retrait> findAll(){
+        return namedParameterJdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Retrait.class));
     }
 }

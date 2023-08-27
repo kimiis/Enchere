@@ -5,6 +5,31 @@
     <title>Détail de l'objet</title>
 </head>
 <body>
-    <div th:text="${detailObjet.getNom()}"></div>
+
+<div th:text="${detailObjet.getNom() + '  ' + detailObjet.getDescription()+ '   '+detailObjet.getPrix()+ '       '+'Points' }"></div>
+<div th:text="${detailObjet.getCouleur().getTexte() + '   '+ detailObjet.getAnnee()+ '   '+ detailObjet.getLocalisation().getTexte() +  '   '+ detailObjet.getMarque().getTexte() +  '   '+ detailObjet.getRetrait().getTexte() }"></div>
+
+
+<div th:if="${detailObjet.getType().getNom() == 'vehicule'}">
+    <div th:text="${detailObjet.getEnergie().getTexte() + '  '+ (detailObjet.isEncastrable() ? 'Encastrable':'Non encastrable') }"></div>
+</div>
+
+
+<div th:if="${detailObjet.getType().getNom() == 'vet'}">
+    <div th:text="${detailObjet.getCoupe().getTexte()  + detailObjet.getTaille().getTexte()}"></div>
+</div>
+
+<div th:if="${detailObjet.getType().getNom() == 'ht'}">
+    <div th:text="${detailObjet.isPortbale() ? 'Portable' :'Non Portable'  }"></div>
+</div>
+
+<div th:if="${detailObjet.getType().getNom() == 'elec'}">
+    <div th:text="${detailObjet.getEnergies() + (detailObjet.isEncastrable() ? 'Encastrable':'Non encastrable') }"></div>
+</div>
+
+<div th:if="${detailObjet.getType().getNom() == 'console'}">
+    <div th:text="${detailObjet.isPortbale() ? 'Portable' :'Non Portable'  }"></div>
+</div>
+
 </body>
 </html>
