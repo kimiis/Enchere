@@ -168,19 +168,19 @@ public class ObjetDaoJdbc implements ObjetDao {
         }
 //        on verif qu'o nest pas une couleur a  null, si c'est null on ne rentre as dedans;
 //        ensuite on met le && qui verif si le string n'est pas empty si tous est ok on rentre dans la condition
-        if(!"".equals(formFiltre.getCouleur()) && Objects.isNull(formFiltre.getCouleur()) ) {
-            sqlCondition.add(" nomCouleur = "  + formFiltre.getCouleur() + " ");
+        if(!"".equals(formFiltre.getCouleur()) && !Objects.isNull(formFiltre.getCouleur()) ) {
+            sqlCondition.add(" C.nom = '"  + formFiltre.getCouleur() + "' ");
         }
-        if(!"".equals(formFiltre.getEnergie()) && Objects.isNull(formFiltre.getEnergie()) ) {
-            sqlCondition.add(" nomEnergie = "  + formFiltre.getEnergie() + " ");
+        if(!"".equals(formFiltre.getEnergie()) && !Objects.isNull(formFiltre.getEnergie()) ) {
+            sqlCondition.add(" E.nom = '"  + formFiltre.getEnergie() + "' ");
         }
-        if(!"".equals(formFiltre.getLocalisation()) && Objects.isNull(formFiltre.getLocalisation()) ) {
-            sqlCondition.add(" nomLocalisation = "  + formFiltre.getLocalisation() + " ");
+        if(!"".equals(formFiltre.getLocalisation()) && !Objects.isNull(formFiltre.getLocalisation()) ) {
+            sqlCondition.add(" L.nom = '"  + formFiltre.getLocalisation() + "' ");
         }
-        if(!"".equals(formFiltre.getPrixMax()) && Objects.isNull(formFiltre.getPrixMax()) ) {
+        if(!"".equals(formFiltre.getPrixMax()) && !Objects.isNull(formFiltre.getPrixMax()) ) {
             sqlCondition.add(" prixD < "  + formFiltre.getPrixMax() + " ");
         }
-        if(!"".equals(formFiltre.getPrixMin()) && Objects.isNull(formFiltre.getPrixMin()) ) {
+        if(!"".equals(formFiltre.getPrixMin()) && !Objects.isNull(formFiltre.getPrixMin()) ) {
             sqlCondition.add(" prixD > " + formFiltre.getPrixMin() + " ");
         }
         return namedParameterJdbcTemplate.query(GET_OBJET_BY_FILTRE + String.join("AND",sqlCondition), new ObjetMapper());

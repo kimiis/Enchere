@@ -142,7 +142,6 @@ public class AffichageController {
     //----------------------------------Search by name--------------------------------------
     @PostMapping("/searchByNameAndType")
     String searchByNameAndType(Model model, SearchForm searchForm) {
-        objetService.searchByNameAndType(searchForm.getNom(), searchForm.getIdType());
         model.addAttribute("listObjet", objetService.searchByNameAndType(searchForm.getNom(), searchForm.getIdType()));
         model.addAttribute("marques", marqueService.getMarquesByTypeName(typeService.getTypeById(searchForm.getIdType()).getNom()));
         model.addAttribute("couleurs", couleurService.recupererInfos());
@@ -182,10 +181,46 @@ public class AffichageController {
     }
     //----------------------------------filtre recherche--------------------------------------
 
-    @PostMapping("/filtre")
+    @PostMapping("/filtrer")
     public String filtreRecherche(FormFiltre formFiltre, Model model){
 
-            return "filtre";
+
+        model.addAttribute("listObjet", objetService.getObjetByFiltre(formFiltre));
+        model.addAttribute("marques", marqueService.getMarquesByTypeName(typeService.getTypeById(formFiltre.getIdCategorie()).getNom()));
+        model.addAttribute("couleurs", couleurService.recupererInfos());
+        model.addAttribute("retraits", retraitService.recupererInfos());
+        model.addAttribute("localisations", localisationService.recupererInfos());
+
+
+        switch (formFiltre.getIdCategorie()) {
+            case 1:
+                model.addAttribute("energies", energieService.recupererInfos());
+                return "PagesEncheres/auto";
+
+
+            case 2:
+                return "PagesEncheres/consoles";
+
+            case 3:
+                model.addAttribute("tailles", tailleService.recupererInfos());
+                model.addAttribute("coupes", coupeService.recupererInfos());
+                return "PagesEncheres/vetements";
+
+            case 4:
+                return "PagesEncheres/produitBeaute";
+
+            case 5:
+                return "PagesEncheres/electromenager";
+
+            case 6:
+                return "PagesEncheres/highTech";
+
+            case 7:
+                return "PagesEncheres/services";
+
+
+        }
+        return "accueil";
     }
 
 }

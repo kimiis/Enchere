@@ -8,6 +8,8 @@ public class FormFiltre {
     private String Localisation;
     private boolean on;
     private boolean off;
+    private String nomType;
+    private int idCategorie;
 
     public String getCouleur() {
         return couleur;
@@ -76,5 +78,21 @@ public class FormFiltre {
         Localisation = localisation;
         this.on = on;
         this.off = off;
+    }
+
+    public String getNomType() {
+        return nomType;
+    }
+
+    public void setNomType(String nomType) {
+        this.nomType = nomType;
+    }
+
+    public int getIdCategorie() {
+        return idCategorie;
+    }
+
+    public void setIdCategorie(int idCategorie) {
+        this.idCategorie = idCategorie;
     }
 }
