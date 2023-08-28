@@ -1,6 +1,7 @@
 package fr.eni.enchere.bll;
 
 import fr.eni.enchere.ObjetSQL.Objet;
+import fr.eni.enchere.bo.FormFiltre;
 import fr.eni.enchere.dal.ObjetDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,4 +51,7 @@ public class ObjetService {
     public List<Objet> searchByNameAndType(String nom, int idType) {
         return objetDAO.searchByNameAndType(nom, idType);
     }
-}
+
+    public List<Objet> getObjetByFiltre(FormFiltre formFiltre){
+        return objetDAO.getObjetByFiltre(formFiltre);
+    }}

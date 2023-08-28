@@ -14,7 +14,7 @@
         </div>
 
         <label for="energie">Energies</label>
-        <select name="energie" id="energie">
+   <select name="energie" id="energie">
             <option value="" disabled selected>Choisissez le carburant</option>
             <option th:each="energie : ${energies}" th:value="${energie.getNom()}"
                     th:text="${energie.getTexte()}"></option>

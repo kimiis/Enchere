@@ -1,13 +1,17 @@
 package fr.eni.enchere.dal;
 
 import fr.eni.enchere.ObjetSQL.Objet;
+import fr.eni.enchere.bo.FormFiltre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
 @Repository
 public class ObjetDaoJdbc implements ObjetDao {
     @Autowired
@@ -23,14 +27,13 @@ public class ObjetDaoJdbc implements ObjetDao {
             "    R.nom  as nomRetrait    , R.Texte  as texteRetrait";
 
 
-
-    private final String JOINTURES =  "    LEFT join Couleur C on C.Id = o.IdCouleur\n" +
+    private final String JOINTURES = "    LEFT join Couleur C on C.Id = o.IdCouleur\n" +
             "    LEFT join Coupe C2 on C2.Id = o.idCoupe\n" +
             "    LEFT join Energie E on E.Id = o.IdEnergie\n" +
             "    LEFT join Localisation L on L.Id = o.IdLocalisation\n" +
             "    LEFT join Marque M on M.Id = o.IdMarque\n" +
             "    LEFT join Taille T on T.Id = o.IdTaille\n" +
-            "    LEFT join Type T2 on T2.Id = o.IdType\n"+
+            "    LEFT join Type T2 on T2.Id = o.IdType\n" +
             "    LEFT join ModaliteRetrait R on R.Id = o.IdRetrait\n";
 
     private final String FIND_ALL = SELECT + " FROM Objet";
@@ -38,7 +41,7 @@ public class ObjetDaoJdbc implements ObjetDao {
             "DECLARE @Condition INT = :condition;" +
                     "SELECT " +
                     "WHERE COULEUR";
-    private final String INSERT_OBJET= "INSERT INTO Objet VALUES (:energieElec, :nbRoue, :annee,:portable, :encastrable, :dateD, :dateF, :prix, '', :nom,:description, :idUtilisateur, :idRetrait, :idCoupe, :idCouleur, :idMarque, :idType, :idLocalisation, :idEnergie, :idTaille)";
+    private final String INSERT_OBJET = "INSERT INTO Objet VALUES (:energieElec, :nbRoue, :annee,:portable, :encastrable, :dateD, :dateF, :prix, '', :nom,:description, :idUtilisateur, :idRetrait, :idCoupe, :idCouleur, :idMarque, :idType, :idLocalisation, :idEnergie, :idTaille)";
     private final String FIND_BY_TYPE = SELECT + " FROM Objet AS o" +
             JOINTURES +
             "    WHERE T2.Nom = :typeName";
@@ -59,10 +62,15 @@ public class ObjetDaoJdbc implements ObjetDao {
             JOINTURES +
             "    WHERE idUtilisateur = :idUser AND DateD >  GETDATE() ";
 
-    private final String SEARCH_BY_NAME_TYPE =  SELECT + " FROM Objet AS o" +
+    private final String SEARCH_BY_NAME_TYPE = SELECT + " FROM Objet AS o" +
             JOINTURES +
             "    WHERE o.IdType = :idType AND o.nom LIKE :nom";
-    public void insertObjet(Date dateD,Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait, int idType, int nbRoue, boolean encastrable, boolean portable, int idCoupe, int idCouleur, int idMarque,int idTaille, int idLocalisation, int idEnergie, String energieElec, int annee){
+
+    private final String GET_OBJET_BY_FILTRE = SELECT + " FROM Objet AS o" +
+            JOINTURES +
+            " WHERE ";
+
+    public void insertObjet(Date dateD, Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait, int idType, int nbRoue, boolean encastrable, boolean portable, int idCoupe, int idCouleur, int idMarque, int idTaille, int idLocalisation, int idEnergie, String energieElec, int annee) {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("dateD", dateD);
         parametreSource.addValue("dateF", dateF);
@@ -79,17 +87,19 @@ public class ObjetDaoJdbc implements ObjetDao {
         parametreSource.addValue("idCouleur", idCouleur);
         parametreSource.addValue("idMarque", idMarque);
         parametreSource.addValue("idLocalisation", idLocalisation);
-        parametreSource.addValue("idEnergie",idEnergie);
-        parametreSource.addValue("energieElec",energieElec);
-        parametreSource.addValue("annee",annee);
-        parametreSource.addValue("portable",portable);
+        parametreSource.addValue("idEnergie", idEnergie);
+        parametreSource.addValue("energieElec", energieElec);
+        parametreSource.addValue("annee", annee);
+        parametreSource.addValue("portable", portable);
 
         namedParameterJdbcTemplate.update(INSERT_OBJET, parametreSource);
     }
-    public List<Objet> findAll(){
+
+    public List<Objet> findAll() {
         return namedParameterJdbcTemplate.query(FIND_ALL, new ObjetMapper());
     }
-    public List<Objet> findByType(String typeName){
+
+    public List<Objet> findByType(String typeName) {
         System.out.println("---------------------------------typeName---------------------------------");
         System.out.println(typeName);
 //        creer un objet qui va contenir toute les proprietes qui vont etre remplacé dans la requete sql
@@ -98,7 +108,7 @@ public class ObjetDaoJdbc implements ObjetDao {
         return namedParameterJdbcTemplate.query(FIND_BY_TYPE, parametreSource, new ObjetMapper());
     }
 
-    public Objet consulterObjetParId (int idObjet){
+    public Objet consulterObjetParId(int idObjet) {
         System.out.println("---------------------------------typeName---------------------------------");
         System.out.println(idObjet);
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
@@ -124,6 +134,7 @@ public class ObjetDaoJdbc implements ObjetDao {
         return namedParameterJdbcTemplate.query(FIND_ID_USER_DATE_TERMINE, parametreSource, new ObjetMapper());
 
     }
+
     public List<Objet> futurByIdUser(int idUser) {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("idUser", idUser);
@@ -135,9 +146,44 @@ public class ObjetDaoJdbc implements ObjetDao {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
 //        %= va rechercher tout ce qui est ecrit a l'interieur des %
 //        rajout de "%" car java ne lit pas de la mm façon que sql
-        parametreSource.addValue("nom", "%"+nom+"%");
+        parametreSource.addValue("nom", "%" + nom + "%");
         parametreSource.addValue("idType", idType);
         return namedParameterJdbcTemplate.query(SEARCH_BY_NAME_TYPE, parametreSource, new ObjetMapper());
+
+    }
+
+    public List<Objet> getObjetByFiltre(FormFiltre formFiltre) {
+        MapSqlParameterSource parametreSource = new MapSqlParameterSource();
+
+        List<String> sqlCondition = new ArrayList<String>();
+
+        if (formFiltre.isOn() && formFiltre.isOn()) {
+            sqlCondition.add(" DateD < GETDATE() ");
+
+        } else if (formFiltre.isOn()) {
+            sqlCondition.add(" DateD < GETDATE() AND DateF > GETDATE() ");
+
+        } else if (formFiltre.isOff()) {
+            sqlCondition.add("DateF <  GETDATE() ");
+        }
+//        on verif qu'o nest pas une couleur a  null, si c'est null on ne rentre as dedans;
+//        ensuite on met le && qui verif si le string n'est pas empty si tous est ok on rentre dans la condition
+        if(!"".equals(formFiltre.getCouleur()) && Objects.isNull(formFiltre.getCouleur()) ) {
+            sqlCondition.add(" nomCouleur = "  + formFiltre.getCouleur() + " ");
+        }
+        if(!"".equals(formFiltre.getEnergie()) && Objects.isNull(formFiltre.getEnergie()) ) {
+            sqlCondition.add(" nomEnergie = "  + formFiltre.getEnergie() + " ");
+        }
+        if(!"".equals(formFiltre.getLocalisation()) && Objects.isNull(formFiltre.getLocalisation()) ) {
+            sqlCondition.add(" nomLocalisation = "  + formFiltre.getLocalisation() + " ");
+        }
+        if(!"".equals(formFiltre.getPrixMax()) && Objects.isNull(formFiltre.getPrixMax()) ) {
+            sqlCondition.add(" prixD < "  + formFiltre.getPrixMax() + " ");
+        }
+        if(!"".equals(formFiltre.getPrixMin()) && Objects.isNull(formFiltre.getPrixMin()) ) {
+            sqlCondition.add(" prixD > " + formFiltre.getPrixMin() + " ");
+        }
+        return namedParameterJdbcTemplate.query(GET_OBJET_BY_FILTRE + String.join("AND",sqlCondition), new ObjetMapper());
 
     }
 }

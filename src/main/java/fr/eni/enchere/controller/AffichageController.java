@@ -3,6 +3,7 @@ package fr.eni.enchere.controller;
 import fr.eni.enchere.ObjetSQL.Type;
 import fr.eni.enchere.ObjetSQL.Utilisateur;
 import fr.eni.enchere.bll.*;
+import fr.eni.enchere.bo.FormFiltre;
 import fr.eni.enchere.bo.SearchForm;
 import fr.eni.enchere.dal.RetraitDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,7 +142,7 @@ public class AffichageController {
     //----------------------------------Search by name--------------------------------------
     @PostMapping("/searchByNameAndType")
     String searchByNameAndType(Model model, SearchForm searchForm) {
-        System.out.println(objetService.searchByNameAndType(searchForm.getNom(), searchForm.getIdType()));
+        objetService.searchByNameAndType(searchForm.getNom(), searchForm.getIdType());
         model.addAttribute("listObjet", objetService.searchByNameAndType(searchForm.getNom(), searchForm.getIdType()));
         model.addAttribute("marques", marqueService.getMarquesByTypeName(typeService.getTypeById(searchForm.getIdType()).getNom()));
         model.addAttribute("couleurs", couleurService.recupererInfos());
@@ -179,4 +180,12 @@ public class AffichageController {
         }
         return "accueil";
     }
+    //----------------------------------filtre recherche--------------------------------------
+
+    @PostMapping("/filtre")
+    public String filtreRecherche(FormFiltre formFiltre, Model model){
+
+            return "filtre";
+    }
+
 }

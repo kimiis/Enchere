@@ -1,6 +1,7 @@
 package fr.eni.enchere.dal;
 
 import fr.eni.enchere.ObjetSQL.Objet;
+import fr.eni.enchere.bo.FormFiltre;
 
 import java.util.Date;
 import java.util.List;
@@ -21,5 +22,9 @@ public interface ObjetDao {
     List<Objet> futurByIdUser(int idUser);
 
     List<Objet> searchByNameAndType(String nom, int idType);
+
+    List<Objet> getObjetByFiltre(FormFiltre formFiltre);
+
+
 
 }
