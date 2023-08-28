@@ -1,19 +1,29 @@
+onload = init
+
+function init() {
+
+// ----------------------------------Recuperation info categorie--------------------------------------
+    selectCate = document.getElementById("type")
+// ----------------------------------Ajout listeners--------------------------------------
+    selectCate.addEventListener("change", afficherChamps);
+}
+
 function verifierDate() {
     heureFinElement = document.getElementById("heureF");
-    dateDebutElement=document.getElementById("heureD");
+    dateDebutElement = document.getElementById("heureD");
 
     dateDebut = new Date(dateDebutElement.value);
     dateFin = new Date(heureFinElement.value);
 
-    if (dateFin<dateDebut){
+    if (dateFin < dateDebut) {
         heureFinElement.setCustomValidity("la date de fin doit être supérieur à la date de départ!")
-    }else{
+    } else {
         heureFinElement.setCustomValidity("")
     }
 
-    if(dateDebut<=new Date()){
+    if (dateDebut <= new Date()) {
         dateDebutElement.setCustomValidity("la date doit être supérieur ou égal à la date du jour");
-    }else{
+    } else {
         dateDebutElement.setCustomValidity("");
     }
 }
@@ -48,7 +58,62 @@ function verifierDescription() {
     } else {
         descrip.setCustomValidity("");
     }
+}
 
+// ----------------------------------Afficher champs suivant catégorie --------------------------------------
+function afficherChamps() {
+    //je prend toute les div de mon form et je les hide
+    divs = document.getElementById("form").getElementsByTagName("div")
+    for (i=0;i<divs.length;i++){
+        divs[i].setAttribute("hidden", true)
+    }
+    val = selectCate.options[selectCate.selectedIndex].text
+    document.getElementById("type")
+    const listAllTypes = document.getElementsByName("all_type")
+    for (i = 0; i < listAllTypes.length; i++) {
+        // La on as que un element html
+        listAllTypes[i].removeAttribute("hidden")
+    }
 
+    // ----------------------------------Vehicule--------------------------------------
+    //sur l'elem selectCate je veux l'elem qui est selec et jeux recuperer son texte
+    if (val == "Vehicule") {
+
+        document.getElementById("roue").removeAttribute("hidden") 
+        document.getElementById("carburant").removeAttribute("hidden") 
+        document.getElementById("encastrables").removeAttribute("hidden") 
+    }
+
+    // ----------------------------------Console--------------------------------------
+
+    if (val == "console") {
+
+        document.getElementById("portable").removeAttribute("hidden") 
+        document.getElementById("encastrables").removeAttribute("hidden") 
+    }
+    // ----------------------------------Vetement--------------------------------------
+
+    if (val == "Vetement") {
+        document.getElementById("taille").removeAttribute("hidden") 
+        document.getElementById("coupe").removeAttribute("hidden") 
+    }
+    // ----------------------------------Produit de beaute--------------------------------------
+
+    if (val == "Produit de beaute") {
+        document.getElementById("encastrables").removeAttribute("hidden") 
+
+    }
+    // ----------------------------------Electromenager--------------------------------------
+
+    if (val == "Electromenager") {
+        document.getElementById("energieElec").removeAttribute("hidden") 
+        document.getElementById("encastrables").removeAttribute("hidden") 
+
+    }
+    // ----------------------------------HighTech--------------------------------------
+
+    if (val == "High Tech") {
+        document.getElementById("encastrables").removeAttribute("hidden") 
+    }
 
 }

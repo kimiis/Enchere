@@ -28,11 +28,11 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
     // Modifier les infos de l'utilisateur et les afficher dans son profil
 
-    private final static String MODIFIER_INFOS = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, tel = ?, adresse = ?, mdp = ?, credit = ?, admin = ?  WHERE id= ?";
+    private final static String MODIFIER_INFOS = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, tel = ?, adresse = ?  WHERE id= ?";
 
     @Override
     public Utilisateur modifierInfos(Utilisateur utilisateur) {
-        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getMdp(), utilisateur.getCredit(), utilisateur.isAdmin(), utilisateur.getId());
+        jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getId());
         return utilisateur;
     }
 
