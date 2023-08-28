@@ -1,5 +1,11 @@
 package fr.eni.enchere.controller;
 
+
+import fr.eni.enchere.ObjetSQL.Couleur;
+import fr.eni.enchere.bll.EnchereService;
+import fr.eni.enchere.bll.MesEncheresService;
+import fr.eni.enchere.bll.ProfilService;
+
 import fr.eni.enchere.ObjetSQL.Utilisateur;
 import fr.eni.enchere.bll.ObjetService;
 import fr.eni.enchere.bll.ProfilService;
@@ -17,11 +23,12 @@ import java.security.Principal;
 @Controller
 @SessionAttributes({"connecte"})
 
-
 public class AffichageController {
 
     @Autowired
     ProfilService profilService;
+    @Autowired
+    MesEncheresService mesEncheresService;
 
     @Autowired
     private RetraitDAO modaliteRetraitDAO;
@@ -95,33 +102,30 @@ public class AffichageController {
     String afficherProfil(Principal principal, Model model) {
         System.out.println(principal.getName());
         Utilisateur u = profilService.recupererInfos(principal.getName());
-        model.addAttribute("profUti",u);
+        model.addAttribute("profUti", u);
         return "profil";
 
     }
 
     @PostMapping("/profil")
-    String modifierProfil(Utilisateur utilisateur){
+    String modifierProfil(Utilisateur utilisateur) {
         System.out.println(utilisateur);
         Utilisateur um = profilService.modifierInfos(utilisateur);
-       return "redirect:/profil";
+        return "redirect:/profil";
 
     }
 
     @PostMapping("/delete")
-    String supprimerProfil(String pseudo ) {
+    String supprimerProfil(String pseudo) {
         //System.out.println(noUtilisateur);
         profilService.supprimerProfil(pseudo);
         return "redirect:/";
     }
 
 
-
-
-
     //----------------------------------Deconnexion--------------------------------------
     @GetMapping("/deconnexion")
-    String redirectAccueil(){
+    String redirectAccueil() {
         return "accueil";
     }
 
@@ -131,6 +135,16 @@ public class AffichageController {
     }
 
 
+    //----------------------------------Mes Encheres et Ventes--------------------------------------
+
+    @GetMapping("/mes_encheres")
+    String afficherMesEncheres(Principal principal, Model model) {
+        System.out.println(principal.getName());
+        int credit = mesEncheresService.recupererCredit(principal.getName());
+        model.addAttribute("encUti", credit);
+        return "mes_encheres";
+
+    }
 
 
 }
