@@ -55,3 +55,5 @@ public class ObjetService {
     public List<Objet> getObjetByFiltre(FormFiltre formFiltre){
         return objetDAO.getObjetByFiltre(formFiltre);
     }}
+
+

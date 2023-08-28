@@ -53,7 +53,6 @@ public class ObjetDaoJdbc implements ObjetDao {
             JOINTURES +
             "    WHERE idUtilisateur = :idUser AND DateD < GETDATE() AND DateF > GETDATE() ";
 
-
     private final String FIND_ID_USER_DATE_TERMINE = SELECT + " FROM Objet AS o" +
             JOINTURES +
             "    WHERE idUtilisateur = :idUser AND DateF <  GETDATE() ";
@@ -69,6 +68,7 @@ public class ObjetDaoJdbc implements ObjetDao {
     private final String GET_OBJET_BY_FILTRE = SELECT + " FROM Objet AS o" +
             JOINTURES +
             " WHERE ";
+
 
     public void insertObjet(Date dateD, Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait, int idType, int nbRoue, boolean encastrable, boolean portable, int idCoupe, int idCouleur, int idMarque, int idTaille, int idLocalisation, int idEnergie, String energieElec, int annee) {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
@@ -102,7 +102,7 @@ public class ObjetDaoJdbc implements ObjetDao {
     public List<Objet> findByType(String typeName) {
         System.out.println("---------------------------------typeName---------------------------------");
         System.out.println(typeName);
-//        creer un objet qui va contenir toute les proprietes qui vont etre remplacé dans la requete sql
+//        creer un objet (parametreSource) qui va contenir toute les proprietes qui vont etre remplacé dans la requete sql
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("typeName", typeName);
         return namedParameterJdbcTemplate.query(FIND_BY_TYPE, parametreSource, new ObjetMapper());
@@ -186,5 +186,11 @@ public class ObjetDaoJdbc implements ObjetDao {
         return namedParameterJdbcTemplate.query(GET_OBJET_BY_FILTRE + String.join("AND",sqlCondition), new ObjetMapper());
 
     }
+    public List<Objet> getEnCoursParticipe (int idUser){
+
+        return null;
+    }
+
+
 }
  

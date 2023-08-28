@@ -40,7 +40,8 @@ public class EnchereController {
     ProfilService profilService;
     @Autowired
     CoupeService coupeService;
-
+    @Autowired
+    EnchereService enchereService;
 
 
     //----------------------------------Filtre--------------------------------------
@@ -52,10 +53,12 @@ public class EnchereController {
         model.addAttribute("retraits", retraitService.recupererInfos());
         model.addAttribute("localisations", localisationService.recupererInfos());
     }
+
     @ModelAttribute("types")//au moment où j'arrive sur la page je suis déco
     public List<Type> types() {
         return typeService.recupererInfos();
     }
+
     //----------------------------------Auto--------------------------------------
     @GetMapping("/auto")
     String afficherFiltreAuto(Model model) {
@@ -112,7 +115,7 @@ public class EnchereController {
         model.addAttribute("localisations", localisationService.recupererInfos());
         model.addAttribute("energies", energieService.recupererInfos());
         model.addAttribute("tailles", tailleService.recupererInfos());
-        model.addAttribute("marques",marqueService.recupererInfos());
+        model.addAttribute("marques", marqueService.recupererInfos());
 
 
         return "vendre_article";
@@ -130,8 +133,8 @@ public class EnchereController {
         Utilisateur u = profilService.recupererInfos(principal.getName());
         objetService.insertObjet(objet.getDateD(), objet.getDateF(), objet.getPrix(), objet.getNom(),
                 objet.getDescription(), u.getId(), objet.getIdRetrait(), objet.getIdType(), objet.getNbRoues(),
-                objet.isEncastrables(),objet.isPortable(), objet.getIdCoupe(),objet.getIdCouleur(),objet.getIdMarque(),
-                objet.getIdTaille(),objet.getIdLocalisation(),objet.getIdEnergie(), objet.getEnergieElec(), objet.getAnnee());
+                objet.isEncastrables(), objet.isPortable(), objet.getIdCoupe(), objet.getIdCouleur(), objet.getIdMarque(),
+                objet.getIdTaille(), objet.getIdLocalisation(), objet.getIdEnergie(), objet.getEnergieElec(), objet.getAnnee());
         return "createObjet";
     }
 
@@ -144,18 +147,24 @@ public class EnchereController {
 
         return "detailObjet";
     }
+
     //----------------------------------Mes enchères--------------------------------------
-@GetMapping("/mesEncheres")
-    public String afficherPageEncheres(Principal principal, Model model ){
-    //Ici, grace au principal on récupere le pseudo de l'utilisateur
-    //Ensuite on va chercher l'id de l'utilisateur grace a son pseudo dans le service profile Service
-    //Le service nous retourne un objet Utilisateur sur lequel on récupere l'id
-    int userName = profilService.recupererInfos(principal.getName()).getId();
-    model.addAttribute("enCours", objetService.enCoursByIdUser(userName));
-    model.addAttribute("termine", objetService.finiByIdUser(userName));
-    model.addAttribute("futur", objetService.futurByIdUser(userName));
-    System.out.println(principal);
-    return "mesEncheres";
-}
+    @GetMapping("/mesEncheres")
+    public String afficherPageEncheres(Principal principal, Model model) {
+        //Ici, grace au principal on récupere le pseudo de l'utilisateur connecté
+        //Ensuite on va chercher l'id de l'utilisateur grace a son pseudo dans le service profile Service
+        //Le service nous retourne un objet Utilisateur sur lequel on récupere l'id
+        int userId = profilService.recupererInfos(principal.getName()).getId();
+        model.addAttribute("enCours", objetService.enCoursByIdUser(userId));
+        model.addAttribute("termine", objetService.finiByIdUser(userId));
+        model.addAttribute("futur", objetService.futurByIdUser(userId));
+        model.addAttribute("enCoursParticipe", enchereService.getEnCoursParticipe(userId));
+        model.addAttribute("win", enchereService.getWin(userId));
+
+        return "mesEncheres";
+
+
+    }
+
 
 }

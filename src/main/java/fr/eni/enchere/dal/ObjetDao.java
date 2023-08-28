@@ -26,5 +26,4 @@ public interface ObjetDao {
     List<Objet> getObjetByFiltre(FormFiltre formFiltre);
 
 
-
 }

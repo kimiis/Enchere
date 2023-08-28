@@ -79,10 +79,11 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
             " INSERT INTO ROLES (pseudo, role) " +
             " VALUES (?,?)";
 
+//    VERIFIE SI CA MARCHE !
 
     @Override
     public void addRole(Utilisateur ur){
-       jdbcTemplate.update(INSERT_ROLE, ur.getPseudo(), "client");
+       jdbcTemplate.update(INSERT_ROLE, ur.getPseudo(), "ROLE_CLIENT");
 
     }
 
