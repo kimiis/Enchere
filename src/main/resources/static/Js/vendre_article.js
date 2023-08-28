@@ -1,4 +1,5 @@
 onload = init
+let selectCate;
 
 function init() {
 
@@ -9,11 +10,11 @@ function init() {
 }
 
 function verifierDate() {
-    heureFinElement = document.getElementById("heureF");
-    dateDebutElement = document.getElementById("heureD");
+    let heureFinElement = document.getElementById("heureF");
+    let dateDebutElement = document.getElementById("heureD");
 
-    dateDebut = new Date(dateDebutElement.value);
-    dateFin = new Date(heureFinElement.value);
+    let dateDebut = new Date(dateDebutElement.value);
+    let dateFin = new Date(heureFinElement.value);
 
     if (dateFin < dateDebut) {
         heureFinElement.setCustomValidity("la date de fin doit être supérieur à la date de départ!")
@@ -29,7 +30,7 @@ function verifierDate() {
 }
 
 function verifierPrix() {
-    prixDepart = document.getElementById("prix");
+    let prixDepart = document.getElementById("prix");
 
     if (prixDepart.value <= 0) {
         prixDepart.setCustomValidity("le prix doit être supérieur à 0");
@@ -40,7 +41,7 @@ function verifierPrix() {
 }
 
 function verifierNom() {
-    nomArticle = document.getElementById("nameArticle");
+    let nomArticle = document.getElementById("nameArticle");
     //dans l'input "user", j'accede a ce qui a été tapé dedans
     if (nomArticle.value.length < 3) {
         nomArticle.setCustomValidity("le nom doit faire au moins 3 char");
@@ -51,7 +52,7 @@ function verifierNom() {
 }
 
 function verifierDescription() {
-    descrip = document.getElementById("description");
+    let descrip = document.getElementById("description");
     //dans l'input "user", j'accede a ce qui a été tapé dedans
     if (descrip.value.length <= 100) {
         descrip.setCustomValidity("la description doit faire au moins 100 char");
@@ -63,57 +64,57 @@ function verifierDescription() {
 // ----------------------------------Afficher champs suivant catégorie --------------------------------------
 function afficherChamps() {
     //je prend toute les div de mon form et je les hide
-    divs = document.getElementById("form").getElementsByTagName("div")
-    for (i=0;i<divs.length;i++){
-        divs[i].setAttribute("hidden", true)
+    let divs = document.getElementById("form").getElementsByTagName("div")
+    for (let i = 0; i < divs.length; i++) {
+        divs[i].setAttribute("hidden", "true")
     }
-    val = selectCate.options[selectCate.selectedIndex].text
+    let val = selectCate.options[selectCate.selectedIndex].text
     document.getElementById("type")
     const listAllTypes = document.getElementsByName("all_type")
-    for (i = 0; i < listAllTypes.length; i++) {
-        // La on as que un element html
+    for (let i = 0; i < listAllTypes.length; i++) {
+        // La on a que un element html
         listAllTypes[i].removeAttribute("hidden")
     }
 
     // ----------------------------------Vehicule--------------------------------------
     //sur l'elem selectCate je veux l'elem qui est selec et jeux recuperer son texte
-    if (val == "Vehicule") {
+    if (val === "Vehicule") {
 
-        document.getElementById("roue").removeAttribute("hidden") 
-        document.getElementById("carburant").removeAttribute("hidden") 
-        document.getElementById("encastrables").removeAttribute("hidden") 
+        document.getElementById("roue").removeAttribute("hidden")
+        document.getElementById("carburant").removeAttribute("hidden")
+        document.getElementById("encastrables").removeAttribute("hidden")
     }
 
     // ----------------------------------Console--------------------------------------
 
-    if (val == "console") {
+    if (val === "console") {
 
-        document.getElementById("portable").removeAttribute("hidden") 
-        document.getElementById("encastrables").removeAttribute("hidden") 
+        document.getElementById("portable").removeAttribute("hidden")
+        document.getElementById("encastrables").removeAttribute("hidden")
     }
     // ----------------------------------Vetement--------------------------------------
 
-    if (val == "Vetement") {
-        document.getElementById("taille").removeAttribute("hidden") 
-        document.getElementById("coupe").removeAttribute("hidden") 
+    if (val === "Vetement") {
+        document.getElementById("taille").removeAttribute("hidden")
+        document.getElementById("coupe").removeAttribute("hidden")
     }
     // ----------------------------------Produit de beaute--------------------------------------
 
-    if (val == "Produit de beaute") {
-        document.getElementById("encastrables").removeAttribute("hidden") 
+    if (val === "Produit de beaute") {
+        document.getElementById("encastrables").removeAttribute("hidden")
 
     }
     // ----------------------------------Electromenager--------------------------------------
 
-    if (val == "Electromenager") {
-        document.getElementById("energieElec").removeAttribute("hidden") 
-        document.getElementById("encastrables").removeAttribute("hidden") 
+    if (val === "Electromenager") {
+        document.getElementById("energieElec").removeAttribute("hidden")
+        document.getElementById("encastrables").removeAttribute("hidden")
 
     }
     // ----------------------------------HighTech--------------------------------------
 
-    if (val == "High Tech") {
-        document.getElementById("encastrables").removeAttribute("hidden") 
+    if (val === "High Tech") {
+        document.getElementById("encastrables").removeAttribute("hidden")
     }
 
 }
