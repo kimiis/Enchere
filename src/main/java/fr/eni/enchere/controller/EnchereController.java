@@ -1,19 +1,21 @@
 package fr.eni.enchere.controller;
 
+import fr.eni.enchere.ObjetSQL.Enchere;
 import fr.eni.enchere.ObjetSQL.Type;
 import fr.eni.enchere.ObjetSQL.Utilisateur;
 import fr.eni.enchere.bll.*;
 import fr.eni.enchere.bo.ObjetForm;
+import fr.eni.enchere.dal.EnchereDaoJdbc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -165,6 +167,7 @@ public class EnchereController {
 
 
     }
+    //----------------------------------Faire une enchere--------------------------------------
 
 
 }

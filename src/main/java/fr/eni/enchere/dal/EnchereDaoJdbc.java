@@ -23,28 +23,52 @@ public class EnchereDaoJdbc implements EnchereDao {
 //
 //        return credit;
 //    }
-    private final String GET_EN_COURS_PARTICIPE=
-        "       SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,max(Prix) AS prix\n" +
-        "       FROM Enchere AS E INNER JOIN Objet O ON O.Id = E.IdObjet INNER JOIN Type T ON T.Id = O.IdType\n" +
-        "       WHERE idAcheteur=:idUser AND DateD < GETDATE() AND DateF > GETDATE() \n" +
-        "       GROUP BY IdObjet, O.nom, DateD, DateF, T.Nom;\n";
 
-    private final String GET_WIN=
+    private final String GET_PLUS_HAUT =
+            "        SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,prix, idAcheteur \n" +
+                    "FROM Enchere AS E INNER JOIN Objet O ON O.Id = E.IdObjet INNER JOIN Type T ON T.Id = O.IdType\n" +
+                    "WHERE prix = (SELECT MAX(prix) FROM Enchere  WHERE IdObjet = E.IdObjet ) AND IdObjet = :idObjet\n";
+
+    private final String GET_EN_COURS_PARTICIPE =
+            "       SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,max(Prix) AS prix\n" +
+                    "       FROM Enchere AS E INNER JOIN Objet O ON O.Id = E.IdObjet INNER JOIN Type T ON T.Id = O.IdType\n" +
+                    "       WHERE idAcheteur=:idUser AND DateD < GETDATE() AND DateF > GETDATE() \n" +
+                    "       GROUP BY IdObjet, O.nom, DateD, DateF, T.Nom;\n";
+
+    private final String GET_WIN =
             "   SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,max(Prix) AS prix \n" +
-            "   FROM Enchere AS E INNER JOIN dbo.Objet O ON O.Id = E.IdObjet INNER JOIN dbo.Type T ON T.Id = O.IdType\n" +
-            "   WHERE idAcheteur=:idUser AND prix = (SELECT MAX(Prix) FROM Enchere where IdObjet = O.Id) AND DateF<GETDATE()\n" +
-            "   GROUP BY  IdObjet, O.nom, DateD, DateF, T.Nom";
+                    "   FROM Enchere AS E INNER JOIN dbo.Objet O ON O.Id = E.IdObjet INNER JOIN dbo.Type T ON T.Id = O.IdType\n" +
+                    "   WHERE idAcheteur=:idUser AND prix = (SELECT MAX(Prix) FROM Enchere where IdObjet = O.Id) AND DateF<GETDATE()\n" +
+                    "   GROUP BY  IdObjet, O.nom, DateD, DateF, T.Nom";
 
-    public List<Enchere> getEnCoursParticipe(int idUser){
+    private final String ADD_ENCHERE = "INSERT INTO ENCHERE (idAcheteur, idObjet, prix) VALUES (:idUser, :idObjet, :prix)";
+
+    public List<Enchere> getEnCoursParticipe(int idUser) {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("idUser", idUser);
         return namedParameterJdbcTemplate.query(GET_EN_COURS_PARTICIPE, parametreSource, new EnchereMapper());
 
     }
 
-    public List<Enchere> getWin(int idUser){
+    public List<Enchere> getWin(int idUser) {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("idUser", idUser);
         return namedParameterJdbcTemplate.query(GET_WIN, parametreSource, new EnchereMapper());
     }
+
+    public void addEnchere(int idUser, int idObjet, int prix) {
+        MapSqlParameterSource parametreSource = new MapSqlParameterSource();
+        parametreSource.addValue("idUser", idUser);
+        parametreSource.addValue("idObjet", idObjet);
+        parametreSource.addValue("prix", prix);
+        namedParameterJdbcTemplate.query(ADD_ENCHERE, parametreSource, new EnchereMapper());
+    }
+
+   public Enchere getEncherePlusHaute(int idObjet) {
+        MapSqlParameterSource parametreSource = new MapSqlParameterSource();
+        parametreSource.addValue("idObjet", idObjet);
+       return namedParameterJdbcTemplate.queryForObject(GET_PLUS_HAUT, parametreSource, new EnchereMapper());
+
+    }
+
 }

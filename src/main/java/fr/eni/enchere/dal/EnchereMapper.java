@@ -21,6 +21,7 @@ public class EnchereMapper implements RowMapper<Enchere> {
         enchere.setTypeNom(rs.getString("typeNom"));
         enchere.setObjetNom(rs.getString("objetNom"));
         enchere.setPrix(rs.getInt("prix"));
+        enchere.setIdAcheteur(rs.getInt("idAcheteur"));
 
         return enchere;
     }

@@ -11,7 +11,9 @@ public class Enchere {
     private int prix;
     private int idObjet;
 
-    public Enchere(String typeNom, String objetNom, int id, Date dateD, Date dateF, int prix, int idObjet) {
+    private int idAcheteur;
+
+    public Enchere(String typeNom, String objetNom, int id, Date dateD, Date dateF, int prix, int idObjet, int idAcheteur) {
         this.typeNom = typeNom;
         this.objetNom = objetNom;
         this.id = id;
@@ -19,9 +21,18 @@ public class Enchere {
         this.dateF = dateF;
         this.prix = prix;
         this.idObjet = idObjet;
+        this.idAcheteur = idAcheteur;
     }
 
     public Enchere() {
+    }
+
+    public int getIdAcheteur() {
+        return idAcheteur;
+    }
+
+    public void setIdAcheteur(int idAcheteur) {
+        this.idAcheteur = idAcheteur;
     }
 
     public String getTypeNom() {

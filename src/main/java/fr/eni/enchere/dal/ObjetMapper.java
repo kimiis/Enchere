@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 public class ObjetMapper implements RowMapper<Objet> {
-    //Et c'est dans cette fonction, qut tu va créer ton objet, qui va avoir toutes les propriété que tu veux
+    //Et c'est dans cette fonction, que tu vas créer ton objet, qui va avoir toutes les propriété que tu veux
 
 
     @Override
