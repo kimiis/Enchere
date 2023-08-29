@@ -61,7 +61,7 @@ public class EnchereDaoJdbc implements EnchereDao {
         parametreSource.addValue("idUser", idUser);
         parametreSource.addValue("idObjet", idObjet);
         parametreSource.addValue("prix", prix);
-        namedParameterJdbcTemplate.query(ADD_ENCHERE, parametreSource, new EnchereMapper());
+        namedParameterJdbcTemplate.update(ADD_ENCHERE, parametreSource);
     }
 
    public Enchere getEncherePlusHaute(int idObjet) {

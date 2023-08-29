@@ -10,13 +10,13 @@ public interface ProfilDAO {
 
 
     // Modifier les infos de l'utilisateur et les afficher dans son profil
-    Utilisateur modifierInfos(Utilisateur utilisateur);
+    void modifierInfos(Utilisateur utilisateur);
 
 
     // Supprimer les infos de l'utilisateur
 
-    void supprimerLigneUtilisateur(String pseudo);
-    void supprimerLigneRole(String pseudo);
+    void supprimerUtilisateur(String pseudo);
+    void supprimerRole(String pseudo);
 
     // ajouter utilisateur et role
 

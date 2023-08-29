@@ -2,6 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
 <head>
     <meta charset="UTF-8">
+
     <title>Title</title>
 </head>
 <body>
@@ -10,7 +11,7 @@
 
 
     <form th:action="@{/profil}" method="post">
-        <input type="hidden" th:value="${profUti.id}" name="noUtilisateur"/>
+        <input type="hidden" th:value="${profUti.id}" name="id"/>
 
 
         <h1> Profil </h1>
@@ -74,7 +75,7 @@
 
     </form>
 
-    <form th:action="@{/delete}" method="post">
+    <form onsubmit="return confirm('Wsh tu veux vraiment nous quitter ?! :c')" th:action="@{/delete}" method="post">
 
         <input type="hidden" th:value="${profUti.pseudo}" name="pseudo"/>
 

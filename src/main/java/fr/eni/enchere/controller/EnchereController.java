@@ -1,21 +1,21 @@
 package fr.eni.enchere.controller;
 
-import fr.eni.enchere.ObjetSQL.Enchere;
+import fr.eni.enchere.ObjetSQL.Objet;
 import fr.eni.enchere.ObjetSQL.Type;
 import fr.eni.enchere.ObjetSQL.Utilisateur;
 import fr.eni.enchere.bll.*;
+import fr.eni.enchere.bo.EnchereForm;
 import fr.eni.enchere.bo.ObjetForm;
-import fr.eni.enchere.dal.EnchereDaoJdbc;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -142,11 +142,12 @@ public class EnchereController {
 
 
     //----------------------------------Detail objet--------------------------------------
+    //je récupere Objet objet pour l'afficher dans détailObjet
     @GetMapping("/detailObjet")
     public String detailObjet(@RequestParam(name = "idObjet", required = true) int idObjet, Model model) {
 
         model.addAttribute("detailObjet", objetService.consulterObjetParId(idObjet));
-
+        model.addAttribute("enchereLaPlusHaute", enchereService.getEncherePlusHaute(idObjet));
         return "detailObjet";
     }
 
@@ -167,7 +168,34 @@ public class EnchereController {
 
 
     }
-    //----------------------------------Faire une enchere--------------------------------------
 
+    //----------------------------------Faire une enchere--------------------------------------
+    @PostMapping("/creerEnchere")
+//création de ...Form afin de recuperer tous les champs du form par leurs names
+
+    public String creeEnchere(Model model ,Principal principal, EnchereForm enchereForm) {
+        //récuperation de toutes les infos du user
+        Utilisateur u = profilService.recupererInfos(principal.getName());
+//    objetService.consulterObjetParId() permet de rcup en bdd un objet grace à son ID
+        Objet objet = objetService.consulterObjetParId(enchereForm.getIdObjet());
+//    pas de maj car sinon je recupe type et non instanciation
+
+//Avant de passer dans le controller, je laisse l'erreur se propager -> remonter jusqu'au main qui va afficher
+// la page erreur.
+//        on dit essaye (try) de faire toute l'action dans le try, et si on rencontre une erreur du type defini () on
+//        on passe dans le catch.
+//        catch evite de faire remonter plus haut l'erreur, et pour ça on va envoyer un msg erreur qui est set dans
+//        encherService, et on lui return la fonction pour afficher /detailObjet
+
+        try {
+            enchereService.addEnchere(u, objet, enchereForm.getPrix());
+        } catch (Error e) {
+            model.addAttribute("erreur", e.getMessage());
+           return detailObjet(enchereForm.getIdObjet(),model);
+        }
+
+        return "/nouvelEncherisseur";
+    }
+    //bouton = post mapping car, permet de ne pas avoir a afficher une page
 
 }

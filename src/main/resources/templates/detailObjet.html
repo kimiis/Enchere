@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <SCRIPT SRC="Js/detailObjet.js"></SCRIPT>
     <title>Détail de l'objet</title>
 </head>
 <body>
@@ -31,5 +32,29 @@
     <div th:text="${detailObjet.isPortbale() ? 'Portable' :'Non Portable'  }"></div>
 </div>
 
+<div th:text="${'Offre la plus haute : ' +  enchereLaPlusHaute.getPrix()}"></div>
+<!--    text c'est ce qui est afficher et value c'est ce qui est renvoyé quand tu fais ton post-->
+</div>
+<input type="hidden" id="erreur" th:value="${erreur}"/>
+
+<div>
+    <form id="form" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" method="post" action="/creerEnchere">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+
+        <!--        donner le meme name que sur enchereForm car on recupe de là-->
+        <label for="prix">Tu veux faire une nouvelle offre radin!?</label>
+        <input id="prix" name="prix" type="number"></input>
+
+        <!--   on cree un input, qui va etre mapper dans notre encherForm etbon veut que cette val de idObjet soit l'id de l'objet qu'on est
+            entrain de consulter-->
+        <input hidden name="idObjet" th:value="${detailObjet.getId()}"></input>
+
+
+        <div>
+            <input type="submit" class="boutonEnchere" value="enchérir" id="boutonEnchere">
+        </div>
+    </form>
+</div>
 </body>
 </html>

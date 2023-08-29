@@ -1,15 +1,26 @@
+
 USE ENCHERES
 GO
+CREATE TABLE UTILISATEURS
+(
+    Id      INTEGER IDENTITY (1,1) NOT NULL constraint utilisateur_pk PRIMARY KEY (Id),
+    pseudo  VARCHAR(30)            NOT NULL,
+    nom     VARCHAR(30)            NOT NULL,
+    prenom  VARCHAR(30)            NOT NULL,
+    email   VARCHAR(20)            NOT NULL,
+    tel     VARCHAR(15),
+    adresse VARCHAR(50)            NOT NULL,
+    mdp     VARCHAR(255)           NOT NULL,
+    credit  INTEGER                NOT NULL,
+    admin   bit                    NOT NULL
+)
 CREATE TABLE Roles
 (
-    Pseudo VARCHAR(255) NOT NULL,
+    Pseudo VARCHAR(30) NOT NULL,
     Role   VARCHAR(50)  NOT NULL,
-
+    PRIMARY KEY (Pseudo, Role),
 
 )
-
-ALTER TABLE Roles
-    ADD constraint PK_ROLE PRIMARY KEY (Pseudo, Role)
 
 CREATE TABLE Taille
 (
@@ -78,22 +89,8 @@ CREATE TABLE ModaliteRetrait
     Texte VARCHAR(255)
 );
 
-CREATE TABLE UTILISATEURS
-(
 
-    Id      INTEGER IDENTITY (1,1) NOT NULL,
-    pseudo  VARCHAR(30)            NOT NULL,
-    nom     VARCHAR(30)            NOT NULL,
-    prenom  VARCHAR(30)            NOT NULL,
-    email   VARCHAR(20)            NOT NULL,
-    tel     VARCHAR(15),
-    adresse VARCHAR(50)            NOT NULL,
-    mdp     VARCHAR(255)           NOT NULL,
-    credit  INTEGER                NOT NULL,
-    admin   bit                    NOT NULL
-)
-ALTER TABLE UTILISATEURS
-    ADD constraint utilisateur_pk PRIMARY KEY (Id)
+
 
 
 CREATE TABLE Objet
@@ -150,8 +147,9 @@ CREATE TABLE Enchere
     IdObjet INT
         CONSTRAINT FK_IdObjet FOREIGN KEY
         REFERENCES Objet (Id) ON DELETE CASCADE,
-
-
+    idAcheteur int
+        CONSTRAINT FK_idAcheteur FOREIGN KEY
+        REFERENCES UTILISATEURS (Id) ,
 );
 
 INSERT INTO Coupe
@@ -348,5 +346,26 @@ INSERT INTO Objet
 VALUES (null, '4', 2010, null, null, '18-02-2022', '18-02-2025', 10, '5 Rue du chateau deau', 'lambo' , 'test',  null, 1,null, 1, 10, 1, 4, 3,
         null);
 
-INSERT INTO Enchere
-VALUES (1, 1);
+
+
+INSERT INTO ENCHERES.dbo.UTILISATEURS (pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin) VALUES ( N'omaiki', N'', N'', N'kimi.0208@outlook.fr', N'', N'', N'{bcrypt}$2a$10$mQUaZaE8Xdq6eGJa.y8tnOCVjeD0AW0pVw1WkV.FtpwrECzagFRdm', 500000, 0);
+INSERT INTO ENCHERES.dbo.UTILISATEURS (pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin) VALUES ( N'erb', N'Kim', N'ISABELLE', N'kimi.0208@outlook.fr', N'0631255117', N'7 rue du zambeze', N'{bcrypt}$2a$10$PRix.wleDcc1NFEhAvQdb.GxQ/W9daMIHd2AcUPSAZEhLMgSNjSg.', 500000, 0);
+
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (null, 4, 2010, null, 1, N'2022-02-18', N'2025-02-18', 10, N'5 Rue du chateau deau', N'Lambo', N'aventador', 1, 1, null, 1, 10, 1, 4, 3, null);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (null, 4, 2010, null, null, N'2022-02-18', N'2021-02-18', 10, N'5 Rue du chateau deau', N'Lambo', N'Rose', 1, 1, null, 1, 10, 1, 4, 3, null);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (null, 4, 2010, null, null, N'2022-02-18', N'2021-02-18', 10, N'5 Rue du chateau deau', N'lambo', N'pas rose', 1, 1, null, 1, 10, 1, 4, 3, null);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (null, 4, 2010, null, null, N'2022-02-18', N'2025-02-18', 10, N'5 Rue du chateau deau', N'lambo', N'test', 1, 1, null, 1, 10, 1, 4, 3, null);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (N'a', 3, 2019, 1, 1, N'2023-08-25', N'2023-08-27', 2, N'', N'Dacia', N'Sandero', 1, 4, 9, 1, 19, 3, 15, 4, 3);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (N'b', 5, 1900, 1, 1, N'2023-08-27', N'2024-01-01', 5000, N'', N'bentley', N'miniature', 1, 3, 11, 6, 4, 1, 18, 1, 6);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (N'b', 5, 1900, 1, 1, N'2023-08-27', N'2024-01-01', 5000, N'', N'bentley', N'miniature', 1, 3, 11, 6, 4, 1, 18, 1, 6);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (N'd', 12, 2020, 0, 0, N'2023-08-27', N'2023-12-27', 1, N'', N'licorne', N'pas cher', 1, 1, 8, 3, 14, 1, 5, 2, 3);
+INSERT INTO ENCHERES.dbo.Objet (Energie, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, nom, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, IdType, IdLocalisation, IdEnergie, IdTaille) VALUES (N'f', 4, 2010, 1, 0, N'2023-08-27', N'2025-06-27', 100000, N'', N'poussin', N'qui attend', 1, 4, 9, 4, 5, 1, 7, 4, 4);
+INSERT INTO ENCHERES.dbo.Enchere ( Prix, IdObjet, idAcheteur) VALUES ( 1, 1, 1);
+INSERT INTO ENCHERES.dbo.Enchere ( Prix, IdObjet, idAcheteur) VALUES ( 2, 2, 1);
+INSERT INTO ENCHERES.dbo.Enchere ( Prix, IdObjet, idAcheteur) VALUES ( 3, 1, 1);
+INSERT INTO ENCHERES.dbo.Enchere ( Prix, IdObjet, idAcheteur) VALUES ( 11, 1, 2);
+INSERT INTO ENCHERES.dbo.Enchere ( Prix, IdObjet, idAcheteur) VALUES ( 12, 1, 1);
+INSERT INTO ENCHERES.dbo.Enchere ( Prix, IdObjet, idAcheteur) VALUES ( 15, 1, 2);
+
+Insert Into Roles(Pseudo, Role) VALUES ('omaiki', 'ROLE_CLIENT')
+    Insert Into Roles(Pseudo, Role) VALUES ('erb', 'ROLE_CLIENT')

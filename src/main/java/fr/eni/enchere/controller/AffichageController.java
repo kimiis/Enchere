@@ -23,29 +23,49 @@ import java.util.List;
 
 public class AffichageController {
 
-    @Autowired
-    ProfilService profilService;
-    @Autowired
-    private RetraitDAO modaliteRetraitDAO;
-    @Autowired
-    private ObjetService objetService;
-    @Autowired
-    private TypeService typeService;
-    @Autowired
-    LocalisationService localisationService;
-    @Autowired
-    CouleurService couleurService;
-    @Autowired
-    EnergieService energieService;
-    @Autowired
-    MarqueService marqueService;
-    @Autowired
-    RetraitService retraitService;
-    @Autowired
-    CoupeService coupeService;
 
-    @Autowired
+    ProfilService profilService;
+
+    RetraitDAO modaliteRetraitDAO;
+
+    ObjetService objetService;
+
+    TypeService typeService;
+
+    LocalisationService localisationService;
+
+    CouleurService couleurService;
+
+    EnergieService energieService;
+
+    MarqueService marqueService;
+
+    RetraitService retraitService;
+
+    CoupeService coupeService;
     TailleService tailleService;
+    EnchereService enchereService;
+
+    //mettre les autowired de pref sur les constructeurs -> norm de code
+    @Autowired
+    public AffichageController(ProfilService profilService, RetraitDAO modaliteRetraitDAO, ObjetService objetService,
+                               TypeService typeService, LocalisationService localisationService, CouleurService couleurService,
+                               EnergieService energieService, MarqueService marqueService, RetraitService retraitService,
+                               CoupeService coupeService, TailleService tailleService, EnchereService enchereService) {
+
+        this.profilService = profilService;
+        this.modaliteRetraitDAO = modaliteRetraitDAO;
+        this.objetService = objetService;
+        this.typeService = typeService;
+        this.localisationService = localisationService;
+        this.couleurService = couleurService;
+        this.energieService = energieService;
+        this.marqueService = marqueService;
+        this.retraitService = retraitService;
+        this.coupeService = coupeService;
+        this.tailleService = tailleService;
+        this.enchereService = enchereService;
+    }
 
     /**
      * Une fonction qui permet de mettre en session le type pour toutes les pages
@@ -112,25 +132,29 @@ public class AffichageController {
     //----------------------------------Profil--------------------------------------
     @GetMapping("/profil")
     String afficherProfil(Principal principal, Model model) {
-        System.out.println(principal.getName());
         Utilisateur u = profilService.recupererInfos(principal.getName());
         model.addAttribute("profUti", u);
         return "profil";
-
     }
+//le modifier info n'est pas censé retourner de vlaeur donc on le met void, et on le modie partout , dans toutes les couches ou t'as ecrit la fonction
 
     @PostMapping("/profil")
     String modifierProfil(Utilisateur utilisateur) {
-        System.out.println(utilisateur);
-        Utilisateur um = profilService.modifierInfos(utilisateur);
+        profilService.modifierInfos(utilisateur);
         return "redirect:/profil";
-
     }
 
     @PostMapping("/delete")
-    String supprimerProfil(String pseudo) {
+    String supprimerProfil(String pseudo, Model model, Principal principal) {
+//c'est cool de verifier quand meme s'il est vraiment sur de vouloir delete son compte
+        Utilisateur utilisateur = profilService.recupererInfos(pseudo);
+        //si enchère en cours alors ne peu pas delete son compte
+        if (enchereService.getEnCoursParticipe(utilisateur.getId()).size() > 0) {
+            model.addAttribute("erreur", "tu peux pas partir comme un voleur, t'as une enchere en cours!");
+            return afficherProfil(principal, model);
+        }
         profilService.supprimerProfil(pseudo);
-        return "redirect:/";
+        return "redirect:/deconnexion";
     }
 
     //----------------------------------Deconnexion--------------------------------------
@@ -182,7 +206,7 @@ public class AffichageController {
     //----------------------------------filtre recherche--------------------------------------
 
     @PostMapping("/filtrer")
-    public String filtreRecherche(FormFiltre formFiltre, Model model){
+    public String filtreRecherche(FormFiltre formFiltre, Model model) {
 
 
         model.addAttribute("listObjet", objetService.getObjetByFiltre(formFiltre));
