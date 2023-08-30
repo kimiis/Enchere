@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      th:with="connecte=${connecte}, types=${types}">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes enchères</title>
+</head>
+<body>
+<main>
+    <section layout:fragment="content">
+        <p>Mes enchères en cours</p>
+        <!--enchere que j'ai créer-->
+        <div th:each="objet: ${enCours}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
+
+
+        <p>Mes enchères terminée</p>
+        <!--enchere que j'ai créer-->
+        <div th:each="objet: ${termine}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
+
+
+        <p>Mes enchères futur</p>
+        <!--enchere que j'ai créer-->
+        <div th:each="objet: ${futur}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
+
+
+    </section>
+</main>
+
+</body>
+</html>

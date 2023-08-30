@@ -13,19 +13,41 @@ public class ObjetService {
     @Autowired
     private ObjetDao objetDAO;
 
-    // Récupérer les infos
+    // créer objet
 
-    public void insertObjet(Date dateD, Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait, int idType){
+    public void insertObjet(Date dateD,Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait,
+                            int idType, int nbRoue, boolean encastrable, boolean portable, int idCoupe, int idCouleur,
+                            int idMarque, int idTaille, int idLocalisation,int idEnergie, String energieElec, int annee){
 
-        objetDAO.insertObjet(dateD, dateF,  prix, nom, descrip, idUser, idRetrait, idType);
+        objetDAO.insertObjet(dateD, dateF,prix,nom, descrip,idUser,idRetrait, idType,nbRoue,encastrable, portable,
+                idCoupe, idCouleur,idMarque, idTaille, idLocalisation, idEnergie, energieElec, annee);
 
-    }
+                }
+        //recuperer objet par type
     public List<Objet> findByType(String typeName){
         return objetDAO.findByType(typeName);
     }
 
-    public Objet consulterObjetParId (int idObjet){
+    //recuperer objet par id
+    public Objet consulterObjetParId(int idObjet){
         return  objetDAO.consulterObjetParId(idObjet);
+    }
 
+    // recuperer objet en cours par idUser, dateD avant dateNow && dateF après dateNow
+    public List<Objet> enCoursByIdUser(int idUser){
+        return objetDAO.enCoursByIdUser(idUser);
+    }
+    // recuperer objet terminée par idUser, dateD avant dateNow && dateF après dateNow
+
+    public List<Objet> finiByIdUser(int idUser){
+        return objetDAO.finiByIdUser(idUser);
+    }
+    public List<Objet> futurByIdUser(int idUser){
+        return objetDAO.futurByIdUser(idUser);
+    }
+
+
+    public List<Objet> searchByNameAndType(String nom, int idType) {
+        return objetDAO.searchByNameAndType(nom, idType);
     }
 }

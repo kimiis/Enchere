@@ -1,6 +1,6 @@
 package fr.eni.enchere.ObjetSQL;
 
-public class ModaliteRetrait {
+public class Retrait {
     private String nom;
     private int id;
     private String texte;
@@ -29,10 +29,10 @@ public class ModaliteRetrait {
         this.texte = texte;
     }
 
-    public ModaliteRetrait() {
+    public Retrait() {
     }
 
-    public ModaliteRetrait(String nom, int id, String texte) {
+    public Retrait(String nom, int id, String texte) {
         this.nom = nom;
         this.id = id;
         this.texte = texte;

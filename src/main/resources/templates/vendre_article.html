@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
-      th:with="connecte=${connecte}">
+      th:with="connecte=${connecte}, types=${types}">
 
 <head>
     <script src="Js/vendre_article.js"></script>
@@ -10,20 +10,9 @@
 <body>
 <section layout:fragment="content">
     <form th:name="${_csrf.parameterName}" th:value="${_csrf.token}" method="post" action="/createObjet">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <legend>Formulaire de vente</legend>
         <br>
-
-        <div>
-            <label for="name" class="form__label">Nom de l'article : </label><br>
-            <input name="nom" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères" onchange="verifierNom()" required/>
-        </div>
-        <div>
-            <label for="description" class="form__label">Description de l'article : </label><br>
-            <input name="description" type="textarea" class="form__field" placeholder="Doit faire au moins 100 caractères"
-                  onchange="verifierDescription()" required/>
-        </div>
-
 
         <label for="idType">Catégorie l'article : </label><br>
         <select name="idType" required>
@@ -32,30 +21,150 @@
                     th:text="${type.getTexte()}"></option>
 
         </select>
-        <div>
+
+        <div hidden>
+            <label for="name" class="form__label">Nom de l'article : </label><br>
+            <input name="nom" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères"
+                   onchange="verifierNom()" required/>
+        </div>
+
+        <div hidden>
+            <label for="description" class="form__label">Description de l'article : </label><br>
+            <input name="description" type="textarea" class="form__field"
+                   placeholder="Doit faire au moins 100 caractères"
+                   onchange="verifierDescription()" required/>
+        </div>
+
+        <div hidden>
             <label for="prix" class="form__label">Prix de départ : </label><br>
-            <input id="prix" type="number" name="prix" class="form__field" placeholder="min 1 points" onchange="verifierPrix()"
+            <input id="prix" type="number" name="prix" class="form__field" placeholder="min 1 points"
+                   onchange="verifierPrix()"
                    required/>
         </div>
-        <div>
-            <label for="dateD" class="form__label" >Début de l'enchère : </label><br>
+        <div hidden>
+            <label for="dateD" class="form__label">Début de l'enchère : </label><br>
             <input type="datetime-local" name="dateD" class="form__field" onchange="verifierDate()" required/>
         </div>
-        <div>
+
+        <div hidden>
             <label for="dateF" class="form__label">Fin de l'enchère : </label><br>
             <input type="datetime-local" name="dateF" class="form__field" onchange="verifierDate()" required/>
         </div>
-        <div>
+
+        <div hidden>
             <label for="idRetrait" class="form__label">Modalité de retrait : </label><br>
             <select name="idRetrait" required>
                 <option value="" selected disabled hidden>-- Choisir le moyen de retrait --</option>
                 <option th:each="retrait : ${retraits}" th:value="${retrait.getId()}"
                         th:text="${retrait.getTexte()}"></option>
+            </select>
+        </div>
+
+        <div hidden>
+            <label for="idCouleur" class="form__label">Couleurs </label><br>
+            <select name="idCouleur">
+                <option value="" selected disabled hidden>-- Choisir la couleur --</option>
+                <option th:each="couleur : ${couleurs}" th:value="${couleur.getId()}"
+                        th:text="${couleur.getTexte()}"></option>
 
             </select>
         </div>
 
-        <input id= "sub" class="form-submit-button" type="submit" value="Valider">
+        <div hidden>
+            <label for="idEnergie" class="form__label">Energies </label><br>
+            <select name="idEnergie">
+                <option value="" selected disabled hidden>-- Choisir l'énergie --</option>
+                <option th:each="energie : ${energies}" th:value="${energie.getId()}"
+                        th:text="${energie.getTexte()}"></option>
+
+            </select>
+        </div>
+
+        <div hidden>
+            <label for="annee" class="form__label">Année</label><br>
+            <input type="number" min="1900" max="2099" step="1" value="2023" name="annee"/>
+
+        </div>
+
+        <div hidden>
+            <label for="nbRoues" class="form__label">Nombre de roue </label><br>
+            <select name="nbRoues">
+                <option value="" selected disabled hidden>-- Choisir le nb de roue --</option>
+                <option value="0"></option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+
+        <div hidden>
+            <label for="energieElec" class="form__label">Classe énergétique </label><br>
+            <select name="energieElec">
+                <option value="" selected disabled hidden>-- Choisir la classe --</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+                <option value="f">F</option>
+            </select>
+        </div>
+
+        <div hidden>
+            <label for="idTaille" class="form__label">Tailles</label><br>
+            <select name="idTaille">
+                <option value="" selected disabled hidden>-- Choisir la taille --</option>
+                <option th:each="taille : ${tailles}" th:value="${taille.getId()}"
+                        th:text="${taille.getTexte()}"></option>
+
+            </select>
+        </div>
+
+        <div hidden>
+            <label for="idLocalisation" class="form__label">Localisation</label><br>
+            <select name="idLocalisation" required>
+                <option value="" selected disabled hidden>-- Choisir la localisation --</option>
+                <option th:each="localisation : ${localisations}" th:value="${localisation.getId()}"
+                        th:text="${localisation.getTexte()}"></option>
+
+            </select>
+        </div>
+
+        <div hidden>
+            <label for="idCoupe" class="form__label">Coupes</label><br>
+            <select name="idCoupe">
+                <option value="" selected disabled hidden>-- Choisir la coupe --</option>
+                <option th:each="coupe : ${coupes}" th:value="${coupe.getId()}"
+                        th:text="${coupe.getTexte()}"></option>
+
+            </select>
+        </div>
+
+        <div hidden>
+            <label for="idMarque" class="form__label">Marque</label><br>
+            <select name="idMarque" required>
+                <option value="" selected disabled hidden>-- Choisir la marque --</option>
+                <option th:each="marque : ${marques}" th:value="${marque.getId()}"
+                        th:text="${marque.getTexte()}"></option>
+            </select>
+        </div>
+
+        <div hidden>
+            <input type="checkbox" id="encastrables" name="encastrables" checked/>
+            <label for="encastrables">Encastrable </label>
+        </div>
+
+        <div hidden>
+            <input type="checkbox" id="portable" name="portable" checked/>
+            <label for="encastrables">portable </label>
+        </div>
+
+        <div hidden>
+            <input id="sub" class="form-submit-button" type="submit" value="Valider">
+        </div>
+
     </form>
 </section>
 

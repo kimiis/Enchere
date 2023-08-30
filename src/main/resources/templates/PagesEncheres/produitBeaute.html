@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
-      th:with="connecte=${connecte}"><head>
+      th:with="connecte=${connecte}, types=${types}"><head>
 
     <meta charset="UTF-8">
     <title>Produit de beautés</title>
@@ -12,7 +12,7 @@
             th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations}
     )}">
     </div>
-        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getPrix()}"></div>
+        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  +' '+ objet.getPrix() +' points'}"></div>
 
     </section>
 </main>
