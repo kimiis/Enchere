@@ -1,18 +1,62 @@
-#menuP {
-    text-align: center;
-}
 
-#menu li {
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.menuP {
+    text-align: center;
+    background-color: #0a2345;
+
+}
+.menuP nav{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 25% 50% 25%;
+    height: 15rem;
+}
+.menu li {
 
     display: inline-flex;
-    padding: 0 3rem;
+    padding: 1rem;
     margin: 0.3rem;
     cursor: pointer;
-}
 
-#menu a {
-    color: #000000;
+}
+.menu a {
+    color: #fff1ba;
     font-size: 1.5rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Playfair Display', serif;
     text-decoration: none;
 }
+body{
+    margin: 0;
+}
+.menu{
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-flex;
+    grid-area: 2/2/2/2;
+    padding: 0;
+    margin: 0 auto;
+}
+.search{
+    text-align:  center;
+    display: grid;
+    grid-area:1/2/1/2;
+    margin: auto auto 0 auto;
+}
+.searchBar{
+    width: 30rem;
+    font-family: 'Playfair Display', serif;
+    font-size: large;
+    grid-area: 1/2/1/2;
+
+}
+.searchCategorie{
+    font-family: 'Playfair Display', serif;
+    font-size: large;
+}
+.logo{
+    width:10rem;
+    margin: 1rem;
+    text-align:  left;
+}
+

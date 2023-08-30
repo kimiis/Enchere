@@ -10,8 +10,8 @@ let image = () => {
     p = 0 /*position 0 par defaut effet carousel*/
 
     container = document.getElementById("container");
-    g = document.getElementById("droite");
-    d = document.getElementById("gauche");
+    g = document.getElementById("gauche");
+    d = document.getElementById("droite");
     afficherMasquer();
     container.style.width = (118 * nbr) + "rem";
     console.log(container)
@@ -20,7 +20,7 @@ let image = () => {
         div = document.createElement("div");
         div.className = "photo";
         /*mettre des images*/
-        div.style.backgroundImage = `url('img/barbie${i + 1}.jpg')`
+        div.style.backgroundImage = `url('/images/articles/lamboAventador.jpg')`
         container.appendChild(div);
     }
 

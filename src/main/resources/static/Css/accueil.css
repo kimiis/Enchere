@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Sofia+Sans+Semi+Condensed:wght@300&display=swap');
+
 #carou {
-    background-color: #91ffea;
+    border-top: 1rem solid wheat;
+    background-color: wheat;
     padding-bottom: 2rem;
 }
 
 #carrousel {
-    margin-top: 2rem;
+
     z-index: 2;
     width: 110rem;
     height: 50rem;
@@ -19,4 +22,50 @@
     width: 110rem;
     height: 50rem;
 
+}
+#droite /* bouton de droite*/{
+
+    left: 100rem;
+    opacity: 0.4;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+
+}
+
+#gauche/*bouton de gauche*/ {
+
+    left: 0rem;
+    opacity: 0.4;
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+#droite:hover{/* bouton de droite*/
+    transform: rotate(0deg) scale(1.1);
+    opacity: 1;
+    transition: all 0.3s ease;
+
+}
+
+#gauche:hover /*bouton de gauche*/ {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+.photo{
+    width: 110rem;
+    height: 50rem;
+    margin: 0;
+    display: inline-block;
+    background-size: cover;
+}
+
+.bouton {
+    position: absolute;
+    width: 9rem;
+    cursor: pointer;
+    top: 18rem;
+}
+.alogo{
+    grid-area: 1/1/2/1;
 }

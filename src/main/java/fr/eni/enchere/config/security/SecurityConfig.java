@@ -63,9 +63,10 @@ public class SecurityConfig {
                             .requestMatchers(mvcBuilder.pattern("/")).permitAll()
 //                            /* = /index,/accueil,/toto,etc
                             .requestMatchers(mvcBuilder.pattern("/*")).permitAll()
-                            .requestMatchers(mvcBuilder.pattern("/Css/*")).permitAll()
-                            .requestMatchers(mvcBuilder.pattern("/images/*")).permitAll()
-                            .requestMatchers(mvcBuilder.pattern("/Js/*")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/Css/**")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/Font/**")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/images/**")).permitAll()
+                            .requestMatchers(mvcBuilder.pattern("/Js/**")).permitAll()
 
                             .anyRequest().denyAll();
 
