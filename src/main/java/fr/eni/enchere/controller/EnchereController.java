@@ -133,10 +133,7 @@ public class EnchereController {
 // principal est une class  de SpringBoot, utilisateur = utilisateur créer par la page s'inscrire, et principal = utilisateur coté springsecurity
     String boutonValider(Principal principal, ObjetForm objet) {
         Utilisateur u = profilService.recupererInfos(principal.getName());
-        objetService.insertObjet(objet.getDateD(), objet.getDateF(), objet.getPrix(), objet.getNom(),
-                objet.getDescription(), u.getId(), objet.getIdRetrait(), objet.getIdType(), objet.getNbRoues(),
-                objet.isEncastrables(), objet.isPortable(), objet.getIdCoupe(), objet.getIdCouleur(), objet.getIdMarque(),
-                objet.getIdTaille(), objet.getIdLocalisation(), objet.getIdEnergie(), objet.getEnergieElec(), objet.getAnnee());
+        objetService.insertObjet( u.getId(),objet);
         return "createObjet";
     }
 

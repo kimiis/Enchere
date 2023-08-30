@@ -2,13 +2,13 @@ package fr.eni.enchere.dal;
 
 import fr.eni.enchere.ObjetSQL.Objet;
 import fr.eni.enchere.bo.FormFiltre;
+import fr.eni.enchere.bo.ObjetForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,27 +70,27 @@ public class ObjetDaoJdbc implements ObjetDao {
             " WHERE ";
 
 
-    public void insertObjet(Date dateD, Date dateF, int prix, String nom, String descrip, int idUser, int idRetrait, int idType, int nbRoue, boolean encastrable, boolean portable, int idCoupe, int idCouleur, int idMarque, int idTaille, int idLocalisation, int idEnergie, String energieElec, int annee) {
+    public void insertObjet(int idUser, ObjetForm objetForm) {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
-        parametreSource.addValue("dateD", dateD);
-        parametreSource.addValue("dateF", dateF);
-        parametreSource.addValue("prix", prix);
-        parametreSource.addValue("nom", nom);
-        parametreSource.addValue("description", descrip);
+        parametreSource.addValue("dateD", objetForm.getDateD());
+        parametreSource.addValue("dateF", objetForm.getDateF());
+        parametreSource.addValue("prix", objetForm.getPrix());
+        parametreSource.addValue("nom", objetForm.getNom());
+        parametreSource.addValue("description", objetForm.getDescription());
         parametreSource.addValue("idUtilisateur", idUser);
-        parametreSource.addValue("idRetrait", idRetrait);
-        parametreSource.addValue("idType", idType);
-        parametreSource.addValue("idTaille", idTaille);
-        parametreSource.addValue("nbRoue", nbRoue);
-        parametreSource.addValue("encastrable", encastrable);
-        parametreSource.addValue("idCoupe", idCoupe);
-        parametreSource.addValue("idCouleur", idCouleur);
-        parametreSource.addValue("idMarque", idMarque);
-        parametreSource.addValue("idLocalisation", idLocalisation);
-        parametreSource.addValue("idEnergie", idEnergie);
-        parametreSource.addValue("energieElec", energieElec);
-        parametreSource.addValue("annee", annee);
-        parametreSource.addValue("portable", portable);
+        parametreSource.addValue("idRetrait", objetForm.getIdRetrait());
+        parametreSource.addValue("idType", objetForm.getIdType());
+        parametreSource.addValue("idTaille", objetForm.getIdTaille());
+        parametreSource.addValue("nbRoue", objetForm.getNbRoues());
+        parametreSource.addValue("encastrable", objetForm.isEncastrables());
+        parametreSource.addValue("idCoupe", objetForm.getIdCoupe());
+        parametreSource.addValue("idCouleur", objetForm.getIdCouleur());
+        parametreSource.addValue("idMarque", objetForm.getIdMarque());
+        parametreSource.addValue("idLocalisation", objetForm.getIdLocalisation());
+        parametreSource.addValue("idEnergie", objetForm.getIdEnergie());
+        parametreSource.addValue("energieElec", objetForm.getEnergieElec());
+        parametreSource.addValue("annee", objetForm.getAnnee());
+        parametreSource.addValue("portable", objetForm.isPortable());
 
         namedParameterJdbcTemplate.update(INSERT_OBJET, parametreSource);
     }
