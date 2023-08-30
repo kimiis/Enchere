@@ -32,7 +32,7 @@
     <div th:text="${detailObjet.isPortbale() ? 'Portable' :'Non Portable'  }"></div>
 </div>
 
-<div th:text="${'Offre la plus haute : ' +  enchereLaPlusHaute.getPrix()}"></div>
+<div th:text="${'Offre la plus haute : ' +  enchereLaPlusHaute}"></div>
 <!--    text c'est ce qui est afficher et value c'est ce qui est renvoyé quand tu fais ton post-->
 </div>
 <input type="hidden" id="erreur" th:value="${erreur}"/>

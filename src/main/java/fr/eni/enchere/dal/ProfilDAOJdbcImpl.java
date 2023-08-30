@@ -92,13 +92,13 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
     }
 
     public void modifCredit(int credit, int idUser){
-        final String UPDATE_USER_CREDIT="UPDATE UTILISATEURS SET credit :credit WHERE id= :idUser ) ";
+        final String UPDATE_USER_CREDIT="UPDATE UTILISATEURS SET credit = :credit WHERE id= :idUser ";
 
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("idUser", idUser);
         parametreSource.addValue("credit", credit);
 
-        namedParameterJdbcTemplate.query(UPDATE_USER_CREDIT, parametreSource, new BeanPropertyRowMapper<>(Utilisateur.class));
+        namedParameterJdbcTemplate.update(UPDATE_USER_CREDIT, parametreSource);
     }
 //va servire a trouver l'ancien plus gros encherisseur
     public Utilisateur getUserById (int idUtilisateur){

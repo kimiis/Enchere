@@ -22,10 +22,10 @@ public class EnchereDaoJdbc implements EnchereDao {
     public List<Enchere> getEnCoursParticipe(int idUser) {
 
         final String GET_EN_COURS_PARTICIPE =
-                "       SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,max(Prix) AS prix\n" +
+                "       SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,max(Prix) AS prix, idAcheteur\n" +
                         "       FROM Enchere AS E INNER JOIN Objet O ON O.Id = E.IdObjet INNER JOIN Type T ON T.Id = O.IdType\n" +
                         "       WHERE idAcheteur=:idUser AND DateD < GETDATE() AND DateF > GETDATE() \n" +
-                        "       GROUP BY IdObjet, O.nom, DateD, DateF, T.Nom;\n";
+                        "       GROUP BY IdObjet, O.nom, DateD, DateF, T.Nom, idAcheteur;\n";
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("idUser", idUser);
         return namedParameterJdbcTemplate.query(GET_EN_COURS_PARTICIPE, parametreSource, new EnchereMapper());
@@ -34,10 +34,10 @@ public class EnchereDaoJdbc implements EnchereDao {
 
     public List<Enchere> getWin(int idUser) {
         final String GET_WIN =
-                "   SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,max(Prix) AS prix \n" +
+                "   SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,max(Prix) AS prix, idAcheteur\n" +
                         "   FROM Enchere AS E INNER JOIN dbo.Objet O ON O.Id = E.IdObjet INNER JOIN dbo.Type T ON T.Id = O.IdType\n" +
                         "   WHERE idAcheteur=:idUser AND prix = (SELECT MAX(Prix) FROM Enchere where IdObjet = O.Id) AND DateF<GETDATE()\n" +
-                        "   GROUP BY  IdObjet, O.nom, DateD, DateF, T.Nom";
+                        "   GROUP BY  IdObjet, O.nom, DateD, DateF, T.Nom, idAcheteur";
 
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("idUser", idUser);
@@ -54,7 +54,7 @@ public class EnchereDaoJdbc implements EnchereDao {
         namedParameterJdbcTemplate.update(ADD_ENCHERE, parametreSource);
     }
 
-    public Enchere getEncherePlusHaute(int idObjet) {
+    public List<Enchere> getEncherePlusHaute(int idObjet) {
         final String GET_PLUS_HAUT =
                 "        SELECT O.nom AS objetNom, DateD, DateF, T.Nom AS typeNom,IdObjet,prix, idAcheteur \n" +
                         "FROM Enchere AS E INNER JOIN Objet O ON O.Id = E.IdObjet INNER JOIN Type T ON T.Id = O.IdType\n" +
@@ -62,7 +62,7 @@ public class EnchereDaoJdbc implements EnchereDao {
 
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
         parametreSource.addValue("idObjet", idObjet);
-        return namedParameterJdbcTemplate.queryForObject(GET_PLUS_HAUT, parametreSource, new EnchereMapper());
+        return namedParameterJdbcTemplate.query(GET_PLUS_HAUT, parametreSource, new EnchereMapper());
 
     }
 
