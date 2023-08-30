@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
+
 
 @Service
 
@@ -35,13 +36,7 @@ public class EnchereService {
     public List<Enchere> getEncherePlusHaute(int idObjet) {
         return enchereDAO.getEncherePlusHaute(idObjet);
     }
-    // ça n'a pas pu marcher car tu declares une propiete dans une interface
-//    // On veut recuperer les credits via le pseudo
-//    public int recupererCredit(String pseudo) {
-//        return mesEncheresDAO.recupererCredit(pseudo);
-//    }
 
-    //    cas je suis la 1ere encherisseuse
     @Transactional(rollbackFor = Exception.class) // Rollback for all exceptions
 //    indique à Spring de gérer une transaction autour de cette méthode et de la rollback si une exception est levée.
 //    L'argument rollbackFor = Exception.class signifie que la transaction sera annulée pour toutes les exceptions, ce qui inclut
@@ -56,6 +51,12 @@ public class EnchereService {
         int prixActu = prixD;
 
         //Si l'objet a au moins une enchere
+        //if(!Objects.isNull(enchere.getPrix()))
+        //Pourquoi Objects
+//c'est la class qui permet de verifier si un objet est null, en fait comme sur null on peux faire aucune fonction
+// (si jamais tu fait un truc genre null.IsNull()) Ca te diras "NullPointerExeption"
+// Il fallait qu'il mette quelque par la fonction pour verifier qu'un objet est null,Du coups ils l'on mis dans Objects
+// vu qu'on verifie un objet
         if (!enchere.isEmpty()) {
             //On met le prix actuel au prix de l'enchere la plus haute
             prixActu = enchere.get(0).getPrix();
@@ -74,18 +75,22 @@ public class EnchereService {
             // on sort
             throw new Error("wsh arrete de faire ton radin augmente la mise!");
         }
+        if(new Date().after(objet.getDateF())){
+            throw new Error("trop tard c'est fini!");
+        }
         // je le debite
-        profilDAO.modifCredit(utilisateur.getId(), utilisateur.getCredit() - prix);
+        profilDAO.modifCredit(utilisateur.getCredit() - prix,utilisateur.getId());
         // Si l'objet a au moins une enchere, on sait deja que j'ai la plus grosse,
         if (!enchere.isEmpty()) {
             //je vais get mon ancien encherisseur
             Utilisateur ancienEncherisseur = profilDAO.getUserById(enchere.get(0).getIdAcheteur());
             //je le rembourse
-            profilDAO.modifCredit(ancienEncherisseur.getId(), ancienEncherisseur.getCredit()+ enchere.get(0).getPrix());
+            profilDAO.modifCredit( ancienEncherisseur.getCredit()+ enchere.get(0).getPrix(), ancienEncherisseur.getId());
         }
         // Enfin on créer la nouvelle enchere, avec l'utilisateur actuel, son prix et on la lie à l'objet sur lequel il veux faire une enchere
         enchereDAO.addEnchere(utilisateur.getId(), objet.getId(), prix);
     }
+
 
 
 }

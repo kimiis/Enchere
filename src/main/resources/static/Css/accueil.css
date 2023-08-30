@@ -1,0 +1,22 @@
+#carou {
+    background-color: #91ffea;
+    padding-bottom: 2rem;
+}
+
+#carrousel {
+    margin-top: 2rem;
+    z-index: 2;
+    width: 110rem;
+    height: 50rem;
+    border: solid 0.2rem #FFF;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+}
+
+#container {
+    width: 110rem;
+    height: 50rem;
+
+}

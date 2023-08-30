@@ -66,16 +66,4 @@ public class EnchereDaoJdbc implements EnchereDao {
 
     }
 
-////     Récupérer le crédit de l'utilisateur et les afficher dans son profil
-//    private final static String RECUPERER_CREDIT = "SELECT credit From UTILISATEURS WHERE pseudo= :idUser";
-//
-//    public int recupererCredit(String pseudo) {
-//        MapSqlParameterSource parametreSource = new MapSqlParameterSource();
-//        parametreSource.addValue("pseudo", pseudo);
-//
-//        namedParameterJdbcTemplate.queryForObject(RECUPERER_CREDIT, Integer.class, pseudo);
-//
-//        return credit;}
-
-
 }
