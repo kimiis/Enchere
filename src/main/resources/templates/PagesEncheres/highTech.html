@@ -9,7 +9,7 @@
 <main>
     <section layout:fragment="content">
     <div
-            th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations}
+            th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations},idCategorie=6, idType='ht'
         )}">
     </div>
         <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getPrix()}"></div>

@@ -22,6 +22,11 @@
         <!--enchere que j'ai créer-->
         <div th:each="objet: ${futur}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
 
+        <p>Mes enchères auquelles je participe, en cours</p>
+        <div th:each="enchere: ${enCoursParticipe}" th:text="${enchere.getTypeNom() + '   ' +  enchere.getObjetNom()+'   ' + enchere.getPrix()} "></div>
+
+        <p>Mes enchères remportées</p>
+        <div th:each="enchere: ${win}" th:text="${enchere.getTypeNom() + '   ' +  enchere.getObjetNom()+'   ' + enchere.getPrix()} "></div>
 
     </section>
 </main>

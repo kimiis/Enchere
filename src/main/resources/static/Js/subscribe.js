@@ -9,9 +9,6 @@ function init() {
     // // récup de tous les inputs d'incription
     inputs = document.getElementsByTagName("input");
 
-    //recup de tous les txt qui passeront en rouge si erreur
-    infos = document.getElementsByTagName("p");
-
     inputs.user.addEventListener("input", verifierUtlisateur);
     inputs.mail.addEventListener("input", verifierMail);
     inputs.mdpInfo.addEventListener("input", verifierMdp);

@@ -17,7 +17,8 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
 
     // Récupérer les infos de l'utilisateur et les afficher dans son profil
-    private final static String RECUPERER_INFOS = "SELECT id, pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin From UTILISATEURS WHERE pseudo= ?";
+//    private final static String RECUPERER_INFOS = "SELECT id, pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin From UTILISATEURS WHERE pseudo= ?";
+    private final static String RECUPERER_INFOS = "SELECT * From UTILISATEURS WHERE pseudo= ?";
 
     @Override
     public Utilisateur recupererInfos(String pseudo) {
@@ -30,10 +31,12 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
 
     private final static String MODIFIER_INFOS = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, tel = ?, adresse = ?  WHERE id= ?";
 
+//    ça ne marchait pas car dans le html tu n'as pas mis le bon nom qui est id
     @Override
-    public Utilisateur modifierInfos(Utilisateur utilisateur) {
+
+    public void modifierInfos(Utilisateur utilisateur) {
         jdbcTemplate.update(MODIFIER_INFOS, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTel(), utilisateur.getAdresse(), utilisateur.getId());
-        return utilisateur;
+
     }
 
 
@@ -42,7 +45,7 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
     private final static String SUPPRIMER_PROFIL = "DELETE FROM UTILISATEURS WHERE pseudo= ?";
 
     @Override
-    public void supprimerLigneUtilisateur(String pseudo) {
+    public void supprimerUtilisateur(String pseudo) {
         jdbcTemplate.update(SUPPRIMER_PROFIL, pseudo);
     }
 
@@ -52,7 +55,7 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
     private final static String SUPPRIMER_PROFIL_ROLE = "DELETE FROM ROLES WHERE pseudo= ?";
 
     @Override
-    public void supprimerLigneRole(String pseudo) {
+    public void supprimerRole(String pseudo) {
         jdbcTemplate.update(SUPPRIMER_PROFIL_ROLE, pseudo);
     }
 
@@ -79,10 +82,11 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
             " INSERT INTO ROLES (pseudo, role) " +
             " VALUES (?,?)";
 
+//    VERIFIE SI CA MARCHE !
 
     @Override
     public void addRole(Utilisateur ur){
-       jdbcTemplate.update(INSERT_ROLE, ur.getPseudo(), "client");
+       jdbcTemplate.update(INSERT_ROLE, ur.getPseudo(), "ROLE_CLIENT");
 
     }
 

@@ -8,14 +8,16 @@ import java.sql.SQLException;
 
 
 public class ObjetMapper implements RowMapper<Objet> {
-    //Et c'est dans cette fonction, qut tu va créer ton objet, qui va avoir toutes les propriété que tu veux
+    //Et c'est dans cette fonction, que tu vas créer ton objet, qui va avoir toutes les propriété que tu veux
 
-    private final String GOOD_NAME = "SELECT * FROM Objet o inner join dbo.Couleur C on C.Id = o.IdCouleur inner join dbo.Coupe C2 on C2.Id = o.idCoupeinner join dbo.Energie E on E.Id = o.IdEnergieinner join dbo.Localisation L on L.Id = o.IdLocalisationinner join dbo.Marque M on M.Id = o.IdMarque";
 
     @Override
     public Objet mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         Objet objet = new Objet();
+
+        // on declare les proprietes objet le l'objet Objet
+
         Couleur couleur = new Couleur();
         Coupe coupe = new Coupe();
         Energie energie = new Energie();
@@ -25,6 +27,7 @@ public class ObjetMapper implements RowMapper<Objet> {
         Type type = new Type();
         Retrait retrait = new Retrait();
 
+//on set les proprietes non objet de l'Objet
         objet.setId(rs.getInt("IdObjet"));
         objet.setNom(rs.getString("nomObjet"));
         objet.setEnergies(rs.getString("Energie"));
@@ -38,6 +41,8 @@ public class ObjetMapper implements RowMapper<Objet> {
         objet.setDescription(rs.getString("description"));
         objet.setIdUser(rs.getInt("iDUtilisateur"));
         objet.setIdRetrait(rs.getInt("idRetrait"));
+
+        //on declare les proprietes des sous objet du type Objet
         couleur.setId(rs.getInt("IdCouleur"));
         coupe.setId(rs.getInt("idCoupe"));
         energie.setId(rs.getInt("IdEnergie"));
@@ -63,6 +68,7 @@ public class ObjetMapper implements RowMapper<Objet> {
         retrait.setId(rs.getInt("idRetrait"));
         retrait.setTexte(rs.getString("texteRetrait"));
 
+        // on ajoute les objets au propriete de l'Objet
         objet.setCouleur(couleur);
         objet.setCoupe(coupe);
         objet.setEnergie(energie);

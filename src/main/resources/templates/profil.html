@@ -2,14 +2,16 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
 <head>
     <meta charset="UTF-8">
+
     <title>Title</title>
+    <script src="/Js/profil.js"></script>
 </head>
 <body>
 
 <section layout:fragment="content">
 
 
-    <form th:action="@{/profil}" method="post">
+    <form id="modifForm" th:action="@{/profil}" method="post">
         <input type="hidden" th:value="${profUti.id}" name="id"/>
 
 
@@ -67,14 +69,20 @@
                    required/>
         </div>
 
+
+        <div id="credit" name="credit" th:text="${' Crédit : ' + profUti.getCredit() }"></div>
+
+
         <br>
-        <button type="submit" id="modif" value="Modifier"> Modifier</button>
-        <button type="reset" value="Annuler"> Annuler</button>
+
+
+        <button onclick="confirmModif();" type="submit" id="modif" value="Modifier"> Modifier</button>
+        <button type="reset" id="annuler" value="Annuler"> Annuler</button>
 
 
     </form>
 
-    <form th:action="@{/delete}" method="post">
+    <form onsubmit="return confirm('Wsh tu veux vraiment nous quitter ?! :c')" th:action="@{/delete}" method="post">
 
         <input type="hidden" th:value="${profUti.pseudo}" name="pseudo"/>
 
