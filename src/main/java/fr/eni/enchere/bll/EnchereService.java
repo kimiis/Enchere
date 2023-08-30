@@ -56,12 +56,12 @@ public class EnchereService {
         int prixActu = prixD;
 
         //Si l'objet a au moins une enchere
-        if (enchere.size() > 0) {
+        if (!enchere.isEmpty()) {
             //On met le prix actuel au prix de l'enchere la plus haute
             prixActu = enchere.get(0).getPrix();
         }
         //Si l'utilisateur est déja l'encherisseur qui a la plus haute enchere
-        if (enchere.get(0).getIdAcheteur() == utilisateur.getId()) {
+        if (!enchere.isEmpty() && enchere.get(0).getIdAcheteur() == utilisateur.getId()) {
             //On sort d'ici
             throw new Error("c'est déjà toi qui à la plus grosse !");
         }
@@ -77,7 +77,7 @@ public class EnchereService {
         // je le debite
         profilDAO.modifCredit(utilisateur.getId(), utilisateur.getCredit() - prix);
         // Si l'objet a au moins une enchere, on sait deja que j'ai la plus grosse,
-        if (!Objects.isNull(enchere.get(0).getPrix())) {
+        if (!enchere.isEmpty()) {
             //je vais get mon ancien encherisseur
             Utilisateur ancienEncherisseur = profilDAO.getUserById(enchere.get(0).getIdAcheteur());
             //je le rembourse
