@@ -48,24 +48,44 @@ public class EnchereService {
 //    Error et ses sous-classes.
 
     public void addEnchere(Utilisateur utilisateur, Objet objet, int prix) throws Error {
-//idObjet = iDvendeur
+        //On récupere le prix départ de l'objet sur lequel le nouvel encherisseur veux encherir
         int prixD = objet.getPrix();
+        // On récupere l'enchere la plus haute de cet objet et on la stocke dans objet
         Enchere enchere = enchereDAO.getEncherePlusHaute(objet.getId());
+        // On initialise le prix actuel au prix départ de l'objet
         int prixActu = prixD;
 
+        //Si l'objet a au moins une enchere
         if (!Objects.isNull(enchere.getPrix())) {
+            //On met le prix actuel au prix de l'enchere la plus haute
             prixActu = enchere.getPrix();
         }
-//        si l'utilisateur co n'est pas le plus haut encherisseur
+        //Si l'utilisateur est déja l'encherisseur qui a la plus haute enchere
         if (enchere.getIdAcheteur() == utilisateur.getId()) {
+            //On sort d'ici
             throw new Error("c'est déjà toi qui à la plus grosse !");
         }
+        // Si l'utilisateur qui encherit n'as pas assez de crédit sur son compte pour payer le prix qu'il a mis
         if (utilisateur.getCredit() < prixActu) {
+            // on sort
             throw new Error("t'es trop pauvre !");
+            // SI l'offre de l'encherisseur est inferieur au prix actuel de l'objet (Soit prix départ si pas enchere, soit prix plus haute enchere si enchere
         } else if (prix < prixActu) {
+            // on sort
             throw new Error("wsh arrete de faire ton radin augmente la mise!");
         }
+        // je le debite
+        profilDAO.modifCredit(utilisateur.getId(), utilisateur.getCredit() - prix);
+        // Si l'objet a au moins une enchere, on sait deja que j'ai la plus grosse,
+        if (!Objects.isNull(enchere.getPrix())) {
+            //je vais get mon ancien encherisseur
+            Utilisateur ancienEncherisseur = profilDAO.getUserById(enchere.getIdAcheteur());
+            //je le rembourse
+            profilDAO.modifCredit(ancienEncherisseur.getId(), ancienEncherisseur.getCredit()+ enchere.getPrix());
+        }
+        // Enfin on créer la nouvelle enchere, avec l'utilisateur actuel, son prix et on la lie à l'objet sur lequel il veux faire une enchere
         enchereDAO.addEnchere(utilisateur.getId(), objet.getId(), prix);
     }
+
 
 }

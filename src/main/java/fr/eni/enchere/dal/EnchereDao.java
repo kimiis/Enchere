@@ -1,6 +1,7 @@
 package fr.eni.enchere.dal;
 
 import fr.eni.enchere.ObjetSQL.Enchere;
+import fr.eni.enchere.ObjetSQL.Utilisateur;
 
 import java.util.List;
 

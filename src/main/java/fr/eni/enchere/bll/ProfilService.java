@@ -33,17 +33,6 @@ public class ProfilService {
 
     @Autowired
     private EnchereService enchereService;
-//
-//    @Transactional(rollbackFor = Exception.class) // Rollback for all exceptions
-//    public void supprimerCompte(Utilisateur utilisateur) throws EnchereEnCoursException {
-//        // Vérifier s'il y a une enchère en cours pour l'utilisateur
-//        if (enchereService.enchereEnCours(utilisateur)) {
-//            throw new EnchereEnCoursException("Tu peux pas supprimer le compte! T'as une enchère est en cours! ..l.,");
-//        }
-//
-//        // Supprimer le compte de l'utilisateur
-//        utilisateurDAO.supprimer(utilisateur);
-//    }
 
     @Transactional
     public void supprimerProfil(String pseudo) {
@@ -63,17 +52,14 @@ public class ProfilService {
         profilDao.addRole(u);
 
     }
-    private final String UPDATE_USER_CREDIT="UPDATE UTILISATEURS SET credit :credit WHERE id= :idUser ) ";
-    @Autowired
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    @Transactional
-    public void modifCredit(int credit, int idUser){
-        MapSqlParameterSource parametreSource = new MapSqlParameterSource();
-        parametreSource.addValue("idUser", idUser);
-        parametreSource.addValue("credit", credit);
 
-        namedParameterJdbcTemplate.query(UPDATE_USER_CREDIT, parametreSource, new BeanPropertyRowMapper<>(Utilisateur.class));
+    public void modifCredit(int credit, int idUser) {
+        profilDao.modifCredit(credit, idUser);
     }
+    public Utilisateur getUserById (int idUtilisateur){
+        return profilDao.getUserById(idUtilisateur);
+    }
+
 
 
 

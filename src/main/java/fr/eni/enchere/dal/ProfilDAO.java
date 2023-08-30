@@ -24,5 +24,9 @@ public interface ProfilDAO {
 
     void addRole(Utilisateur ur);
 
+    void modifCredit(int credit, int idUser);
+
+    Utilisateur getUserById (int idUtilisateur);
+
 
 }

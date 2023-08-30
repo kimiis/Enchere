@@ -5,6 +5,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class ObjetForm {
+
+//en fait Thymeleaf va pas pouvoir mapper une propriété dans un objet a partir d'un formulaire utilisateur
+//Donc comme dans Objet on as pricate Coupe coupe, private Marque marque, etc.tous ces truc on pourrais pas savoir ce que c'est
+
     private String nom;
     private String description;
     private int idType;
