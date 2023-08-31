@@ -1,7 +1,7 @@
 .form {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 20% 20% 20% 20% 20% 20% 20%;
     grid-template-areas:
             "a1 a2 a3 a4 a5"
             "b1 b2 b3 b4 a5"
@@ -26,6 +26,7 @@
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
+    height: 2rem;
 }
 
 .nom {
@@ -80,19 +81,55 @@
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.carburant{
-    grid-area: e4;
+.couleur{
+     grid-area: f3;
+     text-align: center;
+     font-family: 'Oswald', sans-serif;
+     color: #846867;
+ }
+.taille{
+    grid-area: f4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.couleur{
-
+.carburant{
+    grid-area: f4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.coupe{
+    grid-area: g3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
 }
 .roue{
-
+    grid-area: g3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
 }
 .encastrable{
-
+    grid-area: g4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
 }
 
+.energieElec{
+    grid-area: f4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.valider{
+    grid-area: g5;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+select{
+    width: 20rem;
+}
