@@ -1,7 +1,7 @@
-h1 {
+.masterLogin h1 {
     font-size: 3rem;
     text-align: center;
-    color: cornflowerblue;
+    color: #352c3b;
     margin-top: 20px;
 
 }
@@ -39,7 +39,7 @@ h1 {
     font-family: Montserrat, sans-serif;
     -webkit-font-smoothing: antialiased;
     font-weight: 400;
-    background: #e9ebee;
+    background: #e0ccca;
     color: #1d2129;
     display: flex;
     align-items: center;
@@ -59,7 +59,7 @@ h1 {
     bottom: 1em;
     right: 2em;
     border-radius: 40px;
-    background: #ff4b2b;
+    background: #352c3b;
     color: #fff;
     font-size: 1em;
     font-weight: bold;
@@ -89,7 +89,7 @@ span.remember{
         display: inline-block;
         width: 1em;
         height: 1em;
-        border: 2px solid #999;
+        border: 2px solid #352c3b;
         vertical-align: top;
         margin-right: 4px;
     }
@@ -116,7 +116,7 @@ span.loginwith{
         display: inline-block;
         width: 42%;
         height:1px;
-        background: #aaa;
+        background: #352c3b;
         vertical-align: middle;
         margin-right: 5%;
     }
@@ -125,7 +125,7 @@ span.loginwith{
         display: inline-block;
         width: 45%;
         height: 1px;
-        background: #aaa;
+        background: #352c3b;
         vertical-align: middle;
         margin-left: 5%;
     }
@@ -141,8 +141,8 @@ span.copy{
     display: block;
     margin: 1em auto;
     border-radius: 40px;
-    border: 1px solid #ff4b2b;
-    background: #ff4b2b;
+    border: 1px solid #352c3b;
+    background: #352c3b;
     color: #fff;
     font-size: 1.2em;
     font-weight: bold;
@@ -177,7 +177,7 @@ button:focus {
     border-radius: 20px;
     box-shadow: 0 14px 28px -10px rgba(0, 0, 0, .1), 0 10px 10px -10px rgba(0, 0, 0, .02);
     transform-style: preserve-3d;
-
+    border: 1px solid #352c3b;
     &>div{
         position: absolute;
         width: 50%;
@@ -203,8 +203,9 @@ button:focus {
 
 .login{
     left:0;
-    background:#FAFAFA;
+
     border-radius: 20px 0 0 20px;
+    background: #c49f9a;
 }
 .login button{
     border-radius: 0px;
@@ -213,13 +214,13 @@ button:focus {
 
 .login svg{
     margin: 1em;
-    stroke: #999;
+    stroke: #352c3b;
 }
 .register{
     right: 0;
     z-index: 1;
     border-radius: 0 20px 20px 0;
-    background:#FAFAFA;
+    background: #c49f9a;
 
 }
 .register button{
@@ -228,7 +229,7 @@ button:focus {
 }
 .register svg{
     margin: 1em;
-    stroke: #999;
+    stroke: #352c3b;
 }
 .pageLogin{
     right:0;
@@ -245,12 +246,12 @@ button:focus {
     margin: 2em auto;
 }
 .front{
-    background:linear-gradient(-45deg, #FFCF00 0%, #FC4F4F 100%) no-repeat 0 0 / 200%;
+    background:linear-gradient(-45deg, #352c3b 0%, #e0ccca 100%) no-repeat 0 0 / 200%;
     z-index: 3;
 
 }
 .back{
-    background:linear-gradient(135deg, #FC4F4F 0%, #FFCF00 100%) no-repeat 0 0 / 200%;
+    background:linear-gradient(135deg, #e0ccca 0%, #352c3b 100%) no-repeat 0 0 / 200%;
     z-index: 2;
 
     .contentLogin{
