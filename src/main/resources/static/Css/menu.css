@@ -1,9 +1,8 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap');
 .menuP {
     text-align: center;
-    background-color: #0a2345;
+    background-color: #352c3b;
 
 }
 .menuP nav{
@@ -25,9 +24,9 @@
 
 }
 .menu a {
-    color: #fff1ba;
+    color: #e0ccca;
     font-size: 1.5rem;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Oswald', sans-serif;
     text-decoration: none;
 }
 body{
@@ -48,22 +47,30 @@ body{
     margin: auto auto 0 auto;
 }
 .searchBar{
-    width: 30rem;
-    font-family: 'Playfair Display', serif;
+    width: 50rem;
+    font-family: 'Oswald', sans-serif;
     font-size: large;
     grid-area: 1/2/1/2;
     margin: 0.5rem;
 
 }
 .searchCategorie{
-    font-family: 'Playfair Display', serif;
+    font-family: 'Oswald', sans-serif;
     font-size: large;
     margin: 0.5rem;
+    width: 20rem;
 }
 .logo{
     width:10rem;
     margin: 1rem;
     text-align:  left;
 }
-.bouttonSearch{
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #c49f9a !important;
+    color: black;
+    font-family: 'Oswald', sans-serif;
+    height: 2.5rem;
+    border:#c49f9a ;
+    margin-top: 0.5rem;
+
 }

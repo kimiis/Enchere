@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Sofia+Sans+Semi+Condensed:wght@300&display=swap');
-
-#carou {
-    border-top: 1rem solid wheat;
-    background-color: wheat;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap');#carou {
+    border-top: 1rem solid #e0ccca;
+    background-color: #e0ccca;
     padding-bottom: 2rem;
 }
 
@@ -10,7 +8,7 @@
 
     z-index: 2;
     width: 110rem;
-    height: 50rem;
+    height: 43rem;
     border: solid 0.2rem #FFF;
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -20,7 +18,7 @@
 
 #container {
     width: 110rem;
-    height: 50rem;
+    height: 43rem;
 
 }
 #droite /* bouton de droite*/{
@@ -54,7 +52,7 @@
 }
 .photo{
     width: 110rem;
-    height: 50rem;
+    height: 43rem;
     margin: 0;
     display: inline-block;
     background-size: cover;
@@ -68,4 +66,17 @@
 }
 .alogo{
     grid-area: 1/1/2/1;
+}
+.categories{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 50% 50%;
+
+}
+.h2{
+font-family: 'Montserrat';
+    font-weight: 300;
+}
+.cardAuto{
+    grid-area: 2/1;
 }
