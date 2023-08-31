@@ -4,31 +4,33 @@
 
 <head>
     <script src="Js/vendre_article.js"></script>
+    <link rel="stylesheet" href="Css/vendreArticle.css">
     <meta charset="UTF-8">
     <title>Vendre</title>
 </head>
 <body>
 <section layout:fragment="content">
-    <form id="form" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" method="post" action="/createObjet">
+    <form class="form" id="form" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" method="post" action="/createObjet">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <legend>Formulaire de vente</legend>
+
+        <legend class="titreForm">Formulaire de vente</legend>
         <br>
 
-        <label for="idType">Catégorie l'article : </label><br>
-        <select name="idType" id="type" required>
+
+        <select class="selecCate" name="idType" id="type" required>
             <option value="" selected disabled hidden>-- Choisir la catégorie --</option>
             <option th:each="type : ${types}" th:value="${type.getId()}"
                     th:text="${type.getTexte()}"></option>
 
         </select>
 
-        <div name="all_type" hidden>
+        <div class="nom" name="all_type" hidden>
             <label for="name" class="all_type">Nom de l'article : </label><br>
             <input id="name" name="nom" type="text" class="form__field" placeholder="Doit faire au moins 3 caractères"
                    onchange="verifierNom()" required/>
         </div>
 
-      <div name="all_type" hidden>
+      <div name="all_type" class="description" hidden>
 
             <label for="description" class="all_type">Description de l'article : </label><br>
             <input id="description" name="description" type="textarea" class="form__field"
@@ -36,26 +38,26 @@
                    onchange="verifierDescription()" required/>
         </div>
 
-        <div name="all_type" hidden>
+        <div name="all_type" class="prix" hidden>
 
         <label for="prix" class="all_type">Prix de départ : </label><br>
             <input id="prix" type="number" name="prix" class="form__field" placeholder="min 1 points"
                    onchange="verifierPrix()"
                    required/>
         </div>
-        <div name="all_type" hidden>
+        <div name="all_type" class="prixD "hidden>
 
         <label for="dateD" class="all_type">Début de l'enchère : </label><br>
             <input type="datetime-local" name="dateD" class="form__field" onchange="verifierDate()" required/>
         </div>
 
-        <div name="all_type" hidden>
+        <div name="all_type" class="prixF" hidden>
 
         <label for="dateF" class="all_type">Fin de l'enchère : </label><br>
             <input type="datetime-local" name="dateF" class="form__field" onchange="verifierDate()" required/>
         </div>
 
-        <div name="all_type" hidden>
+        <div name="all_type" class="retrait" hidden>
 
         <label for="idRetrait" class="all_type">Modalité de retrait : </label><br>
             <select name="idRetrait" required>
@@ -65,7 +67,7 @@
             </select>
         </div>
 
-        <div name="all_type" hidden>
+        <div name="all_type" class="couleur" hidden>
 
         <label for="idCouleur" class="all_type">Couleurs </label><br>
             <select name="idCouleur">
@@ -76,7 +78,7 @@
             </select>
         </div>
 
-        <div id="carburant"hidden>
+        <div id="carburant" class="carburant" hidden>
 
         <label for="idEnergie" class="carburant">Energies </label><br>
             <select name="idEnergie">
@@ -87,14 +89,14 @@
             </select>
         </div>
 
-        <div id="annee"hidden>
+        <div id="annee" class="annee" hidden>
 
         <label for="annee" class="form__label">Année</label><br>
             <input type="number" min="1900" max="2099" step="1" value="2023" name="annee"/>
 
         </div>
 
-        <div id="roue" hidden>
+        <div id="roue" class="roue" hidden>
 
         <label for="nbRoues" class="roue">Nombre de roue </label><br>
             <select name="nbRoues">
@@ -108,7 +110,7 @@
             </select>
         </div>
 
-        <div id="energieElec"hidden>
+        <div id="energieElec" class="energieElec"hidden>
             <label for="energieElec" class="energieElec">Classe énergétique </label><br>
             <select name="energieElec">
                 <option value="" selected disabled hidden>-- Choisir la classe --</option>
@@ -121,7 +123,7 @@
             </select>
         </div>
 
-        <div id="taille"hidden>
+        <div id="taille" class="taille" hidden>
             <label for="idTaille" class="taille">Tailles</label><br>
             <select name="idTaille">
                 <option value="" selected disabled hidden>-- Choisir la taille --</option>
@@ -131,7 +133,7 @@
             </select>
         </div>
 
-        <div name="all_type" hidden>
+        <div name="all_type" class="localisation" hidden>
 
         <label for="idLocalisation" class="all_type">Localisation</label><br>
             <select name="idLocalisation" required>
@@ -142,7 +144,7 @@
             </select>
         </div>
 
-        <div id="coupe"hidden>
+        <div id="coupe" class="coupe" hidden>
             <label for="idCoupe" class="coupe">Coupes</label><br>
             <select name="idCoupe">
                 <option value="" selected disabled hidden>-- Choisir la coupe --</option>
@@ -152,7 +154,7 @@
             </select>
         </div>
 
-        <div name="all_type" hidden>
+        <div name="all_type" class="marque" hidden>
 
         <label for="idMarque" class="all_type">Marque</label><br>
             <select name="idMarque" required>
@@ -162,17 +164,17 @@
             </select>
         </div>
 
-        <div id="encastrables"hidden>
+        <div id="encastrables"class="encastrable" hidden>
             <input type="checkbox" name="encastrables" checked/>
             <label for="encastrables">Encastrable </label>
         </div>
 
-        <div id="portbale"hidden>
+        <div id="portbale" class="portable" hidden>
             <input type="checkbox" id="portable" name="portable" checked/>
             <label for="portable">portable </label>
         </div>
 
-        <div name="all_type" hidden>
+        <div name="all_type" class="valider"hidden>
             <input id="sub" class="form-submit-button" type="submit" value="Valider">
         </div>
 

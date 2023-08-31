@@ -56,6 +56,8 @@ public class SecurityConfig {
                             .requestMatchers(mvcBuilder.pattern("/subscribe")).permitAll()
                             .requestMatchers(mvcBuilder.pattern("/createObjet")).hasRole("CLIENT")
                             .requestMatchers(mvcBuilder.pattern("/detailObjet")).hasRole("CLIENT")
+                            .requestMatchers(mvcBuilder.pattern("/vendre_article")).hasRole("CLIENT")
+
 
 
 

@@ -1,8 +1,9 @@
 h1 {
     font-size: 3rem;
     text-align: center;
-    color: cornflowerblue;
+    color: #846867;
     margin-top: 20px;
+    font-family: 'Oswald', sans-serif;
 
 }
 
@@ -12,7 +13,8 @@ legend {
 
 }
 
-.subForm {
+
+.profilForm, .supprimerProf {
 
     display: flex;
     align-items: center;
@@ -29,9 +31,26 @@ legend {
     border-radius: 3px;
 
 
+
 }
 
 .form-submit-button{
     margin-top: 5px;
     width: 300px;
+
+}
+
+.modifier, .annuler {
+    width: 200px;
+}
+
+.supprimer{
+    margin-top: 5px;
+    width: 404px;
+}
+
+.credit{
+    margin-top: 20px;
+    margin-right: 140px;
+
 }

@@ -1,0 +1,98 @@
+.form {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+            "a1 a2 a3 a4 a5"
+            "b1 b2 b3 b4 a5"
+            "c1 c2 c3 c4 c5"
+            "d1 d2 d3 d4 d5"
+            "e1 e2 e3 e4 e5"
+            "f1 f2 f3 f4 f5"
+            "g1 g2 g3 g4 g5";
+
+}
+
+.titreForm {
+    grid-area: a3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+
+}
+
+.selecCate {
+    grid-area: b2;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+
+.nom {
+    grid-area: b3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+
+}
+.form__field{
+    width: 20rem;
+}
+.description{
+    grid-area: b4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.prix{
+    grid-area: c3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.prixD{
+    grid-area: c4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.prixF{
+    grid-area: d3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.retrait{
+    grid-area: d4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.localisation{
+    grid-area: e3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.marque{
+    grid-area: e4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.carburant{
+    grid-area: e4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+.couleur{
+
+}
+.roue{
+
+}
+.encastrable{
+
+}
+

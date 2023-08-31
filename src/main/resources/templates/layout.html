@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/592b8a550b.js" crossorigin="anonymous"></script>
     <link th:href="@{Css/menu.css}" rel="stylesheet"/>
 </head>
 <body>
@@ -72,21 +73,6 @@
                     <li><a href="mesEncheres">Mes enchères</a></li>
                 </div>
 
-
-
-                    <div>
-                        <label for="site-search">Rechercher un article :</label>
-                        <input type="search" id="site-search" name="nom"/>
-                        <label for="idType">Catégorie l'article : </label><br>
-                        <select name="idType" required>
-                            <option value="" selected disabled hidden>-- Choisir la catégorie --</option>
-                            <option th:each="type : ${types}" th:value="${type.getId()}"
-                                    th:text="${type.getTexte()}"></option>
-
-                        </select>
-                        <button type="submit">Search</button>
-
-                    </div>
                 </form>
 
 
@@ -95,6 +81,9 @@
         </nav>
     </section>
 </header>
+
+<section layout:fragment="content"></section>
+
 <footer>
     <h3>Retrouvez nous sur les réseaux</h3>
 
@@ -130,7 +119,7 @@
     </section>
 </footer>
 </body>
-<section layout:fragment="footer"></section>
 
-<section layout:fragment="content"></section>
+
+
 </html>

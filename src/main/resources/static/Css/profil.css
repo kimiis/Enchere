@@ -1,8 +1,9 @@
 h1 {
     font-size: 3rem;
     text-align: center;
-    color: cornflowerblue;
+    color: #846867;
     margin-top: 20px;
+    font-family: 'Oswald', sans-serif;
 
 }
 
@@ -15,7 +16,7 @@ h1 {
 }
 
 .cardProf {
-    border: 1px cornflowerblue solid;
+    border: 1px #846867 solid;
     width: 500px;
     margin-top: 20px;
     margin-left: 700px;

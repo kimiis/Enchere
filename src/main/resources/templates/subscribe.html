@@ -15,10 +15,6 @@
 
             <form id="subForm" class="subForm" action="/subscribe" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <br>
-                <legend>Formulaire d'adhésion</legend>
-                <br>
-                <!-- La balise Table pour formater l'affichage du formulaire -->
 
                 <div>
                     <label for="name" class="form__label">Pseudo : </label><br>

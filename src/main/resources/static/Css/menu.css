@@ -74,3 +74,51 @@ body{
     margin-top: 0.5rem;
 
 }
+
+footer {
+    background-color: #352c3b;
+    color: #e0ccca;
+    font-size: 1rem;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    position: inherit;
+    left: 0;
+    bottom: 0;
+    width:100% ;
+    flex-shrink: 0;
+}
+
+#link {
+    list-style-type: none;
+    border: 0.2rem solid;
+    border-radius: 0.6rem;
+    display: inline-block;
+    background-color: #F8E8EE;
+    padding: 0 10rem;
+    margin: 0;
+
+
+}
+
+.link li {
+
+    padding: 0 7rem;
+    margin: 0 0 0 0;
+    display: inline-block;
+
+
+}
+
+footer a {
+    color: #e0ccca;
+    text-decoration: none;
+    display: inline-block;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    font-weight: bold;
+}
+
+.fa-brands {
+    padding: 1.5rem;
+}
