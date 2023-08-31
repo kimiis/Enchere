@@ -20,7 +20,7 @@ let image = () => {
         div = document.createElement("div");
         div.className = "photo";
         /*mettre des images*/
-        div.style.backgroundImage = `url('/images/articles/lamboAventador.jpg')`
+        div.style.backgroundImage = `url('/images/caroussel/consolePetit.png')`
         container.appendChild(div);
     }
 
