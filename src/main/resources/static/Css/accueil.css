@@ -8,7 +8,7 @@
 #carrousel {
 
     z-index: 2;
-    width: 110rem;
+    width: 108rem;
     height: 43rem;
     border: solid 0.2rem #FFF;
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
@@ -18,13 +18,13 @@
 }
 
 #container {
-    width: 110rem;
+    width: 108em;
     height: 43rem;
 
 }
 #droite /* bouton de droite*/{
 
-    left: 100rem;
+    left: 98rem;
     opacity: 0.4;
     transform: rotate(0deg);
     transition: all 0.3s ease;
@@ -53,7 +53,7 @@
 }
 
 .photo{
-    width: 110rem;
+    width: 108rem;
     height: 43rem;
     margin: 0;
     display: inline-block;

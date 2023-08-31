@@ -6,7 +6,7 @@ window.onload = function () {
 }
 let image = () => {
 
-    nbr = 8 /*j'ai 8 images*/
+    nbr = 7 /*j'ai 8 images*/
     p = 0 /*position 0 par defaut effet carousel*/
 
     container = document.getElementById("container");
@@ -20,7 +20,7 @@ let image = () => {
         div = document.createElement("div");
         div.className = "photo";
         /*mettre des images*/
-        div.style.backgroundImage = `url('/images/caroussel/consolePetit.png')`
+        div.style.backgroundImage = `url('/images/caroussel/caroussel${i+1}.png')`
         container.appendChild(div);
     }
 
@@ -28,7 +28,7 @@ let image = () => {
 
         if (p > -nbr + 1)/* une fois que j'atteind la val -7 carrousel ne marche plus*/
             p--;
-        container.style.transform = "translate("+p*110+"rem)";
+        container.style.transform = "translate("+p*108+"rem)";
         container.style.transition = "all 0.5s ease";
         afficherMasquer();
     }
@@ -37,7 +37,7 @@ let image = () => {
 
         if (p < 0)
             p++;
-        container.style.transform = "translate("+p*110+"rem)";
+        container.style.transform = "translate("+p*108+"rem)";
         container.style.transition = "all 0.5s ease";
         afficherMasquer();
 

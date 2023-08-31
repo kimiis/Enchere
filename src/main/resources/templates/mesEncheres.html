@@ -4,10 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Mes enchères</title>
+    <link href="/Css/mesEncheres.css" rel="stylesheet">
+    <script src="/Js/mesEncheres.js"></script>
+
 </head>
 <body>
 <main>
     <section layout:fragment="content">
+<!--        Debut CodePen -->
+        <div class="wrapper">
+            <div class="title">
+                CSS Tabs Filtering
+            </div>
+            <div class="tabs_wrap">
+                <ul>
+                    <li data-tabs="mesEncheres">Mes encheres</li>
+                    <li data-tabs="jeParticipe" class="active">Je Participe</li>
+                </ul>
+            </div>
+            <div class="container">
+                <div class="enchereJeParticipe nowrap">
+                    <div>
+                        je suis achteur
+                    </div>
+                    <div>
+                        je suis gagnant
+                    </div>
+                </div>
+                <div class="mesEncheres nowrap">
+                    <div>
+                        a venir
+                    </div>
+                    <div>
+                        passés
+                    </div>
+                    <div>
+                        en cours
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--       Fin CodePen -->
         <p>Mes enchères en cours</p>
         <!--enchere que j'ai créer-->
         <div th:each="objet: ${enCours}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>

@@ -1,7 +1,7 @@
 .form {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 20% 20% 20% 20% 20% 20% 20%;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-template-areas:
             "a1 a2 a3 a4 a5"
             "b1 b2 b3 b4 a5"
