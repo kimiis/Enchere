@@ -16,6 +16,7 @@ import java.util.Objects;
 public class ObjetDaoJdbc implements ObjetDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+//    va permettre de faire des requetes en base tout en faisant de l'interpolation (remplacement de valeur dans un string)
     private final String SELECT = " SELECT Energie, o.Id as IdObjet, NbRoue, Annee, Portable, Encastarble, DateD, DateF, prixD, Adresse, o.nom as nomObjet, description, iDUtilisateur, idRetrait, idCoupe, IdCouleur, IdMarque, o.IdType, IdLocalisation, IdEnergie, IdTaille, \n" +
             "    C.nom  as nomCouleur    , C.Texte  as texteCouleur,\n" +
             "    C2.nom as nomCoupe      , C2.Texte as texteCoupe,\n" +
@@ -154,7 +155,7 @@ public class ObjetDaoJdbc implements ObjetDao {
 
     public List<Objet> getObjetByFiltre(FormFiltre formFiltre) {
         MapSqlParameterSource parametreSource = new MapSqlParameterSource();
-
+//on créer une liste de String :sqlCondition. Qui va contenir des conditions:
         List<String> sqlCondition = new ArrayList<String>();
 
         if (formFiltre.isOn() && formFiltre.isOn()) {
@@ -166,8 +167,9 @@ public class ObjetDaoJdbc implements ObjetDao {
         } else if (formFiltre.isOff()) {
             sqlCondition.add("DateF <  GETDATE() ");
         }
-//        on verif qu'o nest pas une couleur a  null, si c'est null on ne rentre as dedans;
-//        ensuite on met le && qui verif si le string n'est pas empty si tous est ok on rentre dans la condition
+//        on verifie que l'utilisateur a selectionné une couleur, si la couleur est null on ne rentre pas dans la condition;
+//        ensuite on met le && qui verifie si le string n'est pas vide si tout est bon on rentre dans la condition.
+//        cette condition rajoute, une vérification sur la valeur de la couleur sur l'objet en base.
         if(!"".equals(formFiltre.getCouleur()) && !Objects.isNull(formFiltre.getCouleur()) ) {
             sqlCondition.add(" C.nom = '"  + formFiltre.getCouleur() + "' ");
         }
@@ -183,14 +185,11 @@ public class ObjetDaoJdbc implements ObjetDao {
         if(!"".equals(formFiltre.getPrixMin()) && !Objects.isNull(formFiltre.getPrixMin()) ) {
             sqlCondition.add(" prixD > " + formFiltre.getPrixMin() + " ");
         }
+//        ici ça va concatener toutes mes conditions avec ma constante qui permet de faire le select.
+//        Entre chque condition on fait un join pour ajouter les AND aux bons endroits.
+//
         return namedParameterJdbcTemplate.query(GET_OBJET_BY_FILTRE + String.join("AND",sqlCondition), new ObjetMapper());
 
     }
-    public List<Objet> getEnCoursParticipe (int idUser){
-
-        return null;
-    }
-
-
 }
  

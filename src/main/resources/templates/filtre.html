@@ -6,71 +6,85 @@
 </head>
 <body>
 
-<div th:fragment="fragModifFiltre (marques,couleurs,localisations, idCategorie, nomType)">
+<div  th:fragment="fragModifFiltre (marques,couleurs,localisations, idCategorie, nomType)">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <script src="Js/Filtre.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="Css/Filtre.css">
 
 
-    <form id="filtrer" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" method="post" action="/filtrer">
+    <form class="filtre" id="filtrer" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" method="post" action="/filtrer">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-<!--  Donc pour faire le tri sur la bonne categorie, il nous faudras l'id categorie, sinon impossible de savoir laquelle afficher-->
+        <!--  Donc pour faire le tri sur la bonne categorie, il nous faudras l'id categorie,
+        sinon impossible de savoir laquelle afficher-->
 
         <input hidden name="idCategorie" th:value="${idCategorie}">
         <input hidden name="nomType" th:value="${nomType}">
 
-        <label for="marques">Marques</label>
-        <select name="marques" id="marques">
 
+        <select class="marque" name="marques" id="marques">
             <option value="" disabled selected>Choisissez la marque</option>
             <option th:each="marque : ${marques}" th:value="${marque.getNom()}"
                     th:text="${marque.getTexte()}"></option>
-
         </select>
 
-        <label for="prix">Prix</label>
-        <div class="price-slider" name="prixSlider"><span>from
-        <input name="prixMin" type="number" value="20000" min="0" max="10000000"/>	to
-        <input name="prixMax" type="number" value="10000000" min="0" max="10000000"/></span>
 
-            <input value="20000" min="0" max="10000000" step="500" type="range"/>
-            <input value="10000000" min="0" max="10000000" step="500" type="range"/>
+        <div class="price-slider" name="prixSlider">
+            <label class="prix" for="prix">Prix</label>
+            <div class="fromLabel">Min</div>
+            <div class="toLabel">Max</div>
 
-            <!--        barre + pointillet-->
-            <svg width="100%" height="24">
-                <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12" stroke-dasharray="1 28"></line>
-            </svg>
+                <input class="fromBox form-control" name="prixMin" type="number" value="20000" min="0" max="10000000"/>
+                <input class="toBox form-control" name="prixMax" type="number" value="10000000" min="0" max="10000000"/>
+
+            <div class="slider">
+                <input class="slide" value="20000" min="0" max="10000000" step="500" type="range"/>
+                <input class="slide" value="10000000" min="0" max="10000000" step="500" type="range"/>
+                <!--        barre + pointillet-->
+                <svg width="100%" height="24">
+                    <line x1="4" y1="0" x2="300" y2="0" stroke="#212121" stroke-width="12" stroke-dasharray="1 28"></line>
+                </svg>
+            </div>
         </div>
 
-        <label for="localisation">Localisation</label>
-        <select name="localisation" id="localisation">
+        <select class="localisation" name="localisation" id="localisation">
             <option value="" disabled selected>Choisissez la localisation</option>
             <option th:each="localisation : ${localisations}" th:value="${localisation.getNom()}"
                     th:text="${localisation.getTexte()}"></option>
         </select>
 
-        <label for="couleur">Couleur</label>
-        <select name="couleur" id="couleur">
+        <select name="couleur" id="couleur" class="couleur">
             <option value="" disabled selected>Choisissez la couleur</option>
             <option th:each="couleur : ${couleurs}" th:value="${couleur.getNom()}"
                     th:text="${couleur.getTexte()}"></option>
         </select>
 
-        <div>
+        <select th:if="${nomType == 'veh'}" class="carburant" name="energie" id="energie">
+            <option value="" disabled selected>Choisissez le carburant</option>
+            <option th:each="energie : ${energies}" th:value="${energie.getNom()}"
+                    th:text="${energie.getTexte()}"></option>
+        </select>
+        <select th:if="${nomType == 'vet'}" name="taille" id="taille">
+            <option value="" disabled selected>Choisissez la taille</option>
+            <option th:each="taille : ${tailles}" th:value="${taille.getNom()}"
+                    th:text="${taille.getTexte()}"></option>
+        </select>
+
+        <div class="on">
             <input type="checkbox" name="on" id="on">
             <label for="on">En cours</label>
         </div>
-        <div>
+        <div class="off">
             <input type="checkbox" name="off" id="off">
             <label for="off">Terminée</label>
         </div>
-<!--c'est un form parceque ca va nous simplifier la vie pour le mettre dans un objet coté java apres
+        <!--c'est un form parceque ca va nous simplifier la vie pour le mettre dans un objet coté java apres
 
-A partir du moment ou t'as plusieur valeur a remonter dans ton java, c'est cool-->
-        <button type="submit">Filtrer</button>
+        A partir du moment ou t'as plusieur valeur a remonter dans ton java, c'est cool-->
+        <button class="btn-primary btn boutonFiltrer" type="submit">Filtrer</button>
     </form>
+
 </div>
 
 </body>

@@ -6,8 +6,10 @@ import java.util.Date;
 
 public class ObjetForm {
 
-//en fait Thymeleaf va pas pouvoir mapper une propriété dans un objet a partir d'un formulaire utilisateur
-//Donc comme dans Objet on as pricate Coupe coupe, private Marque marque, etc.tous ces truc on pourrais pas savoir ce que c'est
+//    Thymeleaf a besoin d'un objet, pour deverser les inputs utilisateurs. Il ne peut pas créer un objet à la volée, sans type.
+//    Il faut donc, lui donner un type d'objet, dans lequel, il va pouvoir rentrer les data utilisateurs.
+//    Le mapping se fait grâce à la propriété name des objets HTML. exemple: un input qui a pour name="nom" verra sa valeur ajouter
+//    dans la propriété nom.
 
     private String nom;
     private String description;

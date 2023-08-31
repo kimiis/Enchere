@@ -11,12 +11,7 @@
     <div
             th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations},idCategorie=3, nomType='vet')}">
     </div>
-    <label for="taille">Taille</label>
-    <select name="taille" id="taille">
-        <option value="" disabled selected>Choisissez la taille</option>
-        <option th:each="taille : ${tailles}" th:value="${taille.getNom()}"
-                th:text="${taille.getTexte()}"></option>
-    </select>
+
         <div th:each="objet: ${listObjet}" th:text="${objet.getNom() + '   ' +  objet.getPrix() + objet.getDateF()} "></div>
     </section>
 </main>

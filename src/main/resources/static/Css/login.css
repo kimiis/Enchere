@@ -33,7 +33,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
 .masterLogin{
-    height: 100%;
     font-size: 65.2%;
     box-sizing: border-box;
     font-family: Montserrat, sans-serif;
@@ -46,7 +45,8 @@
     flex-direction: column;
     justify-content: center;
     perspective: 1500px;
-    padding: 1rem;
+    padding: 2rem;
+    height: 60vh;
 }
 
 .masterLogin h1{

@@ -91,7 +91,6 @@ public class AffichageController {
 
     @GetMapping({"/accueil", "/"})
     public String afficherPageAcc(@ModelAttribute("connecte") boolean connect) {
-        System.out.println(connect);
         return "accueil";
     }
 
@@ -103,7 +102,7 @@ public class AffichageController {
 
     @PostMapping("/subscribe")
     public String encodage(Utilisateur u) {
-        System.out.println("hola");
+
         if (u.getPseudo().length() < 3) {
             return "ErreurInscription";
         }
@@ -113,7 +112,7 @@ public class AffichageController {
         if (!u.getMdp().matches("^((?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*[#?!@$%^&*-])).{6,}$")) {
             return "ErreurInscription";
         }
-        System.out.println("hola");
+
         profilService.ajouter(u);
 
         return "succes";

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout.html}"
       th:with="connecte=${connecte}, types=${types}">
 <head>
     <meta charset="UTF-8">
     <title>Automobile</title>
+    <link rel="stylesheet" href="/Css/detail.css">
+    <script src="/Js/detail.js" ></script>
 </head>
 <body>
 <main>
@@ -12,16 +15,9 @@
         <div
                 th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations}, idCategorie=1, nomType='veh')}">
         </div>
-
-        <label for="energie">Energies</label>
-   <select name="energie" id="energie">
-            <option value="" disabled selected>Choisissez le carburant</option>
-            <option th:each="energie : ${energies}" th:value="${energie.getNom()}"
-                    th:text="${energie.getTexte()}"></option>
-        </select>
-
     </div>
-        <div th:each="objet: ${listObjet}" th:text="${objet.getNom() + '   ' +  objet.getPrix() + objet.getDateF()} "></div>
+
+<!--        <div th:each="objet: ${listObjet}" th:text="${objet.getNom() + '   ' +  objet.getPrix() + objet.getDateF()} "></div>-->
 
 <!--        l'un ou l'autre -->
         <table>
@@ -34,6 +30,38 @@
                 <td><button th:attr="onclick=|window.location.href='@{/detailObjet?idObjet=__${objet.getId()}__}'|">Détail</button>
             </tr>
         </table>
+
+        <li>
+        <div class="img-card iCard-style4">
+            <div class="card-content">
+                <div class="card-image">
+                    <span class="card-caption">Image Caption</span>
+                    <img src="https://www.dropbox.com/s/ldjzn4dwz13m3vb/pomegranate-3383814_640.jpg?raw=1"/>
+                </div>
+
+                <div class="card-title"><span>The Title</span></div>
+                <br/>
+                <div class="toggle" onclick="showText(this)">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="card-text">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Image by  from
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card-link">
+                <a href="#" title="Read Full">
+                    <span>Read More Link</span>
+                </a>
+            </div>
+        </div>
+    </li>
     </section>
 </main>
 </body>

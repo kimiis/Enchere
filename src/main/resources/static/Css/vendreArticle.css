@@ -10,7 +10,7 @@
             "e1 e2 e3 e4 e5"
             "f1 f2 f3 f4 f5"
             "g1 g2 g3 g4 g5";
-
+    height: 50vh;
 }
 
 .titreForm {
@@ -18,6 +18,7 @@
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
+    padding-top: 1rem;
 
 }
 
@@ -36,100 +37,116 @@
     color: #846867;
 
 }
-.form__field{
+
+.form__field {
     width: 20rem;
 }
-.description{
+
+.description {
     grid-area: b4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.prix{
+
+.prix {
     grid-area: c3;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.prixD{
+
+.prixD {
     grid-area: c4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.prixF{
+
+.prixF {
     grid-area: d3;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.retrait{
+
+.retrait {
     grid-area: d4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.localisation{
+
+.localisation {
     grid-area: e3;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.marque{
+
+.marque {
     grid-area: e4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.couleur{
-     grid-area: f3;
-     text-align: center;
-     font-family: 'Oswald', sans-serif;
-     color: #846867;
- }
-.taille{
+
+.couleur {
+    grid-area: f3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+}
+
+.taille {
     grid-area: f4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.carburant{
+
+.carburant {
     grid-area: f4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.coupe{
+
+.coupe {
     grid-area: g3;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.roue{
+
+.roue {
     grid-area: g3;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.encastrable{
+
+.encastrable {
     grid-area: g4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
 
-.energieElec{
+.energieElec {
     grid-area: f4;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-.valider{
+
+.valider {
     grid-area: g5;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     color: #846867;
 }
-select{
+
+select {
     width: 20rem;
 }

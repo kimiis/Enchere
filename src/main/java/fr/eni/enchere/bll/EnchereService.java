@@ -50,7 +50,6 @@ public class EnchereService {
         // On initialise le prix actuel au prix départ de l'objet
         int prixActu = prixD;
 
-        //Si l'objet a au moins une enchere
         //if(!Objects.isNull(enchere.getPrix()))
         //Pourquoi Objects
 //c'est la class qui permet de verifier si un objet est null, en fait comme sur null on peux faire aucune fonction

@@ -1,28 +1,113 @@
-body {
-    display: flex;
-    height: 100vh;
+.filtre{
+    display: grid;
+    grid-template-columns: 10rem repeat(7, 1fr) 10rem;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-areas:
+            "a0 a1 a2 a3 a4 a5 a6 a7 a8";
+    margin: auto;
+    background-color:#534554 ;
 }
-input {
-    box-shadow: 0;
-    outline: 0;
+.marque{
+    grid-area: a1;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+    height: 2rem;
+    margin: auto;
+}
+
+.localisation{
+    grid-area: a2;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+    height: 2rem;
+    margin: auto;
+}
+.couleur{
+    grid-area: a3;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+    height: 2rem;
+    margin: auto;
+}
+.on{
+    margin: auto auto auto 2rem;
+    grid-area: a6;
+    font-family: 'Oswald', sans-serif;
+    color: #e0ccca;
+}
+.off{
+
+    grid-area: a6;
+    font-family: 'Oswald', sans-serif;
+    color: #e0ccca;
+    margin: auto auto auto 7rem;
+}
+.prix{
+    grid-area: top / b2 / b2 / b2;;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #e0ccca;
+    height: 2rem;
+}
+.carburant{
+    grid-area: a4;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: #846867;
+    height: 2rem;
+    margin: auto;
+}
+.fromBox{
+    grid-area: b1;
+}
+.fromLabel{
+    grid-area: a1;
+    color: #e0ccca;
+}
+.toLabel{
+    grid-area: a3;
+    color: #e0ccca;
+}
+.toBox{
+    grid-area: b3;
+}
+.slider{
+    position: relative;
+    grid-area: c1 / c1 / c1 / c3 ;
+}
+.boutonFiltrer{
+    width: 5rem;
+
+    margin: auto auto auto 0 !important;
+    grid-area: a7;
+    font-family: 'Oswald', sans-serif;
 }
 .price-slider {
     width: 300px;
     margin: auto;
     text-align: center;
-    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+            "top top top"
+            "a1 a2 a3"
+            "b1 b2 b3"
+            "c1 c2 c3";
     height: 6em;
+    grid-area: a5;
 }
-.price-slider svg,
-.price-slider input[type=range] {
+
+.slide {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    top: 0.5rem;
 }
 input[type=number] {
     border: 1px solid #ddd;
     text-align: center;
-    font-size: 1.6em;
     -moz-appearance: textfield;
 }
 input[type=number]::-webkit-outer-spin-button,

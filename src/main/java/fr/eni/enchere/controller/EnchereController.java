@@ -50,6 +50,7 @@ public class EnchereController {
     //----------------------------------Filtre--------------------------------------
 
     public void afficherFiltre(Model model, String typeName) {
+//        va permettre de recuperer tous les objets de type typeName
         model.addAttribute("listObjet", objetService.findByType(typeName));
         model.addAttribute("marques", marqueService.getMarquesByTypeName(typeName));
         model.addAttribute("couleurs", couleurService.recupererInfos());
@@ -57,7 +58,7 @@ public class EnchereController {
         model.addAttribute("localisations", localisationService.recupererInfos());
     }
 
-    @ModelAttribute("types")//au moment où j'arrive sur la page je suis déco
+    @ModelAttribute("types")
     public List<Type> types() {
         return typeService.recupererInfos();
     }
@@ -152,6 +153,10 @@ public class EnchereController {
 
         model.addAttribute("detailObjet", objetService.consulterObjetParId(idObjet));
         model.addAttribute("enchereLaPlusHaute", prix);
+        if(!enchereLapLusHaute.isEmpty()){
+            model.addAttribute("topEncherisseur", profilService.getUserById(enchereLapLusHaute.get(0).getIdAcheteur()).getNom());
+        }
+
         return "detailObjet";
     }
 
