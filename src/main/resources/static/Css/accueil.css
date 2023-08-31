@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap');#carou {
+
+    border-top: 1rem solid #e0ccca;
+    background-color: #e0ccca;
+    padding-bottom: 2rem;
+}
+
+#carrousel {
+
+    z-index: 2;
+    width: 110rem;
+    height: 43rem;
+    border: solid 0.2rem #FFF;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+}
+
+#container {
+    width: 110rem;
+    height: 43rem;
+
+}
+#droite /* bouton de droite*/{
+
+    left: 100rem;
+    opacity: 0.4;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+
+}
+
+#gauche/*bouton de gauche*/ {
+
+    left: 0rem;
+    opacity: 0.4;
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+#droite:hover{/* bouton de droite*/
+    transform: rotate(0deg) scale(1.1);
+    opacity: 1;
+    transition: all 0.3s ease;
+
+}
+
+#gauche:hover /*bouton de gauche*/ {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+.photo{
+    width: 110rem;
+    height: 43rem;
+    margin: 0;
+    display: inline-block;
+    background-size: cover;
+}
+
+.bouton {
+    position: absolute;
+    width: 9rem;
+    cursor: pointer;
+    top: 18rem;
+}
+.alogo{
+    grid-area: 1/1/2/1;
+}
+.categories{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 50% 50%;
+
+}
+h2{
+    font-family: 'Montserrat' , sans-serif;
+    font-weight: 300;
+    background-color: #e0ccca;
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+.categories{
+    display: grid;
+    grid-template-areas:
+            "a1 a2 a3 a4 a5"
+            "b1 b2 b3 b4 a5";
+    grid-template-columns: 14% 24% 24% 24% 14%;
+    grid-template-rows: repeat(2,1fr);
+    background-color: #e0ccca;
+    text-align: center;
+}
+.cardAuto{
+    grid-area: a2;
+}
+.cardVetement{
+    grid-area: a3;
+}
+.cardConsole{
+    grid-area: a4;
+}
+.cardJeux{
+    grid-area: b2;
+}
+.cardProdBeaute{
+    grid-area: b3;
+}
+.cardElectroM{
+    grid-area: b4;
+}

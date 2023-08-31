@@ -4,71 +4,89 @@
 <!--on appel le layout en lui passant en param connecte qui aura comme nom connecte-->
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BidHub</title>
+    <link rel="stylesheet" href="Css/accueil.css">
+    <script src="/Js/accueil.js" ;></script>
+
 </head>
 
 <body>
 <header>
 
 </header>
-<section layout:fragment="content">
-    <h3> Vous avez une idée? Nous avons le produit!</h3>
+<main>
+    <section layout:fragment="content">
 
-    <div class="cardAuto">
-
-        <a href="/auto">
-            <img src="images/voiture.jpg" width="150rem">
-        </a>
-        <div>
-            <a href="/auto">Automobile</a>
+        <div id="carou">
+            <div id="carrousel">
+                <div id="container"></div>
+                <img src="images/accueilCategorie/chevron.png" class="bouton" id="droite">
+                <img src="images/accueilCategorie/chevron.png" class="bouton" id="gauche">
+            </div>
         </div>
-    </div>
+        <h2>Nos catégories </h2>
+        <div class="categories">
 
-    <div class="cardVetement">
-        <a href="/vetements">
+            <div class="cardAuto">
 
-            <img src="images/vetements.jpg" width="150rem">
-        </a>
-        <div>
-            <a href="/vetements">Vêtements</a>
+                <a href="/auto">
+                    <img src="images/accueilCategorie/voiture.jpg" width="180rem">
+                </a>
+                <div>
+                    <a class="link-secondary"  href="/auto">Automobile</a>
+                </div>
+            </div>
+
+            <div  class="cardVetement">
+                <a  href="/vetements">
+
+                    <img src="images/accueilCategorie/vetements.jpg" width="180rem">
+                </a>
+                <div>
+                    <a class="link-secondary"  href="/vetements">Vêtements</a>
+                </div>
+            </div>
+            <div class="cardElectroM">
+                <a href="/electromenager">
+                    <img src="images/accueilCategorie/electromenage.jpg" width="180rem">
+                </a>
+                <div>
+                    <a class="link-secondary"  href="/electromenage">Eléctroménager</a>
+                </div>
+
+            </div>
+
+            <div class="cardConsole">
+                <a class="link-secondary" href="/consoles">
+                    <img src="images/accueilCategorie/console.jpeg" width="180rem">
+                </a>
+                <div>
+                    <a class="link-secondary"  href="/consoles">Consoles</a>
+                </div>
+            </div>
+
+            <div class="cardJeux">
+                <a href="/highTech">
+                    <img src="images/accueilCategorie/highTech.avif" width="180rem">
+                </a>
+                <div>
+                    <a class="link-secondary"  href="/jeuxSociete">HighTech</a>
+                </div>
+            </div>
+            <div class="cardProdBeaute">
+                <a href="/produitBeaute">
+                    <img src="images/accueilCategorie/produitsBeaute.jpg" width="180rem">
+                </a>
+                <div>
+                    <a class="link-secondary" href="/produitBeaute">Produits de beautés</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="cardElectroM">
-        <a href="/electromenager">
-            <img src="images/electromenage.jpg" width="150rem">
-        </a>
-        <div>
-            <a href="/electromenage">Eléctroménager</a>
-        </div>
+    </section>
+</main>
+<footer>
 
-    </div>
+    </footer>
 
-    <div class="cardConsole">
-        <a href="/consoles">
-            <img src="images/console.jpeg" width="150rem">
-        </a>
-        <div>
-            <a href="/consoles">Consoles</a>
-        </div>
-    </div>
-
-    <div class="cardJeux">
-        <a href="/highTech">
-            <img src="images/highTech.avif" width="150rem">
-        </a>
-        <div>
-            <a href="/jeuxSociete">HighTech</a>
-        </div>
-    </div>
-    <div class="cardProdBeaute">
-        <a href="/produitBeaute">
-            <img src="images/produitBeaute.jpeg" width="150rem">
-        </a>
-        <div>
-            <a href="/produitBeaute">Produits de beautés</a>
-        </div>
-    </div>
-
-</section>
 </body>
 </html>

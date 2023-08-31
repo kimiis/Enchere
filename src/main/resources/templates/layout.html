@@ -4,15 +4,45 @@
     <script src="/Js/logout.js" sec:authorize="isAuthenticated()"></script>
     <meta charset="UTF-8">
     <title>layoute</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <link th:href="@{Css/menu.css}" rel="stylesheet"/>
 </head>
 <body>
 <header>
     <section class=menuP>
 
-        <a href="accueil"> <img src="images/EnchereLogo.jpg" alt="logo" width="50rem"></a>
+
         <nav>
+            <a class="alogo" href="accueil"> <img src="images/accueilCategorie/logo.png" class="logo" alt="logo"></a>
+            <form class="search" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"
+                  action="/searchByNameAndType"
+                  method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+
+                <div class="rechercher">
+                    <input class="searchBar form-control" type="search" id="site-search" name="nom"
+                           placeholder="Rechercher un article"/>
+
+                    <select class="form-select searchCategorie " name="idType" required>
+                        <option value="" selected disabled hidden>-- Choisir la catégorie --</option>
+                        <option th:each="type : ${types}" th:value="${type.getId()}"
+                                th:text="${type.getTexte()}"></option>
+
+                    </select>
+
+                    <button class="bouttonSearch btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+
             <ul class="menu">
-                <li><a href="accueil">Accueil</a></li>
+                <div>
+                    <li><a href="accueil">Accueil</a></li>
+                </div>
 
                 <div sec:authorize="!isAuthenticated()">
                     <li><a href="subscribe">S'inscrire</a></li>
@@ -42,9 +72,7 @@
                     <li><a href="mesEncheres">Mes enchères</a></li>
                 </div>
 
-                <form th:name="${_csrf.parameterName}" th:value="${_csrf.token}" action="/searchByNameAndType"
-                      method="post">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
 
                     <div>
                         <label for="site-search">Rechercher un article :</label>
@@ -62,10 +90,47 @@
                 </form>
 
 
+
             </ul>
         </nav>
     </section>
 </header>
+<footer>
+    <h3>Retrouvez nous sur les réseaux</h3>
+
+    <section id=reseau>
+
+            <span><a href="facebook.BidHub.html"><i class="fa-brands fa-facebook fa-2xl"></i></a>
+                <a href="instagram.BidHub.html"><i class="fa-brands fa-instagram fa-2xl"></i></a>
+                <a href="snapchat.BidHub.html"><i class="fa-brands fa-snapchat fa-2xl"></i></a>
+                <a href="twitter.BidHub.html"><i class="fa-brands fa-twitter fa-2xl"></i></a></span>
+
+    </section>
+
+    <section>
+        <ul class="link">
+            <li>
+                <a href="Contact.html">
+                    Contact </a>
+            </li>
+            <li>
+                <a href="job.html">
+                    Job</a>
+            </li>
+            <li>
+                <a href="MentionsLégales.html">
+                    Mentions légales</a>
+            </li>
+            <li>
+                <a href="conditionsdutilisations.html">
+                    Conditions</a>
+            </li>
+
+        </ul>
+    </section>
+</footer>
 </body>
+<section layout:fragment="footer"></section>
+
 <section layout:fragment="content"></section>
 </html>

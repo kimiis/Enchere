@@ -9,10 +9,9 @@
 <main>
     <section layout:fragment="content">
     <div
-            th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations},idCategorie=2, idType='cons')}">
+            th:replace="~{filtre.html :: fragModifFiltre(marques=${marques},couleurs=${couleurs},localisations=${localisations},idCategorie=2, nomType='cons')}">
     </div>
-        <div th:each="objet: ${listObjet}" th:text="${objet.getNom()  + objet.getPrix()}"></div>
-
+        <div th:each="objet: ${listObjet}" th:text="${objet.getNom() + '   ' +  objet.getPrix() + objet.getDateF()} "></div>
     </section>
 </main>
 </body>

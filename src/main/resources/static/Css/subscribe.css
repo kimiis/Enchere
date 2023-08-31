@@ -6,7 +6,13 @@ h1 {
 
 }
 
-.profilForm, .supprimerProf {
+legend {
+    font-size: 1.5rem;
+    text-align: center;
+
+}
+
+.subForm {
 
     display: flex;
     align-items: center;
@@ -22,18 +28,10 @@ h1 {
     padding-bottom: 20px;
     border-radius: 3px;
 
+
 }
 
-.modifier, .annuler {
-    width: 200px;
-}
-
-.supprimer{
+.form-submit-button{
     margin-top: 5px;
-    width: 404px;
-}
-
-.credit{
-    margin-top: 20px;
-    margin-right: 140px;
+    width: 300px;
 }

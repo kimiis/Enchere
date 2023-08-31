@@ -6,7 +6,7 @@ h1 {
 
 }
 
-.profilForm, .supprimerProf {
+.loginForm {
 
     display: flex;
     align-items: center;
@@ -21,19 +21,9 @@ h1 {
     margin-left: 700px;
     padding-bottom: 20px;
     border-radius: 3px;
-
 }
 
-.modifier, .annuler {
+.connexion, .mdpOubli {
     width: 200px;
 }
 
-.supprimer{
-    margin-top: 5px;
-    width: 404px;
-}
-
-.credit{
-    margin-top: 20px;
-    margin-right: 140px;
-}

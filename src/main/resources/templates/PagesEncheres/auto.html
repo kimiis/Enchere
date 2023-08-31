@@ -21,7 +21,7 @@
         </select>
 
     </div>
-        <div th:each="objet: ${listObjet}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
+        <div th:each="objet: ${listObjet}" th:text="${objet.getNom() + '   ' +  objet.getPrix() + objet.getDateF()} "></div>
 
 <!--        l'un ou l'autre -->
         <table>
@@ -29,6 +29,8 @@
                     th:each="objet: ${listObjet}">
                 <td th:text="${objet.getNom()}" />
                 <td th:text="${objet.getPrix()}" />
+                <td th:text="${objet.getDateF()}" />
+
                 <td><button th:attr="onclick=|window.location.href='@{/detailObjet?idObjet=__${objet.getId()}__}'|">Détail</button>
             </tr>
         </table>

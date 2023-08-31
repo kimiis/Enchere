@@ -53,6 +53,7 @@ public class ProfilService {
 
     }
 
+
 //    private final String UPDATE_USER_CREDIT="UPDATE UTILISATEURS SET credit :credit WHERE id= :idUser ) ";
 //    @Autowired
 //    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -69,6 +70,15 @@ public class ProfilService {
     public Utilisateur getUserById (int idUtilisateur){
         return profilDao.getUserById(idUtilisateur);
     }
+
+// prevoyance si je fais page Admin
+//    public void modifCredit(int credit, int idUser) {
+//        profilDao.modifCredit(credit, idUser);
+//    }
+//    public Utilisateur getUserById (int idUtilisateur){
+//        return profilDao.getUserById(idUtilisateur);
+//    }
+
 
 
 

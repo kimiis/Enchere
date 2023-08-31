@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 // création d'une fonction pour le bouton modifier quand on clique dessus. Lorsque la boite de dialogue s'affiche et que l'on clique sur annuler, ça reset les infos précédentes, sinon ça modifie.
 function confirmModif() {
@@ -37,3 +38,14 @@ if (modif == false) {
 
 
 
+=======
+function confirmModif() {
+
+    modif = confirm("Voulez-vous modifier vos information?");
+    if (modif == false) {
+        document.getElementById("modifForm").reset();
+
+    }
+    return modif;
+};
+>>>>>>> 5d2148ed383f4fc801ed72da5ac2538291e7fb5c

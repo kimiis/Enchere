@@ -6,36 +6,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="/Css/login.css" rel="stylesheet">
 </head>
 <body>
 
 
 <section layout:fragment="content">
 
-    <form th:action="@{/login}" method="post">
-<!--        il faut obligatoirement que ce soit login car c'est spring qui s'en occupe, spring contient un traitement -->
+    <main class="cardProf">
+        <form class="loginForm" th:action="@{/login}" method="post">
+            <!--        il faut obligatoirement que ce soit login car c'est spring qui s'en occupe, spring contient un traitement -->
 
-        <h1>Connexion</h1>
-        <!----mettre un msg erreur si erreur, qd je vais sur une autre page je suis deco-->
-        <label for="inputUsername"> Username</label>
-        <input type="text" id="pseudo" name="username" value=""
-               pattern="^(.+)$"
-               size="30" required>
-        <br>
+            <h1>Connexion</h1>
+            <!----mettre un msg erreur si erreur, qd je vais sur une autre page je suis deco-->
+            <label for="inputUsername"> Username</label>
+            <input type="text" id="pseudo" name="username" value=""
+                   pattern="^(.+)$"
+                   size="30" required>
+            <br>
 
-        <label for="password"> Mot De Passe</label>
-        <input type="password" id="mdp" name="password" value=""
-               pattern="^(.+)$"
-               size="30" required>
-        <br>
+            <label for="password"> Mot De Passe</label>
+            <input type="password" id="mdp" name="password" value=""
+                   pattern="^(.+)$"
+                   size="30" required>
+            <br>
 
+            <div>
+                <button type="submit" class="connexion" value="Se connecter">Se connecter</button>
 
-        <button type="submit" value="Se connecter">Se connecter</button>
+                <a class="mdpOubli" href="">Mot de passe oublié</a>
+            </div>
 
-        <a href="">Mot de passe oublié</a>
-
-
-    </form>
+        </form>
+    </main>
 </section>
 </body>
 </html>
