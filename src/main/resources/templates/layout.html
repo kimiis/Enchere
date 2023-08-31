@@ -47,12 +47,9 @@
                     <li><a href="accueil">Accueil</a></li>
                 </div>
 
-                <div sec:authorize="!isAuthenticated()">
-                    <li><a href="subscribe">S'inscrire</a></li>
-                </div>
 
                 <div sec:authorize="!isAuthenticated()">
-                    <li><a href="login">Se connecter</a></li>
+                    <li><a href="login">Se connecter / S'inscrire</a></li>
                 </div>
 
                 <div sec:authorize="isAuthenticated()">
