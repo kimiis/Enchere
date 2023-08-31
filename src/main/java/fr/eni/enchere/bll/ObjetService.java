@@ -15,13 +15,12 @@ public class ObjetService {
     private ObjetDao objetDAO;
 
     // créer objet
-
     public void insertObjet(int idUser, ObjetForm objetForm){
 
         objetDAO.insertObjet(idUser,objetForm);
+    }
 
-                }
-        //recuperer objet par type
+    //recuperer objet par type
     public List<Objet> findByType(String typeName){
         return objetDAO.findByType(typeName);
     }

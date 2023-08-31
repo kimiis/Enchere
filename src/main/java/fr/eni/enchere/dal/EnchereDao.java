@@ -1,6 +1,7 @@
 package fr.eni.enchere.dal;
 
 import fr.eni.enchere.ObjetSQL.Enchere;
+import fr.eni.enchere.ObjetSQL.Utilisateur;
 
 import java.util.List;
 
@@ -14,6 +15,6 @@ public interface EnchereDao {
 
     void addEnchere(int idUser, int idObjet, int prix);
 
-    Enchere getEncherePlusHaute (int idObjet);
+    List<Enchere> getEncherePlusHaute (int idObjet);
 
 }

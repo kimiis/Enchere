@@ -1,5 +1,6 @@
 package fr.eni.enchere.controller;
 
+import fr.eni.enchere.ObjetSQL.Enchere;
 import fr.eni.enchere.ObjetSQL.Objet;
 import fr.eni.enchere.ObjetSQL.Type;
 import fr.eni.enchere.ObjetSQL.Utilisateur;
@@ -142,9 +143,15 @@ public class EnchereController {
     //je récupere Objet objet pour l'afficher dans détailObjet
     @GetMapping("/detailObjet")
     public String detailObjet(@RequestParam(name = "idObjet", required = true) int idObjet, Model model) {
+        Objet objet = objetService.consulterObjetParId(idObjet);
+        int prix = objet.getPrix();
+        List<Enchere> enchereLapLusHaute = enchereService.getEncherePlusHaute(idObjet);
+        if(!enchereLapLusHaute.isEmpty()){
+            prix = enchereLapLusHaute.get(0).getPrix();
+        }
 
         model.addAttribute("detailObjet", objetService.consulterObjetParId(idObjet));
-        model.addAttribute("enchereLaPlusHaute", enchereService.getEncherePlusHaute(idObjet));
+        model.addAttribute("enchereLaPlusHaute", prix);
         return "detailObjet";
     }
 

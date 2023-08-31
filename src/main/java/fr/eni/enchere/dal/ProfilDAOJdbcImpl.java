@@ -3,21 +3,24 @@ package fr.eni.enchere.dal;
 import fr.eni.enchere.ObjetSQL.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 
 public class ProfilDAOJdbcImpl implements ProfilDAO {
 
-
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
 
     // Récupérer les infos de l'utilisateur et les afficher dans son profil
-//    private final static String RECUPERER_INFOS = "SELECT id, pseudo, nom, prenom, email, tel, adresse, mdp, credit, admin From UTILISATEURS WHERE pseudo= ?";
     private final static String RECUPERER_INFOS = "SELECT * From UTILISATEURS WHERE pseudo= ?";
 
     @Override
@@ -89,6 +92,22 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
        jdbcTemplate.update(INSERT_ROLE, ur.getPseudo(), "ROLE_CLIENT");
 
     }
+
+    public void modifCredit(int credit, int idUser){
+        final String UPDATE_USER_CREDIT="UPDATE UTILISATEURS SET credit = :credit WHERE id= :idUser ";
+
+        MapSqlParameterSource parametreSource = new MapSqlParameterSource();
+        parametreSource.addValue("idUser", idUser);
+        parametreSource.addValue("credit", credit);
+
+        namedParameterJdbcTemplate.update(UPDATE_USER_CREDIT, parametreSource);
+    }
+//va servire a trouver l'ancien plus gros encherisseur
+    public Utilisateur getUserById (int idUtilisateur){
+        final String GET_USER_BY_ID="SELECT * FROM UTILISATEURS WHERE ID= ?";
+        return jdbcTemplate.queryForObject(GET_USER_BY_ID, new BeanPropertyRowMapper<>(Utilisateur.class), idUtilisateur );
+    }
+
 
 }
 

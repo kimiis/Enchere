@@ -22,6 +22,7 @@ public class Enchere {
         this.prix = prix;
         this.idObjet = idObjet;
         this.idAcheteur = idAcheteur;
+
     }
 
     public Enchere() {

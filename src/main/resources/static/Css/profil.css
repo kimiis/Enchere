@@ -1,0 +1,45 @@
+
+
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: cornflowerblue;
+   margin-top: 20px;
+
+}
+
+.profilForm, .supprimerProf {
+
+   display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.cardProf {
+border: 1px cornflowerblue solid;
+    width: 500px;
+    margin: auto;
+    padding-bottom: 20px;
+    border-radius: 3px;
+
+}
+
+
+.modifier, .annuler {
+    width: 200px;
+}
+
+.supprimer{
+    margin-top: 5px;
+    width: 404px;
+}
+
+.credit{
+    margin-top: 20px;
+   margin-right: 140px;
+}
+
+
+

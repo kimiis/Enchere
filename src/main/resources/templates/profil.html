@@ -5,13 +5,15 @@
 
     <title>Title</title>
     <script src="/Js/profil.js"></script>
+    <link href="/Css/profil.css" rel="stylesheet" >
 </head>
 <body>
 
 <section layout:fragment="content">
 
-
-    <form id="modifForm" th:action="@{/profil}" method="post">
+<main class="cardProf">
+    <form id="modifForm" class="profilForm"
+          th:action="@{/profil}" method="post">
         <input type="hidden" th:value="${profUti.id}" name="id"/>
 
 
@@ -70,28 +72,28 @@
         </div>
 
 
-        <div id="credit" name="credit" th:text="${' Crédit : ' + profUti.getCredit() }"></div>
 
+        <div id="credit" name="credit" class="credit" th:text="${' Crédit : ' + profUti.getCredit() + ' points' }"></div>
 
         <br>
 
-
-        <button onclick="confirmModif();" type="submit" id="modif" value="Modifier"> Modifier</button>
-        <button type="reset" id="annuler" value="Annuler"> Annuler</button>
-
+<div>
+        <button onclick="confirmModif();" type="submit" id="modif" class="modifier" value="Modifier"> Modifier</button>
+        <button type="reset" id="annuler" class="annuler" value="Annuler"> Annuler</button>
+</div>
 
     </form>
 
-    <form onsubmit="return confirm('Wsh tu veux vraiment nous quitter ?! :c')" th:action="@{/delete}" method="post">
+    <form onsubmit="return confirm('Wsh tu veux vraiment nous quitter ?! :c')"  class="supprimerProf" th:action="@{/delete}" method="post">
 
         <input type="hidden" th:value="${profUti.pseudo}" name="pseudo"/>
 
 
-        <button type="submit" id="supprimer" value="Supprimer"> Supprimer mon compte</button>
+        <button type="submit" id="supprimer" class="supprimer" value="Supprimer"> Supprimer mon compte</button>
 
 
     </form>
-
+</main>
 </section>
 
 </body>
