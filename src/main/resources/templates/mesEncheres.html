@@ -13,9 +13,6 @@
     <section layout:fragment="content">
 <!--        Debut CodePen -->
         <div class="wrapper">
-            <div class="title">
-                CSS Tabs Filtering
-            </div>
             <div class="tabs_wrap">
                 <ul>
                     <li data-tabs="mesEncheres">Mes encheres</li>
@@ -24,47 +21,84 @@
             </div>
             <div class="container">
                 <div class="enchereJeParticipe nowrap">
-                    <div>
-                        je suis achteur
+                    <div class="gridJeParticipe">
+                        <div class="acheteur gridItem">
+                            <h1 class="titleGrid">Je participe</h1>
+                            <div th:each="enchere,iter: ${enCoursParticipe}" th:style="${'grid-column: '+ ((iter.index % 3) + 1) +';grid-row: ' + ((iter.index /3) + 2) }" class="card" style="width: 18rem;">
+                                <img class="card-img-top" th:src="${'/images/articles/'+ enchere.getTypeNom() + '/' + ((iter.index % 3) + 1) + '.jpg' }" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${enchere.getObjetNom()}"></h5>
+                                    <p class="card-text" th:text="${'Mon enchere : ' + enchere.getPrix()}"></p>
+                                    <div class="buttonWrapper">
+                                        <a th:href="${'/detailObjet?idObjet=' + enchere.getIdObjet()}" class="btn btn-primary buttonCard">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gagne gridItem">
+                            <h1 class="titleGrid">Je suis gagnant</h1>
+                            <div th:each="enchere,iter: ${win}" th:style="${'grid-column: '+ ((iter.index % 3) + 1) +';grid-row: ' + ((iter.index /3) + 2) }" class="card" style="width: 18rem;">
+                                <img class="card-img-top" th:src="${'/images/articles/'+ enchere.getTypeNom() + '/' + ((iter.index % 3) + 1) + '.jpg' }" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${enchere.getObjetNom()}"></h5>
+                                    <p class="card-text" th:text="${'Mon enchere : ' + enchere.getPrix()}"></p>
+                                    <div class="buttonWrapper">
+                                        <a th:href="${'/detailObjet?idObjet=' + enchere.getIdObjet()}" class="btn btn-primary buttonCard">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        je suis gagnant
-                    </div>
+
                 </div>
-                <div class="mesEncheres nowrap">
-                    <div>
-                        a venir
-                    </div>
-                    <div>
-                        passés
-                    </div>
-                    <div>
-                        en cours
+                <div class="mesEncheres nowrap notDisplayed">
+                    <div class="gridMesEncheres">
+                        <div class="aVenir gridItem">
+                            <h1 class="titleGrid"> A venir</h1>
+                            <div th:each="objet,iter: ${enCours}" th:style="${'grid-column: '+ ((iter.index % 3) + 1) +';grid-row: ' + ((iter.index /3) + 2) }" class="card" style="width: 18rem;">
+                                <img class="card-img-top" th:src="${'/images/articles/'+ objet.getType().getNom() + '/' + ((iter.index % 3) + 1) + '.jpg' }" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${objet.getNom()}"></h5>
+                                    <p class="card-text" th:text="${'Prix départ : ' + objet.getPrix()}"></p>
+                                    <p class="card-text" th:text="${' Description: ' + objet.getDescription()}"></p>
+                                    <div class="buttonWrapper">
+                                        <a th:href="${'/detailObjet?idObjet=' + objet.getId()}" class="btn btn-primary buttonCard">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="passee gridItem">
+                            <h1 class="titleGrid">Passés</h1>
+                            <div th:each="objet,iter: ${termine}" th:style="${'grid-column: '+ ((iter.index % 3) + 1) +';grid-row: ' + ((iter.index /3) + 2) }" class="card" style="width: 18rem;">
+                                <img class="card-img-top" th:src="${'/images/articles/'+ objet.getType().getNom() + '/' + ((iter.index % 3) + 1) + '.jpg' }" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${objet.getNom()}"></h5>
+                                    <p class="card-text" th:text="${'Prix départ : ' + objet.getPrix()}"></p>
+                                    <p class="card-text" th:text="${' Description: ' + objet.getDescription()}"></p>
+                                    <div class="buttonWrapper">
+                                        <a th:href="${'/detailObjet?idObjet=' + objet.getId()}" class="btn btn-primary buttonCard">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="futures gridItem">
+                            <h1 class="titleGrid">En cours</h1>
+                            <div th:each="objet,iter: ${futur}" th:style="${'grid-column: '+ ((iter.index % 3) + 1) +';grid-row: ' + ((iter.index /3) + 2) }" class="card" style="width: 18rem;">
+                                <img class="card-img-top" th:src="${'/images/articles/'+ objet.getType().getNom() + '/' + ((iter.index % 3) + 1) + '.jpg' }" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${objet.getNom()}"></h5>
+                                    <p class="card-text" th:text="${'Prix départ : ' + objet.getPrix()}"></p>
+                                    <p class="card-text" th:text="${' Description: ' + objet.getDescription()}"></p>
+                                    <div class="buttonWrapper">
+                                        <a th:href="${'/detailObjet?idObjet=' + objet.getId()}" class="btn btn-primary buttonCard">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-<!--       Fin CodePen -->
-        <p>Mes enchères en cours</p>
-        <!--enchere que j'ai créer-->
-        <div th:each="objet: ${enCours}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
-
-
-        <p>Mes enchères terminée</p>
-        <!--enchere que j'ai créer-->
-        <div th:each="objet: ${termine}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
-
-
-        <p>Mes enchères futur</p>
-        <!--enchere que j'ai créer-->
-        <div th:each="objet: ${futur}" th:text="${objet.getNom() + '   ' +  objet.getPrix()} "></div>
-
-        <p>Mes enchères auquelles je participe, en cours</p>
-        <div th:each="enchere: ${enCoursParticipe}" th:text="${enchere.getTypeNom() + '   ' +  enchere.getObjetNom()+'   ' + enchere.getPrix()} "></div>
-
-        <p>Mes enchères remportées</p>
-        <div th:each="enchere: ${win}" th:text="${enchere.getTypeNom() + '   ' +  enchere.getObjetNom()+'   ' + enchere.getPrix()} "></div>
 
     </section>
 </main>
